@@ -1,10 +1,9 @@
 import html
 from typing import Optional
 
-from telegram import Update
+from telegram import Update, ChatMemberUpdated
 from telegram.constants import ParseMode
 from telegram.ext import CallbackContext
-from telegram.chatmemberupdated import ChatMemberUpdated
 from telegram.ext.chatmemberhandler import ChatMemberHandler
 
 from Shikimori import SHIKIMORI_PTB
