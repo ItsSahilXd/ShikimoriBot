@@ -1,5 +1,6 @@
 from functools import wraps
-from telegram import error, ChatAction
+from telegram import error
+from telegram.constants import ChatAction
 
 
 def send_message(message, text, *args, **kwargs):
