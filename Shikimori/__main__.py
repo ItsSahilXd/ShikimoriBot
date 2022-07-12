@@ -849,7 +849,7 @@ def main():
 
     donate_handler = CommandHandler("donate", donate, block=False)
     migrate_handler = MessageHandler(
-        filters.status_update.migrate, migrate_chats, block=False
+        filters.StatusUpdate.MIGRATE, migrate_chats, block=False
     )
 
 

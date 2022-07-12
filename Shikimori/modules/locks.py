@@ -34,7 +34,7 @@ LOCK_TYPES = {
     "photo": filters.photo,
     "url": filters.entity(MessageEntity.URL)
     | filters.caption_entity(MessageEntity.URL),
-    "bots": filters.status_update.new_chat_members,
+    "bots": filters.StatusUpdate.NEW_CHAT_MEMBERS,
     "forward": filters.forwarded,
     "game": filters.game,
     "location": filters.location,

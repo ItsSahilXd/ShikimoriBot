@@ -1293,10 +1293,10 @@ user joined chat, user left chat.
 """
 
 NEW_MEM_HANDLER = MessageHandler(
-    filters.status_update.new_chat_members, new_member, block=False
+    filters.StatusUpdate.NEW_CHAT_MEMBERS, new_member, block=False
 )
 LEFT_MEM_HANDLER = MessageHandler(
-    filters.status_update.left_chat_member, left_member, block=False
+    filters.StatusUpdate.LEFT_CHAT_MEMBER, left_member, block=False
 )
 WELC_PREF_HANDLER = CommandHandler(
     "welcome", welcome, filters=filters.ChatType.GROUPS, block=False
