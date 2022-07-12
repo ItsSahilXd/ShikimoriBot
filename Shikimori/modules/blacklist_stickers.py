@@ -12,7 +12,7 @@ from Shikimori.modules.helper_funcs.string_handling import extract_time
 
 from Shikimori.modules.log_channel import loggable
 from Shikimori.modules.warns import warn
-from telegram import Chat, Message, Update, User, ChatPermissions, constants
+from telegram import Chat, Message, Update, User, ChatPermissions, constants, Sticker
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler, filters, MessageHandler
@@ -528,7 +528,7 @@ UNBLACKLIST_STICKER_HANDLER = CommandHandler(
 )
 BLACKLISTMODE_HANDLER = CommandHandler("blstickermode", blacklist_mode)
 BLACKLIST_STICKER_DEL_HANDLER = MessageHandler(
-    filters.sticker & filters.ChatType.GROUPS,
+    Sticker & filters.ChatType.GROUPS,
     del_blackliststicker,
     block=False,
 )

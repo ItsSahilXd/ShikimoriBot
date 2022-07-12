@@ -238,7 +238,7 @@ LIST_CLEAN_BLUE_TEXT_HANDLER = CommandHandler(
     "listblue", bluetext_ignore_list, block=False
 )
 CLEAN_BLUE_TEXT_HANDLER = MessageHandler(
-    filters.command & filters.ChatType.GROUPS,
+    ~filters.COMMAND & filters.ChatType.GROUPS,
     clean_blue_text_must_click,
     block=False,
 )

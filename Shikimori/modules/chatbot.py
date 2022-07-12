@@ -144,7 +144,7 @@ CHATBOTK_HANDLER = CommandHandler("chatbot", kuki, block=False)
 ADD_CHAT_HANDLER = CallbackQueryHandler(kukiadd, pattern=r"add_chat", block=False)
 RM_CHAT_HANDLER = CallbackQueryHandler(kukirm, pattern=r"rm_chat", block=False)
 CHATBOT_HANDLER = MessageHandler(
-    filters.text & (~filters.Regex(r"^#[^\s]+") & ~filters.Regex(r"^!")
+    filters.TEXT & (~filters.Regex(r"^#[^\s]+") & ~filters.Regex(r"^!")
                     & ~filters.Regex(r"^\/")), chatbot, block=False)
 LIST_ALL_CHATS_HANDLER = CommandHandler(
     "allchats", list_all_chats, filters=CustomFilters.dev_filter, block=False)

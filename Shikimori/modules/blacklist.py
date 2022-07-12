@@ -1,7 +1,7 @@
 import html
 import re
 
-from telegram import ChatPermissions, constants
+from telegram import ChatPermissions, constants, Sticker
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, MessageHandler, filters
@@ -464,7 +464,7 @@ BLACKLISTMODE_HANDLER = CommandHandler(
     "blacklistmode", blacklist_mode,  block=False
 )
 BLACKLIST_DEL_HANDLER = MessageHandler(
-    (filters.text | filters.command | filters.sticker | filters.photo)
+    (filters.TEXT | ~filters.COMMAND | Sticker | filters.PHOTO)
     & filters.ChatType.GROUPS,
     del_blacklist,
     allow_edit=True,
