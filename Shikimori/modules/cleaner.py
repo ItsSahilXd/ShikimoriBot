@@ -40,7 +40,7 @@ command_list = [
 for handler_list in SHIKIMORI_PTB.handlers:
     for handler in SHIKIMORI_PTB.handlers[handler_list]:
         if any(isinstance(handler, cmd_handler) for cmd_handler in CommandHandlerList):
-            command_list += handler.command
+            command_list += handler.commands
 
 
 def clean_blue_text_must_click(update: Update, context: CallbackContext):
