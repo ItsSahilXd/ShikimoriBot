@@ -2,7 +2,7 @@ import re
 import random
 from html import escape
 import telegram
-from telegram import InlineKeyboardMarkup, Message, InlineKeyboardButton
+from telegram import InlineKeyboardMarkup, Message, InlineKeyboardButton, constants
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import (
@@ -634,7 +634,7 @@ __mod_name__ = "Filters"
 FILTER_HANDLER = CommandHandler("filter", filters)
 STOP_HANDLER = CommandHandler("stop", stop_filter)
 RMALLFILTER_HANDLER = CommandHandler(
-    "removeallfilters", rmall_filters, filters=filters.ChatType.GROUPS, block=False
+    "removeallfilters", rmall_filters, filters=constants.ChatType.GROUPS, block=False
 )
 RMALLFILTER_CALLBACK = CallbackQueryHandler(
     rmall_callback, pattern=r"filters_.*", block=False
