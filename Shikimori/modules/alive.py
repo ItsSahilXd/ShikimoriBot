@@ -37,12 +37,8 @@ async def awake(update: Update, context: CallbackContext):
 
     await message.reply_animation(PHOTO, caption=TEXT, reply_markup=InlineKeyboardMarkup(buttons),parse_mode=ParseMode.HTML)
 
-ALIVE_HANDLER = DisableAbleCommandHandler("alive", awake, block=False)
-SHIKIMORI_PTB.add_handler(ALIVE_HANDLER)
+SHIKIMORI_PTB.add_handler(DisableAbleCommandHandler("alive", awake, block=False))
 __command_list__ = ["alive"]
-__handlers__ = [
-    ALIVE_HANDLER,
-]
 
 __mod_name__ = "Alive ✨"
 __help__ = """
