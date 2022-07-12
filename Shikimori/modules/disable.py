@@ -51,7 +51,7 @@ FILENAME = __name__.rsplit(".", 1)[-1]
 if is_module_loaded(FILENAME):
     from Shikimori.modules.helper_funcs.chat_status import (
         is_user_admin, )
-    from Shikimori.modules.helper_funcs.anonymous import user_admin
+    from Shikimori.modules.helper_funcs.chat_status import user_admin
 
     from Shikimori.modules.sql import disable_sql as sql
 
