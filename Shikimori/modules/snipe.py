@@ -2,7 +2,7 @@
 from telegram import TelegramError
 from telegram import Update
 from telegram.ext import CommandHandler
-from telegram.ext.dispatcher import CallbackContext
+from telegram.ext.Application import CallbackContext
 
 from Shikimori.modules.helper_funcs.filters import CustomFilters
 from Shikimori import dispatcher, LOGGER

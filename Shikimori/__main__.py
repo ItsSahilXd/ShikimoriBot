@@ -53,7 +53,7 @@ from telegram.ext import (
     Filters,
     MessageHandler,
 )
-from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
+from telegram.ext.Application import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
 
 bot_name = f"{dispatcher.bot.first_name}"
@@ -794,7 +794,6 @@ def migrate_chats(update: Update, context: CallbackContext):
         mod.__migrate__(old_chat, new_chat)
 
     LOGGER.info("Successfully migrated!")
-    raise DispatcherHandlerStop
 
 
 def main():
