@@ -1,14 +1,13 @@
 from io import BytesIO
 from time import sleep
 
-from telegram import Update
+from telegram import Update, constants
 from telegram.error import BadRequest, Forbidden, TelegramError
 from telegram.ext import (
     CallbackContext,
     CommandHandler,
     filters,
     MessageHandler,
-    constants
 )
 
 import Shikimori.modules.sql.users_sql as sql
