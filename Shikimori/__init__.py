@@ -248,7 +248,7 @@ finally:
 from Shikimori.modules.sql import SESSION
 
 defaults = tg.Defaults(block=False)
-updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
+updater = (tg.Application.builder().token(TOKEN).build())
 telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 dispatcher = updater.dispatcher
 print("[INFO]: INITIALIZING AIOHTTP SESSION")
