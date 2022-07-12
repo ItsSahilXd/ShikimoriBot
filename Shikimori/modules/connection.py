@@ -6,7 +6,7 @@ from telegram.error import BadRequest, Unauthorized
 from telegram.ext import CommandHandler, CallbackQueryHandler
 
 import Shikimori.modules.sql.connection_sql as sql
-from Shikimori import app_build, DRAGONS, DEV_USERS
+from Shikimori import SHIKIMORI_PTB, DRAGONS, DEV_USERS
 from Shikimori.modules.helper_funcs import chat_status
 from Shikimori.modules.helper_funcs.alternate import send_message, typing_action
 
@@ -71,8 +71,8 @@ def connection_chat(update, context):
     conn = connected(context.bot, update, chat, user.id, need_admin=True)
 
     if conn:
-        chat = app_build.bot.getChat(conn)
-        chat_name = app_build.bot.getChat(conn).title
+        chat = SHIKIMORI_PTB.bot.getChat(conn)
+        chat_name = SHIKIMORI_PTB.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type != "private":
             return
@@ -127,7 +127,7 @@ def connect_chat(update, context):
                     connect_chat,
                 )
                 if connection_status:
-                    conn_chat = app_build.bot.getChat(
+                    conn_chat = SHIKIMORI_PTB.bot.getChat(
                         connected(context.bot, update, chat, user.id, need_admin=False),
                     )
                     chat_name = conn_chat.title
@@ -163,7 +163,7 @@ def connect_chat(update, context):
                 buttons = []
             conn = connected(context.bot, update, chat, user.id, need_admin=False)
             if conn:
-                connectedchat = app_build.bot.getChat(conn)
+                connectedchat = SHIKIMORI_PTB.bot.getChat(conn)
                 text = "You are currently connected to *{}* (`{}`)".format(
                     connectedchat.title,
                     conn,
@@ -231,7 +231,7 @@ def connect_chat(update, context):
                 chat.id,
             )
             if connection_status:
-                chat_name = app_build.bot.getChat(chat.id).title
+                chat_name = SHIKIMORI_PTB.bot.getChat(chat.id).title
                 send_message(
                     update.effective_message,
                     "Successfully connected to *{}*.".format(chat_name),
@@ -362,7 +362,7 @@ def connect_button(update, context):
             connection_status = sql.connect(query.from_user.id, target_chat)
 
             if connection_status:
-                conn_chat = app_build.bot.getChat(
+                conn_chat = SHIKIMORI_PTB.bot.getChat(
                     connected(context.bot, update, chat, user.id, need_admin=False),
                 )
                 chat_name = conn_chat.title
@@ -418,12 +418,12 @@ CONNECT_BTN_HANDLER = CallbackQueryHandler(
     connect_button, pattern=r"connect", block=False
 )
 
-app_build.add_handler(CONNECT_CHAT_HANDLER)
-app_build.add_handler(CONNECTION_CHAT_HANDLER)
-app_build.add_handler(DISCONNECT_CHAT_HANDLER)
-app_build.add_handler(ALLOW_CONNECTIONS_HANDLER)
-app_build.add_handler(HELP_CONNECT_CHAT_HANDLER)
-app_build.add_handler(CONNECT_BTN_HANDLER)
+SHIKIMORI_PTB.add_handler(CONNECT_CHAT_HANDLER)
+SHIKIMORI_PTB.add_handler(CONNECTION_CHAT_HANDLER)
+SHIKIMORI_PTB.add_handler(DISCONNECT_CHAT_HANDLER)
+SHIKIMORI_PTB.add_handler(ALLOW_CONNECTIONS_HANDLER)
+SHIKIMORI_PTB.add_handler(HELP_CONNECT_CHAT_HANDLER)
+SHIKIMORI_PTB.add_handler(CONNECT_BTN_HANDLER)
 
 __mod_name__ = "Connection 🖧"
 

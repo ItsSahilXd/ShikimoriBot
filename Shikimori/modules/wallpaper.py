@@ -1,7 +1,7 @@
 from random import randint
 
 import requests as r
-from Shikimori import SUPPORT_CHAT, WALL_API, app_build
+from Shikimori import SUPPORT_CHAT, WALL_API, SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import Update
 from telegram.ext import CallbackContext
@@ -53,7 +53,7 @@ def wall(update: Update, context: CallbackContext):
 
 
 WALLPAPER_HANDLER = DisableAbleCommandHandler("wall", wall, block=False)
-app_build.add_handler(WALLPAPER_HANDLER)
+SHIKIMORI_PTB.add_handler(WALLPAPER_HANDLER)
 
 __mod_name__ = "Wallpaper"
 __help__ = """

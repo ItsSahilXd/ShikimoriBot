@@ -1,5 +1,5 @@
 import speedtest
-from Shikimori import DEV_USERS, app_build
+from Shikimori import DEV_USERS, SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
@@ -58,8 +58,8 @@ SPEED_TEST_CALLBACKHANDLER = CallbackQueryHandler(
     speedtestxyz_callback, pattern="speedtest_.*", block=False
 )
 
-app_build.add_handler(SPEED_TEST_HANDLER)
-app_build.add_handler(SPEED_TEST_CALLBACKHANDLER)
+SHIKIMORI_PTB.add_handler(SPEED_TEST_HANDLER)
+SHIKIMORI_PTB.add_handler(SPEED_TEST_CALLBACKHANDLER)
 
 __mod_name__ = "SpeedTest"
 __command_list__ = ["speedtest"]

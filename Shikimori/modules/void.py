@@ -1,4 +1,4 @@
-from Shikimori import app_build
+from Shikimori import SHIKIMORI_PTB
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
 
 from telegram.ext import (
@@ -31,7 +31,7 @@ def void(update: Update, context: CallbackContext):
 
 
 void_handler = CommandHandler("void", void, block=False)
-app_build.add_handler(void_handler)
+SHIKIMORI_PTB.add_handler(void_handler)
 
 __help__ = """
  ──「Void Network」──                         

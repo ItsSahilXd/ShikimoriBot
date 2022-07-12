@@ -8,7 +8,7 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
 from alphabet_detector import AlphabetDetector
-from Shikimori import app_build, LOGGER
+from Shikimori import SHIKIMORI_PTB, LOGGER
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.chat_status import (
     can_delete,
@@ -154,7 +154,7 @@ def lock(update, context) -> str:
                 # Connection check
                 conn = connected(context.bot, update, chat, user.id, need_admin=True)
                 if conn:
-                    chat = app_build.bot.getChat(conn)
+                    chat = SHIKIMORI_PTB.bot.getChat(conn)
                     chat_id = conn
                     chat_name = chat.title
                     text = "Locked {} for non-admins in {}!".format(ltype, chat_name)
@@ -187,7 +187,7 @@ def lock(update, context) -> str:
                 # Connection check
                 conn = connected(context.bot, update, chat, user.id, need_admin=True)
                 if conn:
-                    chat = app_build.bot.getChat(conn)
+                    chat = SHIKIMORI_PTB.bot.getChat(conn)
                     chat_id = conn
                     chat_name = chat.title
                     text = "Locked {} for all non-admins in {}!".format(
@@ -256,7 +256,7 @@ def unlock(update, context) -> str:
                 # Connection check
                 conn = connected(context.bot, update, chat, user.id, need_admin=True)
                 if conn:
-                    chat = app_build.bot.getChat(conn)
+                    chat = SHIKIMORI_PTB.bot.getChat(conn)
                     chat_id = conn
                     chat_name = chat.title
                     text = "Unlocked {} for everyone in {}!".format(ltype, chat_name)
@@ -288,7 +288,7 @@ def unlock(update, context) -> str:
                 # Connection check
                 conn = connected(context.bot, update, chat, user.id, need_admin=True)
                 if conn:
-                    chat = app_build.bot.getChat(conn)
+                    chat = SHIKIMORI_PTB.bot.getChat(conn)
                     chat_id = conn
                     chat_name = chat.title
                     text = "Unlocked {} for everyone in {}!".format(ltype, chat_name)
@@ -450,7 +450,7 @@ def build_lock_message(chat_id):
         locklist.append("button = `{}`".format(locks.button))
         locklist.append("egame = `{}`".format(locks.egame))
         locklist.append("inline = `{}`".format(locks.inline))
-    permissions = app_build.bot.get_chat(chat_id).permissions
+    permissions = SHIKIMORI_PTB.bot.get_chat(chat_id).permissions
     permslist.append("messages = `{}`".format(permissions.can_send_messages))
     permslist.append("media = `{}`".format(permissions.can_send_media_messages))
     permslist.append("poll = `{}`".format(permissions.can_send_polls))
@@ -481,7 +481,7 @@ def list_locks(update, context):
     # Connection check
     conn = connected(context.bot, update, chat, user.id, need_admin=True)
     if conn:
-        chat = app_build.bot.getChat(conn)
+        chat = SHIKIMORI_PTB.bot.getChat(conn)
         chat_name = chat.title
     else:
         if update.effective_message.chat.type == "private":
@@ -571,12 +571,12 @@ LOCKED_HANDLER = CommandHandler(
     "locks", list_locks, block=False
 )  # , filters=Filters.chat_type.groups)
 
-app_build.add_handler(LOCK_HANDLER)
-app_build.add_handler(UNLOCK_HANDLER)
-app_build.add_handler(LOCKTYPES_HANDLER)
-app_build.add_handler(LOCKED_HANDLER)
+SHIKIMORI_PTB.add_handler(LOCK_HANDLER)
+SHIKIMORI_PTB.add_handler(UNLOCK_HANDLER)
+SHIKIMORI_PTB.add_handler(LOCKTYPES_HANDLER)
+SHIKIMORI_PTB.add_handler(LOCKED_HANDLER)
 
-app_build.add_handler(
+SHIKIMORI_PTB.add_handler(
     MessageHandler(
         Filters.all & Filters.chat_type.groups, del_lockables, block=False
     ),

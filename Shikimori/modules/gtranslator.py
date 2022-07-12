@@ -6,7 +6,7 @@ from telegram import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
 )
-from Shikimori import app_build, pbot
+from Shikimori import SHIKIMORI_PTB, pbot
 from pyrogram import filters, enums
 from Shikimori.modules.disable import DisableAbleCommandHandler
 
@@ -87,4 +87,4 @@ def languages(update: Update, context: CallbackContext) -> None:
 
 LANG_HANDLER = DisableAbleCommandHandler("langs", languages, block=False)
 
-app_build.add_handler(LANG_HANDLER)
+SHIKIMORI_PTB.add_handler(LANG_HANDLER)

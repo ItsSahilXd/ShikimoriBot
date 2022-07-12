@@ -1,17 +1,16 @@
 import threading
 
-from Shikimori import app_build
+from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.sql import BASE, SESSION
+from sqlalchemy.sql.sqltypes import BigInteger
 from sqlalchemy import (
     Column,
     ForeignKey,
-    Integer,
     String,
     UnicodeText,
     UniqueConstraint,
     func,
 )
-from sqlalchemy.sql.sqltypes import BigInteger
 
 
 class Users(BASE):
@@ -78,7 +77,7 @@ INSERTION_LOCK = threading.RLock()
 
 def ensure_bot_in_db():
     with INSERTION_LOCK:
-        bot = Users(app_build.bot.id, app_build.bot.username)
+        bot = Users(SHIKIMORI_PTB.bot.id, SHIKIMORI_PTB.bot.username)
         SESSION.merge(bot)
         SESSION.commit()
 

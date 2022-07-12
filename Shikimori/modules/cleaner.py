@@ -1,6 +1,6 @@
 import html
 
-from Shikimori import ALLOW_EXCL, CustomCommandHandler, app_build
+from Shikimori import ALLOW_EXCL, CustomCommandHandler, SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.chat_status import (
     bot_can_delete,
@@ -36,8 +36,8 @@ command_list = [
     "leaderboard",
 ]
 
-for handler_list in app_build.handlers:
-    for handler in app_build.handlers[handler_list]:
+for handler_list in SHIKIMORI_PTB.handlers:
+    for handler in SHIKIMORI_PTB.handlers[handler_list]:
         if any(isinstance(handler, cmd_handler) for cmd_handler in CommandHandlerList):
             command_list += handler.command
 
@@ -242,13 +242,13 @@ CLEAN_BLUE_TEXT_HANDLER = MessageHandler(
     block=False,
 )
 
-app_build.add_handler(SET_CLEAN_BLUE_TEXT_HANDLER)
-app_build.add_handler(ADD_CLEAN_BLUE_TEXT_HANDLER)
-app_build.add_handler(REMOVE_CLEAN_BLUE_TEXT_HANDLER)
-app_build.add_handler(ADD_CLEAN_BLUE_TEXT_GLOBAL_HANDLER)
-app_build.add_handler(REMOVE_CLEAN_BLUE_TEXT_GLOBAL_HANDLER)
-app_build.add_handler(LIST_CLEAN_BLUE_TEXT_HANDLER)
-app_build.add_handler(CLEAN_BLUE_TEXT_HANDLER, BLUE_TEXT_CLEAN_GROUP)
+SHIKIMORI_PTB.add_handler(SET_CLEAN_BLUE_TEXT_HANDLER)
+SHIKIMORI_PTB.add_handler(ADD_CLEAN_BLUE_TEXT_HANDLER)
+SHIKIMORI_PTB.add_handler(REMOVE_CLEAN_BLUE_TEXT_HANDLER)
+SHIKIMORI_PTB.add_handler(ADD_CLEAN_BLUE_TEXT_GLOBAL_HANDLER)
+SHIKIMORI_PTB.add_handler(REMOVE_CLEAN_BLUE_TEXT_GLOBAL_HANDLER)
+SHIKIMORI_PTB.add_handler(LIST_CLEAN_BLUE_TEXT_HANDLER)
+SHIKIMORI_PTB.add_handler(CLEAN_BLUE_TEXT_HANDLER, BLUE_TEXT_CLEAN_GROUP)
 
 __handlers__ = [
     SET_CLEAN_BLUE_TEXT_HANDLER,

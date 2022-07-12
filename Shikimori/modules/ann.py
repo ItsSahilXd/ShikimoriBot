@@ -3,8 +3,8 @@ import requests
 from telegram import ParseMode
 from telegram.ext import CommandHandler
 
-# Imports app_build = updater.app_build from __init__.py (*MUST EDIT* CHANGE MODULE NAME TO THE FOLDER NAME OF MODULES IN YOUR BOT)
-from Shikimori import app_build
+# Imports SHIKIMORI_PTB = updater.SHIKIMORI_PTB from __init__.py (*MUST EDIT* CHANGE MODULE NAME TO THE FOLDER NAME OF MODULES IN YOUR BOT)
+from Shikimori import SHIKIMORI_PTB
 
 # Main code, Credit to https://github.com/itspro-dev for making the API. 
 def ann(update, context):
@@ -30,7 +30,7 @@ def ann(update, context):
 
 # Code Handler (YOU CAN CHANGE 'ann' TO ANY 'cmd' FOR THIS TO BE WORKED AS '/cmd' *IF YOU WANT*.)
 ANN_HANDLER = CommandHandler('ann', ann, block=False)
-app_build.add_handler(ANN_HANDLER)
+SHIKIMORI_PTB.add_handler(ANN_HANDLER)
 
 #  Buttons for /help .
 __mod_name__ = 'Anime News Network'  # *IF YOU WANT* EDIT NAME OF BUTTON IN '/help'

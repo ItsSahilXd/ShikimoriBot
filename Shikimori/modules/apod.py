@@ -1,4 +1,4 @@
-from Shikimori import app_build, APOD_API_KEY
+from Shikimori import SHIKIMORI_PTB, APOD_API_KEY
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
 from telegram.ext import (
     CallbackContext,
@@ -22,7 +22,7 @@ def apod(update: Update, context: CallbackContext):
         parse_mode=ParseMode.HTML)
 
 apod_handler = CommandHandler("apod", apod, block=False)
-app_build.add_handler(apod_handler)
+SHIKIMORI_PTB.add_handler(apod_handler)
 
 __mod_name__ = "NASA"
 

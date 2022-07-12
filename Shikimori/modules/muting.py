@@ -2,7 +2,7 @@ import html
 import re
 from typing import Optional
 
-from Shikimori import LOGGER, TIGERS, app_build
+from Shikimori import LOGGER, TIGERS, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import (
     bot_admin,
     can_restrict,
@@ -304,10 +304,10 @@ UNMUTE_HANDLER = CommandHandler("unmute", unmute, block=False)
 TEMPMUTE_HANDLER = CommandHandler(["tmute", "tempmute"], temp_mute, block=False)
 UNMUTE_BUTTON_HANDLER = CallbackQueryHandler(button, pattern=r"unmute_")
 
-app_build.add_handler(MUTE_HANDLER)
-app_build.add_handler(UNMUTE_HANDLER)
-app_build.add_handler(TEMPMUTE_HANDLER)
-app_build.add_handler(UNMUTE_BUTTON_HANDLER)
+SHIKIMORI_PTB.add_handler(MUTE_HANDLER)
+SHIKIMORI_PTB.add_handler(UNMUTE_HANDLER)
+SHIKIMORI_PTB.add_handler(TEMPMUTE_HANDLER)
+SHIKIMORI_PTB.add_handler(UNMUTE_BUTTON_HANDLER)
 
 __mod_name__ = "Muting"
 __handlers__ = [MUTE_HANDLER, UNMUTE_HANDLER, TEMPMUTE_HANDLER]

@@ -1,5 +1,5 @@
 import requests
-from Shikimori import CASH_API_KEY, app_build
+from Shikimori import CASH_API_KEY, SHIKIMORI_PTB
 from telegram import Update, ParseMode
 from telegram.ext import CallbackContext, CommandHandler, run_async
 
@@ -52,7 +52,7 @@ def convert(update: Update, context: CallbackContext):
 
 CONVERTER_HANDLER = CommandHandler("cash", convert, block=False)
 
-app_build.add_handler(CONVERTER_HANDLER)
+SHIKIMORI_PTB.add_handler(CONVERTER_HANDLER)
 
 __command_list__ = ["cash"]
 __handlers__ = [CONVERTER_HANDLER]

@@ -1,6 +1,6 @@
 import random
 import Shikimori.modules.truth_and_dare_string as truth_and_dare_string
-from Shikimori import app_build
+from Shikimori import SHIKIMORI_PTB
 from telegram import Update
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram.ext import CallbackContext
@@ -27,10 +27,10 @@ TORD_HANDLER = DisableAbleCommandHandler("tord", tord, block=False)
 WYR_HANDLER = DisableAbleCommandHandler(("rather", "wyr"), wyr, block=False)
 
 
-app_build.add_handler(TRUTH_HANDLER)
-app_build.add_handler(TORD_HANDLER)
-app_build.add_handler(WYR_HANDLER)
-app_build.add_handler(DARE_HANDLER)
+SHIKIMORI_PTB.add_handler(TRUTH_HANDLER)
+SHIKIMORI_PTB.add_handler(TORD_HANDLER)
+SHIKIMORI_PTB.add_handler(WYR_HANDLER)
+SHIKIMORI_PTB.add_handler(DARE_HANDLER)
 
 __mod_name__ = "Truth or Dare"
 __help__ = """

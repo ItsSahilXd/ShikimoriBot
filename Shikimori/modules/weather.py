@@ -22,7 +22,7 @@ from pytz import country_names as cname
 from telegram import ParseMode
 from telegram.error import BadRequest
 
-from Shikimori import app_build, API_WEATHER as APPID
+from Shikimori import SHIKIMORI_PTB, API_WEATHER as APPID
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.alternate import typing_action
 
@@ -146,4 +146,4 @@ __mod_name__ = "Weather 🌩️"
 
 WEATHER_HANDLER = DisableAbleCommandHandler("weather", weather, pass_args=True)
 
-app_build.add_handler(WEATHER_HANDLER)
+SHIKIMORI_PTB.add_handler(WEATHER_HANDLER)

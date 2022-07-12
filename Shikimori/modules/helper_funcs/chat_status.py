@@ -10,7 +10,7 @@ from Shikimori import (
     DEMONS,
     TIGERS,
     WOLVES,
-    app_build,
+    SHIKIMORI_PTB,
 )
 
 from telegram import Chat, ChatMember, ParseMode, Update
@@ -51,7 +51,7 @@ def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
                 # keyerror happend means cache is deleted,
                 # so query bot api again and return user status
                 # while saving it in cache for future useage...
-                chat_admins = app_build.bot.getChatAdministrators(chat.id)
+                chat_admins = SHIKIMORI_PTB.bot.getChatAdministrators(chat.id)
                 admin_list = [x.user.id for x in chat_admins]
                 ADMIN_CACHE[chat.id] = admin_list
 
@@ -388,7 +388,7 @@ def connection_status(func):
         )
 
         if conn:
-            chat = app_build.bot.getChat(conn)
+            chat = SHIKIMORI_PTB.bot.getChat(conn)
             update.__setattr__("_effective_chat", chat)
             return func(update, context, *args, **kwargs)
         if update.effective_message.chat.type == "private":

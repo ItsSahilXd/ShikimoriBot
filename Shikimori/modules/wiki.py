@@ -1,5 +1,5 @@
 import wikipedia
-from Shikimori import app_build
+from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext
@@ -52,7 +52,7 @@ def wiki(update: Update, context: CallbackContext):
 
 
 WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki, block=False)
-app_build.add_handler(WIKI_HANDLER)
+SHIKIMORI_PTB.add_handler(WIKI_HANDLER)
 
 __help__ = """
 Wiki module:

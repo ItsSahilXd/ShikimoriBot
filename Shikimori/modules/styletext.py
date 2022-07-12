@@ -1,4 +1,4 @@
-from Shikimori import app_build
+from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.alternate import typing_action
 from telegram import ParseMode
@@ -496,14 +496,14 @@ BLUE_HANDLER = DisableAbleCommandHandler("blue", blue, block=False)
 LATIN_HANDLER = DisableAbleCommandHandler("latin", latin, block=False)
 LINED_HANDLER = DisableAbleCommandHandler("lined", lined, block=False)
 
-app_build.add_handler(WEEBIFY_HANDLER)
-app_build.add_handler(BUBBLE_HANDLER)
-app_build.add_handler(FBUBBLE_HANDLER)
-app_build.add_handler(SQUARE_HANDLER)
-app_build.add_handler(FSQUARE_HANDLER)
-app_build.add_handler(BLUE_HANDLER)
-app_build.add_handler(LATIN_HANDLER)
-app_build.add_handler(LINED_HANDLER)
+SHIKIMORI_PTB.add_handler(WEEBIFY_HANDLER)
+SHIKIMORI_PTB.add_handler(BUBBLE_HANDLER)
+SHIKIMORI_PTB.add_handler(FBUBBLE_HANDLER)
+SHIKIMORI_PTB.add_handler(SQUARE_HANDLER)
+SHIKIMORI_PTB.add_handler(FSQUARE_HANDLER)
+SHIKIMORI_PTB.add_handler(BLUE_HANDLER)
+SHIKIMORI_PTB.add_handler(LATIN_HANDLER)
+SHIKIMORI_PTB.add_handler(LINED_HANDLER)
 
 __command_list__ = ["weebify"]
 __command_list__ = ["bubble"]

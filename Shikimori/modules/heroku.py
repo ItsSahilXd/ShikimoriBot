@@ -141,7 +141,7 @@ async def dyno_usage(dyno):
     headers = {
         "User-Agent": useragent,
         "Authorization": f"Bearer {HEROKU_API_KEY}",
-        "Accept": "app_build/vnd.heroku+json; version=3.account-quotas",
+        "Accept": "SHIKIMORI_PTB/vnd.heroku+json; version=3.account-quotas",
     }
     path = "/accounts/" + user_id + "/actions/get-quota"
     r = requests.get(heroku_api + path, headers=headers)

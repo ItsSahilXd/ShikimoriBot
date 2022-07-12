@@ -2,7 +2,7 @@ import html
 import re
 
 from feedparser import parse
-from Shikimori import app_build, updater, SUPPORT_CHAT
+from Shikimori import SHIKIMORI_PTB, updater, SUPPORT_CHAT
 from Shikimori.modules.helper_funcs.chat_status import user_admin
 from Shikimori.modules.sql import rss_sql as sql
 from telegram import ParseMode, Update, constants, InlineKeyboardButton, InlineKeyboardMarkup
@@ -353,9 +353,9 @@ LIST_URLS_HANDLER = CommandHandler("listrss", list_urls)
 SUBSCRIBE_HANDLER = CommandHandler("subscribe", subscribe)
 UNSUBSCRIBE_HANDLER = CommandHandler("unsubscribe", unsubscribe)
 
-app_build.add_handler(SUBSCRIBE_HANDLER)
-app_build.add_handler(UNSUBSCRIBE_HANDLER)
-app_build.add_handler(SHOW_URL_HANDLER)
-app_build.add_handler(ADD_URL_HANDLER)
-app_build.add_handler(REMOVE_URL_HANDLER)
-app_build.add_handler(LIST_URLS_HANDLER)
+SHIKIMORI_PTB.add_handler(SUBSCRIBE_HANDLER)
+SHIKIMORI_PTB.add_handler(UNSUBSCRIBE_HANDLER)
+SHIKIMORI_PTB.add_handler(SHOW_URL_HANDLER)
+SHIKIMORI_PTB.add_handler(ADD_URL_HANDLER)
+SHIKIMORI_PTB.add_handler(REMOVE_URL_HANDLER)
+SHIKIMORI_PTB.add_handler(LIST_URLS_HANDLER)

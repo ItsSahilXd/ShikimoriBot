@@ -10,7 +10,7 @@ import requests
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler
 
-from Shikimori import app_build, DEV_USERS, ERROR_LOG_CHANNEL
+from Shikimori import SHIKIMORI_PTB, DEV_USERS, ERROR_LOG_CHANNEL
 
 pretty_errors.mono()
 
@@ -130,5 +130,5 @@ def list_errors(update: Update, context: CallbackContext):
     update.effective_message.reply_text(msg, parse_mode="html")
 
 
-app_build.add_error_handler(error_callback)
-app_build.add_handler(CommandHandler("errors", list_errors))
+SHIKIMORI_PTB.add_error_handler(error_callback)
+SHIKIMORI_PTB.add_handler(CommandHandler("errors", list_errors))

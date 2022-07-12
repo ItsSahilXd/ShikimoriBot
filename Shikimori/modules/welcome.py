@@ -15,7 +15,7 @@ from Shikimori import (
     UPDATE_CHANNEL,
     WOLVES,
     LOGGER,
-    app_build,
+    SHIKIMORI_PTB,
     TIGERS,
 )
 from Shikimori.modules.helper_funcs.chat_status import (
@@ -61,14 +61,14 @@ VALID_WELCOME_FORMATTERS = [
 ]
 
 ENUM_FUNC_MAP = {
-    sql.Types.TEXT.value: app_build.bot.send_message,
-    sql.Types.BUTTON_TEXT.value: app_build.bot.send_message,
-    sql.Types.STICKER.value: app_build.bot.send_sticker,
-    sql.Types.DOCUMENT.value: app_build.bot.send_document,
-    sql.Types.PHOTO.value: app_build.bot.send_photo,
-    sql.Types.AUDIO.value: app_build.bot.send_audio,
-    sql.Types.VOICE.value: app_build.bot.send_voice,
-    sql.Types.VIDEO.value: app_build.bot.send_video,
+    sql.Types.TEXT.value: SHIKIMORI_PTB.bot.send_message,
+    sql.Types.BUTTON_TEXT.value: SHIKIMORI_PTB.bot.send_message,
+    sql.Types.STICKER.value: SHIKIMORI_PTB.bot.send_sticker,
+    sql.Types.DOCUMENT.value: SHIKIMORI_PTB.bot.send_document,
+    sql.Types.PHOTO.value: SHIKIMORI_PTB.bot.send_photo,
+    sql.Types.AUDIO.value: SHIKIMORI_PTB.bot.send_audio,
+    sql.Types.VOICE.value: SHIKIMORI_PTB.bot.send_voice,
+    sql.Types.VIDEO.value: SHIKIMORI_PTB.bot.send_video,
 }
 
 VERIFIED_USER_WAITLIST = {}
@@ -82,7 +82,7 @@ def send(update, message, keyboard, backup_message):
     # Clean service welcome
     if cleanserv:
         try:
-            app_build.bot.delete_message(chat.id, update.message.message_id)
+            SHIKIMORI_PTB.bot.delete_message(chat.id, update.message.message_id)
         except BadRequest:
             pass
         reply = False
@@ -185,7 +185,7 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
         # Clean service welcome
         if cleanserv:
             try:
-                app_build.bot.delete_message(chat.id, update.message.message_id)
+                SHIKIMORI_PTB.bot.delete_message(chat.id, update.message.message_id)
             except BadRequest:
                 pass
             reply = False
@@ -539,7 +539,7 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
 
         if welcome_bool:
             if media_wel:
-                if ENUM_FUNC_MAP[welc_type] == app_build.bot.send_sticker:
+                if ENUM_FUNC_MAP[welc_type] == SHIKIMORI_PTB.bot.send_sticker:
                     sent = ENUM_FUNC_MAP[welc_type](
                         chat.id,
                         cust_content,
@@ -628,7 +628,7 @@ def left_member(update: Update, context: CallbackContext):  # sourcery no-metric
     # Clean service welcome
     if cleanserv:
         try:
-            app_build.bot.delete_message(chat.id, update.message.message_id)
+            SHIKIMORI_PTB.bot.delete_message(chat.id, update.message.message_id)
         except BadRequest:
             pass
         reply = False
@@ -1217,7 +1217,7 @@ WELC_HELP_TXT = (
     "Welcome messages also support markdown, so you can make any elements bold/italic/code/links. "
     "Buttons are also supported, so you can make your welcomes look awesome with some nice intro "
     "buttons.\n"
-    f"To create a button linking to your rules, use this: `[Rules](buttonurl://t.me/{app_build.bot.username}?start=group_id)`. "
+    f"To create a button linking to your rules, use this: `[Rules](buttonurl://t.me/{SHIKIMORI_PTB.bot.username}?start=group_id)`. "
     "Simply replace `group_id` with your group's id, which can be obtained via /id, and you're good to "
     "go. Note that group ids are usually preceded by a `-` sign; this is required, so please don't "
     "remove it.\n"
@@ -1336,21 +1336,21 @@ CAPTCHA_BUTTON_VERIFY_HANDLER = CallbackQueryHandler(
     block=False,
 )
 
-app_build.add_handler(NEW_MEM_HANDLER)
-app_build.add_handler(LEFT_MEM_HANDLER)
-app_build.add_handler(WELC_PREF_HANDLER)
-app_build.add_handler(GOODBYE_PREF_HANDLER)
-app_build.add_handler(SET_WELCOME)
-app_build.add_handler(SET_GOODBYE)
-app_build.add_handler(RESET_WELCOME)
-app_build.add_handler(RESET_GOODBYE)
-app_build.add_handler(CLEAN_WELCOME)
-app_build.add_handler(WELCOME_HELP)
-app_build.add_handler(WELCOMEMUTE_HANDLER)
-app_build.add_handler(CLEAN_SERVICE_HANDLER)
-app_build.add_handler(BUTTON_VERIFY_HANDLER)
-app_build.add_handler(WELCOME_MUTE_HELP)
-app_build.add_handler(CAPTCHA_BUTTON_VERIFY_HANDLER)
+SHIKIMORI_PTB.add_handler(NEW_MEM_HANDLER)
+SHIKIMORI_PTB.add_handler(LEFT_MEM_HANDLER)
+SHIKIMORI_PTB.add_handler(WELC_PREF_HANDLER)
+SHIKIMORI_PTB.add_handler(GOODBYE_PREF_HANDLER)
+SHIKIMORI_PTB.add_handler(SET_WELCOME)
+SHIKIMORI_PTB.add_handler(SET_GOODBYE)
+SHIKIMORI_PTB.add_handler(RESET_WELCOME)
+SHIKIMORI_PTB.add_handler(RESET_GOODBYE)
+SHIKIMORI_PTB.add_handler(CLEAN_WELCOME)
+SHIKIMORI_PTB.add_handler(WELCOME_HELP)
+SHIKIMORI_PTB.add_handler(WELCOMEMUTE_HANDLER)
+SHIKIMORI_PTB.add_handler(CLEAN_SERVICE_HANDLER)
+SHIKIMORI_PTB.add_handler(BUTTON_VERIFY_HANDLER)
+SHIKIMORI_PTB.add_handler(WELCOME_MUTE_HELP)
+SHIKIMORI_PTB.add_handler(CAPTCHA_BUTTON_VERIFY_HANDLER)
 
 __mod_name__ = "Greetings 👋 "
 __command_list__ = []

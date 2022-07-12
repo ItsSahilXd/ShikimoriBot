@@ -1,7 +1,7 @@
 import importlib
 import collections
 
-from Shikimori import app_build, telethn
+from Shikimori import SHIKIMORI_PTB, telethn
 from Shikimori.__main__ import (
     CHAT_SETTINGS,
     DATA_EXPORT,
@@ -45,14 +45,14 @@ def load(update: Update, context: CallbackContext):
         handlers = imported_module.__handlers__
         for handler in handlers:
             if not isinstance(handler, tuple):
-                app_build.add_handler(handler)
+                SHIKIMORI_PTB.add_handler(handler)
             else:
                 if isinstance(handler[0], collections.Callable):
                     callback, telethon_event = handler
                     telethn.add_event_handler(callback, telethon_event)
                 else:
                     handler_name, priority = handler
-                    app_build.add_handler(handler_name, priority)
+                    SHIKIMORI_PTB.add_handler(handler_name, priority)
     else:
         IMPORTED.pop(imported_module.__mod_name__.lower())
         load_messasge.edit_text("The module cannot be loaded.")
@@ -118,14 +118,14 @@ def unload(update: Update, context: CallbackContext):
                 unload_messasge.edit_text("This module can't be unloaded!")
                 return
             if not isinstance(handler, tuple):
-                app_build.remove_handler(handler)
+                SHIKIMORI_PTB.remove_handler(handler)
             else:
                 if isinstance(handler[0], collections.Callable):
                     callback, telethon_event = handler
                     telethn.remove_event_handler(callback, telethon_event)
                 else:
                     handler_name, priority = handler
-                    app_build.remove_handler(handler_name, priority)
+                    SHIKIMORI_PTB.remove_handler(handler_name, priority)
     else:
         unload_messasge.edit_text("The module cannot be unloaded.")
         return
@@ -180,8 +180,8 @@ LOAD_HANDLER = CommandHandler("load", load, block=False)
 UNLOAD_HANDLER = CommandHandler("unload", unload, block=False)
 LISTMODULES_HANDLER = CommandHandler("listmodules", listmodules, block=False)
 
-app_build.add_handler(LOAD_HANDLER)
-app_build.add_handler(UNLOAD_HANDLER)
-app_build.add_handler(LISTMODULES_HANDLER)
+SHIKIMORI_PTB.add_handler(LOAD_HANDLER)
+SHIKIMORI_PTB.add_handler(UNLOAD_HANDLER)
+SHIKIMORI_PTB.add_handler(LISTMODULES_HANDLER)
 
 __mod_name__ = "Modules"

@@ -11,7 +11,7 @@ from Shikimori import (
     DEMONS,
     TIGERS,
     WOLVES,
-    app_build,
+    SHIKIMORI_PTB,
 )
 from Shikimori.modules.helper_funcs.chat_status import (
     dev_plus,
@@ -663,20 +663,20 @@ SUPPORTLIST_HANDLER = CommandHandler(["servantlist", "servants", "demons", "demo
 SUDOLIST_HANDLER = CommandHandler(["friendlist", "friends", "sudos", "dragons", "sudolist", "dragonlist"], sudolist, block=False)
 DEVLIST_HANDLER = CommandHandler(["devlist", "bestfriends", "devs"], devlist, block=False)
 
-app_build.add_handler(SUDO_HANDLER)
-app_build.add_handler(SUPPORT_HANDLER)
-app_build.add_handler(TIGER_HANDLER)
-app_build.add_handler(WHITELIST_HANDLER)
-app_build.add_handler(UNSUDO_HANDLER)
-app_build.add_handler(UNSUPPORT_HANDLER)
-app_build.add_handler(UNTIGER_HANDLER)
-app_build.add_handler(UNWHITELIST_HANDLER)
+SHIKIMORI_PTB.add_handler(SUDO_HANDLER)
+SHIKIMORI_PTB.add_handler(SUPPORT_HANDLER)
+SHIKIMORI_PTB.add_handler(TIGER_HANDLER)
+SHIKIMORI_PTB.add_handler(WHITELIST_HANDLER)
+SHIKIMORI_PTB.add_handler(UNSUDO_HANDLER)
+SHIKIMORI_PTB.add_handler(UNSUPPORT_HANDLER)
+SHIKIMORI_PTB.add_handler(UNTIGER_HANDLER)
+SHIKIMORI_PTB.add_handler(UNWHITELIST_HANDLER)
 
-app_build.add_handler(WHITELISTLIST_HANDLER)
-app_build.add_handler(TIGERLIST_HANDLER)
-app_build.add_handler(SUPPORTLIST_HANDLER)
-app_build.add_handler(SUDOLIST_HANDLER)
-app_build.add_handler(DEVLIST_HANDLER)
+SHIKIMORI_PTB.add_handler(WHITELISTLIST_HANDLER)
+SHIKIMORI_PTB.add_handler(TIGERLIST_HANDLER)
+SHIKIMORI_PTB.add_handler(SUPPORTLIST_HANDLER)
+SHIKIMORI_PTB.add_handler(SUDOLIST_HANDLER)
+SHIKIMORI_PTB.add_handler(DEVLIST_HANDLER)
 
 __mod_name__ = "ᴅᴇᴠ"
 __handlers__ = [

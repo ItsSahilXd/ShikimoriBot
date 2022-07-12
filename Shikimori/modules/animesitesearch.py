@@ -2,7 +2,7 @@ import html
 
 import bs4
 import requests
-from Shikimori import app_build
+from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
                       Update)
@@ -116,9 +116,9 @@ KAYO_SEARCH_HANDLER = DisableAbleCommandHandler("kayo", kayo, block=False)
 ANIMESPOT_SEARCH_HANDLER = DisableAbleCommandHandler("animespot", animespot, block=False)
 ANIMETM_SEARCH_HANDLER = DisableAbleCommandHandler("animetm", animetm, block=False)
 
-app_build.add_handler(KAYO_SEARCH_HANDLER)
-app_build.add_handler(ANIMESPOT_SEARCH_HANDLER)
-app_build.add_handler(ANIMETM_SEARCH_HANDLER)
+SHIKIMORI_PTB.add_handler(KAYO_SEARCH_HANDLER)
+SHIKIMORI_PTB.add_handler(ANIMESPOT_SEARCH_HANDLER)
+SHIKIMORI_PTB.add_handler(ANIMETM_SEARCH_HANDLER)
 
 __handlers__ = [ KAYO_SEARCH_HANDLER,
      ANIMESPOT_SEARCH_HANDLER,  ANIMETM_SEARCH_HANDLER]

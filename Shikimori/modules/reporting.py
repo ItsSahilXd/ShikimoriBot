@@ -1,6 +1,6 @@
 import html
 
-from Shikimori import LOGGER, DRAGONS, TIGERS, WOLVES, app_build
+from Shikimori import LOGGER, DRAGONS, TIGERS, WOLVES, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import user_admin, user_not_admin
 from Shikimori.modules.log_channel import loggable
 from Shikimori.modules.sql import reporting_sql as sql
@@ -286,10 +286,10 @@ REPORT_BUTTON_USER_HANDLER = CallbackQueryHandler(
     buttons, pattern=r"report_", block=False
 )
 
-app_build.add_handler(REPORT_BUTTON_USER_HANDLER)
-app_build.add_handler(SETTING_HANDLER)
-app_build.add_handler(REPORT_HANDLER, REPORT_GROUP)
-app_build.add_handler(ADMIN_REPORT_HANDLER, REPORT_GROUP)
+SHIKIMORI_PTB.add_handler(REPORT_BUTTON_USER_HANDLER)
+SHIKIMORI_PTB.add_handler(SETTING_HANDLER)
+SHIKIMORI_PTB.add_handler(REPORT_HANDLER, REPORT_GROUP)
+SHIKIMORI_PTB.add_handler(ADMIN_REPORT_HANDLER, REPORT_GROUP)
 
 __mod_name__ = "Reporting ⚠️"
 __handlers__ = [

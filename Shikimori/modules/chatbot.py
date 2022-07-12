@@ -11,14 +11,14 @@ from telegram import ParseMode
 from telegram import (CallbackQuery, Chat, MessageEntity, InlineKeyboardButton,
                       InlineKeyboardMarkup, Message, ParseMode, Update, Bot, User)
 from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
-                          app_buildHandlerStop, Filters, MessageHandler,
+                          SHIKIMORI_PTBHandlerStop, Filters, MessageHandler,
                           run_async)
 from telegram.error import BadRequest, RetryAfter, Unauthorized
 from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
 
 from Shikimori.modules.helper_funcs.filters import CustomFilters
 from Shikimori.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply
-from Shikimori import  app_build, updater, SUPPORT_CHAT
+from Shikimori import  SHIKIMORI_PTB, updater, SUPPORT_CHAT
 from Shikimori.modules.log_channel import gloggable
 from Shikimori.__main__ import bot_name
 
@@ -149,11 +149,11 @@ CHATBOT_HANDLER = MessageHandler(
 LIST_ALL_CHATS_HANDLER = CommandHandler(
     "allchats", list_all_chats, filters=CustomFilters.dev_filter, block=False)
 
-app_build.add_handler(ADD_CHAT_HANDLER)
-app_build.add_handler(CHATBOTK_HANDLER)
-app_build.add_handler(RM_CHAT_HANDLER)
-app_build.add_handler(LIST_ALL_CHATS_HANDLER)
-app_build.add_handler(CHATBOT_HANDLER)
+SHIKIMORI_PTB.add_handler(ADD_CHAT_HANDLER)
+SHIKIMORI_PTB.add_handler(CHATBOTK_HANDLER)
+SHIKIMORI_PTB.add_handler(RM_CHAT_HANDLER)
+SHIKIMORI_PTB.add_handler(LIST_ALL_CHATS_HANDLER)
+SHIKIMORI_PTB.add_handler(CHATBOT_HANDLER)
 
 __handlers__ = [
     ADD_CHAT_HANDLER,

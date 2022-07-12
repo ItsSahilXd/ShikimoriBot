@@ -20,7 +20,7 @@ from Shikimori import (
     DEMONS,
     TIGERS,
     WOLVES,
-    app_build,
+    SHIKIMORI_PTB,
 )
 from Shikimori.modules.helper_funcs.chat_status import (
     user_admin_no_reply,
@@ -559,14 +559,14 @@ UNBAN_BUTTON_HANDLER = CallbackQueryHandler(unbanb_btn, pattern=r"unbanb_")
 KICKME_HANDLER = DisableAbleCommandHandler(["kickme", "punchme"], punchme, filters=Filters.chat_type.groups, block=False)
 BANME_HANDLER = CommandHandler("banme", banme, block=False)
 
-app_build.add_handler(BAN_HANDLER)
-app_build.add_handler(TEMPBAN_HANDLER)
-app_build.add_handler(KICK_HANDLER)
-app_build.add_handler(UNBAN_HANDLER)
-app_build.add_handler(ROAR_HANDLER)
-app_build.add_handler(KICKME_HANDLER)
-app_build.add_handler(UNBAN_BUTTON_HANDLER)
-app_build.add_handler(BANME_HANDLER)
+SHIKIMORI_PTB.add_handler(BAN_HANDLER)
+SHIKIMORI_PTB.add_handler(TEMPBAN_HANDLER)
+SHIKIMORI_PTB.add_handler(KICK_HANDLER)
+SHIKIMORI_PTB.add_handler(UNBAN_HANDLER)
+SHIKIMORI_PTB.add_handler(ROAR_HANDLER)
+SHIKIMORI_PTB.add_handler(KICKME_HANDLER)
+SHIKIMORI_PTB.add_handler(UNBAN_BUTTON_HANDLER)
+SHIKIMORI_PTB.add_handler(BANME_HANDLER)
 
 __handlers__ = [
     BAN_HANDLER,

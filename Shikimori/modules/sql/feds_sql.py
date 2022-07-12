@@ -1,6 +1,6 @@
 import ast
 import threading
-from Shikimori import app_build
+from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, String, UnicodeText, Integer
 from telegram.error import BadRequest, Unauthorized
@@ -696,7 +696,7 @@ def get_fed_log(fed_id):
         return False
     if fed_setting.get("flog"):
         try:
-            app_build.bot.get_chat(fed_setting.get("flog"))
+            SHIKIMORI_PTB.bot.get_chat(fed_setting.get("flog"))
         except BadRequest:
             set_fed_log(fed_id, None)
             return False

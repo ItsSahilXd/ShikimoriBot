@@ -1,7 +1,7 @@
 import os
 from time import sleep
 
-from Shikimori import DEV_USERS, app_build
+from Shikimori import DEV_USERS, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.extraction import extract_user
 from Shikimori.modules.sql.users_sql import get_user_com_chats
 from telegram import Update
@@ -48,4 +48,4 @@ COMMON_CHATS_HANDLER = CommandHandler(
     "getchats", get_user_common_chats, filters=Filters.user(DEV_USERS), block=False
 )
 
-app_build.add_handler(COMMON_CHATS_HANDLER)
+SHIKIMORI_PTB.add_handler(COMMON_CHATS_HANDLER)

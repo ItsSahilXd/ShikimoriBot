@@ -248,7 +248,7 @@ finally:
 from Shikimori.modules.sql import SESSION
 
 defaults = tg.Defaults(block=False)
-app_build = (tg.Application.builder().token(TOKEN).build())
+SHIKIMORI_PTB = (tg.Application.builder().token(TOKEN).build())
 telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 print("[INFO]: INITIALIZING AIOHTTP SESSION")
 aiohttpsession = ClientSession()

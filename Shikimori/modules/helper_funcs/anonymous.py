@@ -29,7 +29,7 @@ from telegram.ext import CallbackContext
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
 
-from Shikimori import DEV_USERS, DRAGONS, app_build
+from Shikimori import DEV_USERS, DRAGONS, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.decorators import Shikimoricallback
 
 
@@ -97,14 +97,14 @@ def anon_callback_handler1(upd: Update, _: CallbackContext):
         return
     if mem.status not in [ChatStatus.ADMIN.value, ChatStatus.CREATOR.value]:
         callback.answer("You're aren't admin.")
-        app_build.bot.delete_message(chat_id, anon_callback_messages.pop((chat_id, message_id), None))
-        app_build.bot.send_message(chat_id, "You lack the permissions required for this command")
+        SHIKIMORI_PTB.bot.delete_message(chat_id, anon_callback_messages.pop((chat_id, message_id), None))
+        SHIKIMORI_PTB.bot.send_message(chat_id, "You lack the permissions required for this command")
     elif getattr(mem, perm) is True or mem.status == "creator" or mem.user.id in DEV_USERS:
         cb = anon_callbacks.pop((chat_id, message_id), None)
         if cb:
             message_id = anon_callback_messages.pop((chat_id, message_id), None)
             if message_id is not None:
-                app_build.bot.delete_message(chat_id, message_id)
+                SHIKIMORI_PTB.bot.delete_message(chat_id, message_id)
             return cb[1](cb[0][0], cb[0][1])
     else:
         callback.answer("This isn't for ya")

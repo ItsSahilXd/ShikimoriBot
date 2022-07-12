@@ -4,7 +4,7 @@ import random
 from typing import Optional
 
 import Shikimori.modules.sql.notes_sql as sql
-from Shikimori import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, app_build, DRAGONS
+from Shikimori import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, SHIKIMORI_PTB, DRAGONS
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.handlers import MessageHandlerChecker
 from Shikimori.modules.helper_funcs.chat_status import user_admin, connection_status
@@ -42,14 +42,14 @@ MYVIDEO_MATCHER = re.compile(r"^###video(!photo)?###:")
 MYVIDEONOTE_MATCHER = re.compile(r"^###video_note(!photo)?###:")
 
 ENUM_FUNC_MAP = {
-    sql.Types.TEXT.value: app_build.bot.send_message,
-    sql.Types.BUTTON_TEXT.value: app_build.bot.send_message,
-    sql.Types.STICKER.value: app_build.bot.send_sticker,
-    sql.Types.DOCUMENT.value: app_build.bot.send_document,
-    sql.Types.PHOTO.value: app_build.bot.send_photo,
-    sql.Types.AUDIO.value: app_build.bot.send_audio,
-    sql.Types.VOICE.value: app_build.bot.send_voice,
-    sql.Types.VIDEO.value: app_build.bot.send_video,
+    sql.Types.TEXT.value: SHIKIMORI_PTB.bot.send_message,
+    sql.Types.BUTTON_TEXT.value: SHIKIMORI_PTB.bot.send_message,
+    sql.Types.STICKER.value: SHIKIMORI_PTB.bot.send_sticker,
+    sql.Types.DOCUMENT.value: SHIKIMORI_PTB.bot.send_document,
+    sql.Types.PHOTO.value: SHIKIMORI_PTB.bot.send_photo,
+    sql.Types.AUDIO.value: SHIKIMORI_PTB.bot.send_audio,
+    sql.Types.VOICE.value: SHIKIMORI_PTB.bot.send_voice,
+    sql.Types.VIDEO.value: SHIKIMORI_PTB.bot.send_video,
 }
 
 
@@ -524,7 +524,7 @@ def __import_data__(chat_id, data):
     if failures:
         with BytesIO(str.encode("\n".join(failures))) as output:
             output.name = "failed_imports.txt"
-            app_build.bot.send_document(
+            SHIKIMORI_PTB.bot.send_document(
                 chat_id,
                 document=output,
                 filename="failed_imports.txt",
@@ -587,11 +587,11 @@ LIST_HANDLER = DisableAbleCommandHandler(
 CLEARALL = DisableAbleCommandHandler("removeallnotes", clearall, block=False)
 CLEARALL_BTN = CallbackQueryHandler(clearall_btn, pattern=r"notes_.*", block=False)
 
-app_build.add_handler(GET_HANDLER)
-app_build.add_handler(SAVE_HANDLER)
-app_build.add_handler(LIST_HANDLER)
-app_build.add_handler(DELETE_HANDLER)
-app_build.add_handler(HASH_GET_HANDLER)
-app_build.add_handler(SLASH_GET_HANDLER)
-app_build.add_handler(CLEARALL)
-app_build.add_handler(CLEARALL_BTN)
+SHIKIMORI_PTB.add_handler(GET_HANDLER)
+SHIKIMORI_PTB.add_handler(SAVE_HANDLER)
+SHIKIMORI_PTB.add_handler(LIST_HANDLER)
+SHIKIMORI_PTB.add_handler(DELETE_HANDLER)
+SHIKIMORI_PTB.add_handler(HASH_GET_HANDLER)
+SHIKIMORI_PTB.add_handler(SLASH_GET_HANDLER)
+SHIKIMORI_PTB.add_handler(CLEARALL)
+SHIKIMORI_PTB.add_handler(CLEARALL_BTN)

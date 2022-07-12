@@ -11,7 +11,7 @@ from telegram.ext import (
 )
 
 import Shikimori.modules.sql.users_sql as sql
-from Shikimori import DEV_USERS, LOGGER, OWNER_ID, app_build
+from Shikimori import DEV_USERS, LOGGER, OWNER_ID, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import dev_plus, sudo_plus
 from Shikimori.modules.sql.users_sql import get_all_users
 
@@ -39,7 +39,7 @@ def get_user_id(username):
     else:
         for user_obj in users:
             try:
-                userdat = app_build.bot.get_chat(user_obj.user_id)
+                userdat = SHIKIMORI_PTB.bot.get_chat(user_obj.user_id)
                 if userdat.username == username:
                     return userdat.id
 
@@ -158,7 +158,7 @@ def chat_checker(update: Update, context: CallbackContext):
 def __user_info__(user_id):
     if user_id in [777000, 1087968824]:
         return """╘══「 Groups count: <code>???</code> 」"""
-    if user_id == app_build.bot.id:
+    if user_id == SHIKIMORI_PTB.bot.id:
         return """╘══「 Groups count: <code>???</code> 」"""
     num_chats = sql.get_user_num_chats(user_id)
     return f"""╘══「 Groups count: <code>{num_chats}</code> 」"""
@@ -181,10 +181,10 @@ USER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, log_user, 
 CHAT_CHECKER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, chat_checker, block=False)
 CHATLIST_HANDLER = CommandHandler("groups", chats, block=False)
 
-app_build.add_handler(USER_HANDLER, USERS_GROUP)
-app_build.add_handler(BROADCAST_HANDLER)
-app_build.add_handler(CHATLIST_HANDLER)
-app_build.add_handler(CHAT_CHECKER_HANDLER, CHAT_GROUP)
+SHIKIMORI_PTB.add_handler(USER_HANDLER, USERS_GROUP)
+SHIKIMORI_PTB.add_handler(BROADCAST_HANDLER)
+SHIKIMORI_PTB.add_handler(CHATLIST_HANDLER)
+SHIKIMORI_PTB.add_handler(CHAT_CHECKER_HANDLER, CHAT_GROUP)
 
 __mod_name__ = "ᴜsᴇʀs"
 __handlers__ = [(USER_HANDLER, USERS_GROUP), BROADCAST_HANDLER, CHATLIST_HANDLER]

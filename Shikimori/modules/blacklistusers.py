@@ -8,7 +8,7 @@ from Shikimori import (
     DEMONS,
     TIGERS,
     WOLVES,
-    app_build,
+    SHIKIMORI_PTB,
 ) 
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from Shikimori.modules.helper_funcs.extraction import (
@@ -135,7 +135,7 @@ def __user_info__(user_id):
     text = "Blacklisted: <b>{}</b>"
     if user_id in [777000, 1087968824]:
         return ""
-    if user_id == app_build.bot.id:
+    if user_id == SHIKIMORI_PTB.bot.id:
         return ""
     if int(user_id) in DRAGONS + TIGERS + WOLVES:
         return ""
@@ -154,9 +154,9 @@ BL_HANDLER = CommandHandler("ignore", bl_user, block=False)
 UNBL_HANDLER = CommandHandler("notice", unbl_user, block=False)
 BLUSERS_HANDLER = CommandHandler("ignoredlist", bl_users, block=False)
 
-app_build.add_handler(BL_HANDLER)
-app_build.add_handler(UNBL_HANDLER)
-app_build.add_handler(BLUSERS_HANDLER)
+SHIKIMORI_PTB.add_handler(BL_HANDLER)
+SHIKIMORI_PTB.add_handler(UNBL_HANDLER)
+SHIKIMORI_PTB.add_handler(BLUSERS_HANDLER)
 
 __mod_name__ = "Blacklisting Users"
 __handlers__ = [BL_HANDLER, UNBL_HANDLER, BLUSERS_HANDLER]

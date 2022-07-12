@@ -4,7 +4,7 @@ import re
 
 from telegram import Message, Chat, Update, User, ChatPermissions
 
-from Shikimori import TIGERS, WOLVES, app_build
+from Shikimori import TIGERS, WOLVES, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import (
     bot_admin,
     is_user_admin,
@@ -154,7 +154,7 @@ def set_flood(update, context) -> str:
     conn = connected(context.bot, update, chat, user.id, need_admin=True)
     if conn:
         chat_id = conn
-        chat_name = app_build.bot.getChat(conn).title
+        chat_name = SHIKIMORI_PTB.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
             send_message(
@@ -245,7 +245,7 @@ def flood(update, context):
     conn = connected(context.bot, update, chat, user.id, need_admin=False)
     if conn:
         chat_id = conn
-        chat_name = app_build.bot.getChat(conn).title
+        chat_name = SHIKIMORI_PTB.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
             send_message(
@@ -289,9 +289,9 @@ def set_flood_mode(update, context):
 
     conn = connected(context.bot, update, chat, user.id, need_admin=True)
     if conn:
-        chat = app_build.bot.getChat(conn)
+        chat = SHIKIMORI_PTB.bot.getChat(conn)
         chat_id = conn
-        chat_name = app_build.bot.getChat(conn).title
+        chat_name = SHIKIMORI_PTB.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
             send_message(
@@ -420,11 +420,11 @@ FLOOD_HANDLER = CommandHandler(
     "flood", flood, filters=Filters.chat_type.groups, block=False
 )
 
-app_build.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
-app_build.add_handler(FLOOD_QUERY_HANDLER)
-app_build.add_handler(SET_FLOOD_HANDLER)
-app_build.add_handler(SET_FLOOD_MODE_HANDLER)
-app_build.add_handler(FLOOD_HANDLER)
+SHIKIMORI_PTB.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
+SHIKIMORI_PTB.add_handler(FLOOD_QUERY_HANDLER)
+SHIKIMORI_PTB.add_handler(SET_FLOOD_HANDLER)
+SHIKIMORI_PTB.add_handler(SET_FLOOD_MODE_HANDLER)
+SHIKIMORI_PTB.add_handler(FLOOD_HANDLER)
 
 __handlers__ = [
     (FLOOD_BAN_HANDLER, FLOOD_GROUP),
