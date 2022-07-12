@@ -807,7 +807,7 @@ def main():
             )
             time.sleep(15)
             try:
-                msg.delete_message()
+                msg.delete()
             except BadRequest:
                 pass
         except Forbidden:
