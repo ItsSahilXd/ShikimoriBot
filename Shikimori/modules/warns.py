@@ -42,7 +42,6 @@ from telegram.ext import (
     SHIKIMORI_PTBHandlerStop,
     filters,
     MessageHandler,
-    run_async,
 )
 from telegram.helpers import mention_html
 from Shikimori.modules.sql.approve_sql import is_approved

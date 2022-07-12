@@ -1,5 +1,5 @@
 
-from telegram import TelegramError
+from telegram.error import TelegramError
 from telegram import Update
 from telegram.ext import CommandHandler
 from telegram.ext.SHIKIMORI_PTB import CallbackContext

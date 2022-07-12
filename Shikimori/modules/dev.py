@@ -7,8 +7,8 @@ from time import sleep
 
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
-from telegram import TelegramError, Update
-from telegram.error import Forbidden
+from telegram import Update
+from telegram.error import Forbidden, TelegramError
 from telegram.ext import CallbackContext, CommandHandler
 
 
