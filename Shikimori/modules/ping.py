@@ -136,7 +136,7 @@ def system_status(update: Update, context: CallbackContext):
 
 
 IP_HANDLER = CommandHandler(
-    "ip", get_bot_ip, filters=filters.chat(OWNER_ID), block=False
+    "ip", get_bot_ip, filters=filters.Chat(OWNER_ID), block=False
 )
 PING_HANDLER = CommandHandler(
     "ping", ping, block=False
