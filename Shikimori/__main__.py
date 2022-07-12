@@ -264,7 +264,7 @@ def error_handler(update, context):
 
 
 # for test purposes
-def error_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def error_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     error = context.error
     try:
         raise error
