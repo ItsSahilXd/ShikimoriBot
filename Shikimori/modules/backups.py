@@ -384,7 +384,7 @@ __mod_name__ = "Backups"
 
 IMPORT_HANDLER = CommandHandler("import", import_data, block=False)
 EXPORT_HANDLER = CommandHandler(
-    "export", export_data, pass_chat_data=True, block=False
+    "export", export_data, block=False
 )
 
 SHIKIMORI_PTB.add_handler(IMPORT_HANDLER)
