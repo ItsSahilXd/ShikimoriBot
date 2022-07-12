@@ -643,7 +643,7 @@ LIST_HANDLER = DisableAbleCommandHandler(
     "filters", list_handlers, admin_ok=True, block=False
 )
 CUST_FILTER_HANDLER = MessageHandler(
-    CustomFilters.has_text & ~filters.update.edited_message,
+    CustomFilters.has_text & ~filters.UpdateType.EDITED_MESSAGE,
     reply_filter,
     block=False,
 )
