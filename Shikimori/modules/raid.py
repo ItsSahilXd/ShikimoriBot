@@ -12,11 +12,11 @@ from .log_channel import loggable
 from .helper_funcs.anonymous import user_admin, AdminPerms
 from .helper_funcs.chat_status import bot_admin, connection_status, user_admin_no_reply
 from .helper_funcs.decorators import Shikimoricmd, Shikimoricallback
-from .. import LOGGER, updater
+from .. import LOGGER, SHIKIMORI_PTB
 
 import Shikimori.modules.sql.welcome_sql as sql
 
-j = updater.job_queue
+j = SHIKIMORI_PTB.job_queue
 
 # store job id in a dict to be able to cancel them later
 RUNNING_RAIDS = {}  # {chat_id:job_id, ...}

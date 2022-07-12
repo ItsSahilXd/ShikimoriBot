@@ -2,7 +2,7 @@ import html
 import re
 
 from feedparser import parse
-from Shikimori import SHIKIMORI_PTB, updater, SUPPORT_CHAT
+from Shikimori import SHIKIMORI_PTB, SHIKIMORI_PTB, SUPPORT_CHAT
 from Shikimori.modules.helper_funcs.chat_status import user_admin
 from Shikimori.modules.sql import rss_sql as sql
 from telegram import ParseMode, Update, constants, InlineKeyboardButton, InlineKeyboardMarkup
@@ -339,7 +339,7 @@ __help__ = """
 
 __mod_name__ = "RSS Feed🪄"
 
-job = updater.job_queue
+job = SHIKIMORI_PTB.job_queue
 
 job_rss_set = job.run_once(rss_set, 5)
 job_rss_update = job.run_repeating(rss_update, interval=60, first=60)

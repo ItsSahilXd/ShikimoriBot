@@ -29,7 +29,7 @@ from Shikimori import (
     pbot,
     ANIME_NAME,
     START_MEDIA,
-    updater,
+    SHIKIMORI_PTB,
 )
 
 # needed to dynamically load modules
@@ -870,23 +870,23 @@ def main():
 
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
-        updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
+        SHIKIMORI_PTB.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
 
         if CERT_PATH:
-            updater.bot.set_webhook(url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
+            SHIKIMORI_PTB.bot.set_webhook(url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
         else:
-            updater.bot.set_webhook(url=URL + TOKEN)
+            SHIKIMORI_PTB.bot.set_webhook(url=URL + TOKEN)
 
     else:
         LOGGER.info("Using long polling.")
-        updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
+        SHIKIMORI_PTB.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
 
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
     else:
         telethn.run_until_disconnected()
 
-    updater.idle()
+    SHIKIMORI_PTB.idle()
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ import requests
 from telegram import ParseMode
 from telegram.ext import CommandHandler
 
-# Imports SHIKIMORI_PTB = updater.SHIKIMORI_PTB from __init__.py (*MUST EDIT* CHANGE MODULE NAME TO THE FOLDER NAME OF MODULES IN YOUR BOT)
+# Imports SHIKIMORI_PTB = SHIKIMORI_PTB.SHIKIMORI_PTB from __init__.py (*MUST EDIT* CHANGE MODULE NAME TO THE FOLDER NAME OF MODULES IN YOUR BOT)
 from Shikimori import SHIKIMORI_PTB
 
 # Main code, Credit to https://github.com/itspro-dev for making the API. 
