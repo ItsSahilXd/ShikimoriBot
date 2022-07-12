@@ -3,11 +3,17 @@ from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 from telegram.constants import ParseMode
+from Shikimori.modules.helper_funcs.decorators import Shikimoricmd
 
 PHOTO = ALIVE_MEDIA
 
+@Shikimoricmd(command="alive")
 async def awake(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    message = update.effective_message
+    chat_id = update.effective_chat.id
+    msg_id = update.effective_message.message_id
+    bot = context.bot
+    wallpaper = wallpaper.replace("\\", "")
+
     buttons = [
         [
         InlineKeyboardButton(
@@ -20,7 +26,7 @@ async def awake(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
      ]
     
     first_name = update.effective_user.first_name
-    user = message.from_user
+    user = update.effective_user
 
     TEXT = f"""
     <b>Hi <a href="tg://user?id={user.id}">{first_name}</a>, I'm Shikomori Robot.
@@ -35,7 +41,14 @@ async def awake(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     else:
         TEXT = TEXT + "\n<b>Thanks For Adding Me Here ❤️</b>"
 
-    await message.reply_animation(PHOTO, caption=TEXT, reply_markup=InlineKeyboardMarkup(buttons),parse_mode=ParseMode.HTML)
+    await bot.send_photo(
+        chat_id,
+        photo=PHOTO,
+        caption=TEXT,
+        reply_markup=InlineKeyboardMarkup(buttons),
+        parse_mode=ParseMode.HTML,
+        reply_to_message_id=msg_id,
+    )
 
 SHIKIMORI_PTB.add_handler(DisableAbleCommandHandler("alive", awake))
 __command_list__ = ["alive"]
