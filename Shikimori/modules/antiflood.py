@@ -399,11 +399,6 @@ def __chat_settings__(chat_id, user_id):
 
 __mod_name__ = "Anti-Flood"
 
-FLOOD_BAN_HANDLER = MessageHandler(
-    filters.ALL & ~filters.StatusUpdate & filters.ChatType.GROUPS,
-    check_flood,
-    block=False,
-)
 SET_FLOOD_HANDLER = CommandHandler(
     "setflood", set_flood, filters=filters.ChatType.GROUPS, block=False
 )
@@ -420,7 +415,8 @@ FLOOD_HANDLER = CommandHandler(
     "flood", flood, filters=filters.ChatType.GROUPS, block=False
 )
 
-SHIKIMORI_PTB.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
+SHIKIMORI_PTB.add_handler(MessageHandler(filters.ALL & ~filters.StatusUpdate.ALL & filters.ChatType.GROUPS, check_flood))
+SHIKIMORI_PTB.add_handler(FLOOD_GROUP)
 SHIKIMORI_PTB.add_handler(FLOOD_QUERY_HANDLER)
 SHIKIMORI_PTB.add_handler(SET_FLOOD_HANDLER)
 SHIKIMORI_PTB.add_handler(SET_FLOOD_MODE_HANDLER)
