@@ -9,7 +9,7 @@ import requests
 from telegram.constants import ParseMode
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ContextTypes, CommandHandler
-from Cutiepii_Robot import CUTIEPII_PTB, DEV_USERS, ERROR_LOGS
+from Shikimori import SHIKIMORI_PTB, DEV_USERS, ERROR_LOG_CHANNEL
 
 pretty_errors.mono()
 
@@ -84,7 +84,7 @@ async def error_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         with open("error.txt", "w+") as f:
             f.write(pretty_message)
         context.bot.send_document(
-            ERROR_LOGS,
+            ERROR_LOG_CHANNEL,
                 open("error.txt", "rb"),
                 caption=f"#{context.error.identifier}\n<b>An unknown error occured:</b>\n<code>{e}</code>",
                 parse_mode=ParseMode.HTML,
@@ -93,7 +93,7 @@ async def error_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     key = key.get("key")
     url = f"https://www.toptal.com/developers/hastebin/{key}"
     await context.bot.send_message(
-        ERROR_LOGS,
+        ERROR_LOG_CHANNEL,
             text=f"#{context.error.identifier}\n<b>An unknown error occured:</b>\n<code>{e}</code>",
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("Show ERROR", url=url)]],
@@ -123,5 +123,5 @@ async def list_errors(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     await update.effective_message.reply_text(msg, parse_mode=ParseMode.HTML)
 
 
-CUTIEPII_PTB.add_error_handler(error_callback)
-CUTIEPII_PTB.add_handler(CommandHandler("errors", list_errors))
+SHIKIMORI_PTB.add_error_handler(error_callback)
+SHIKIMORI_PTB.add_handler(CommandHandler("errors", list_errors))
