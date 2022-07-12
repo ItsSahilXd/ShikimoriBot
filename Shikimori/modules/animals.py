@@ -7,10 +7,12 @@ from Shikimori import SHIKIMORI_PTB
 from telegram import Update
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram.ext import ContextTypes
+from Shikimori.modules.helper_funcs.decorators import Shikimoricmd
 
-
-def animalfact(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    update.effective_message.reply_text(random.choice(animal_facts.ANIMAL_FACTS))
+@Shikimoricmd(command="animalfact")
+async def animalfact(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    message = update.effective_message
+    await message.reply_text(random.choice(animal_facts.ANIMAL_FACTS))
 
 def cats(update, context):
     msg = update.effective_message
