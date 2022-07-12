@@ -135,16 +135,16 @@ def bye(update, context):
 
 
 GDMORNING_HANDLER = MessageHandler(
-    filters.Regex("(?i)(good morning|goodmorning)"), goodmorning, friendly="goodmorning", block=False
+    filters.Regex("(?i)(good morning|goodmorning)"), goodmorning, block=False
 )
 GDNIGHT_HANDLER = MessageHandler(
-    filters.Regex("(?i)(good night|goodnight)"), goodnight, friendly="goodnight", block=False
+    filters.Regex("(?i)(good night|goodnight)"), goodnight, block=False
 )
 BYE_HANDLER = MessageHandler(
-    filters.Regex("(?i)(bye|brb|afk)"), bye, friendly="bye", block=False
+    filters.Regex("(?i)(bye|brb|afk)"), bye, block=False
 )
 HELLO_HANDLER = MessageHandler(
-    filters.Regex("(?i)(hello)"), hello, friendly="hello", block=False
+    filters.Regex("(?i)(hello)"), hello, block=False
 )
 
 SHIKIMORI_PTB.add_handler(GDMORNING_HANDLER)

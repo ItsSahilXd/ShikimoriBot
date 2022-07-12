@@ -152,7 +152,6 @@ __mod_name__ = "Sed/Regex"
 
 SED_HANDLER = DisableAbleMessageHandler(
     filters.Regex(r's([{}]).*?\1.*'.format("".join(DELIMITERS))),
-    sed,
-    friendly="sed", block=False)
+    sed,  block=False)
 
 SHIKIMORI_PTB.add_handler(SED_HANDLER)
