@@ -8,7 +8,7 @@ FILENAME = __name__.rsplit(".", 1)[-1]
 if is_module_loaded(FILENAME):
     from telegram import Update
     from telegram.constants import ParseMode
-    from telegram.error import BadRequest, Unauthorized
+    from telegram.error import BadRequest, Forbidden
     from telegram.ext import CommandHandler, JobQueue
     from telegram.utils.helpers import escape_markdown
 
@@ -143,7 +143,7 @@ if is_module_loaded(FILENAME):
                     message.forward_from_chat.id,
                     f"This channel has been set as the log channel for {chat.title or chat.first_name}.",
                 )
-            except Unauthorized as excp:
+            except Forbidden as excp:
                 if excp.message == "Forbidden: bot is not a member of the channel chat":
                     bot.send_message(chat.id, "Successfully set log channel!")
                 else:

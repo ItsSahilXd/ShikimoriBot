@@ -3,7 +3,7 @@ import threading
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, String, UnicodeText, Integer
-from telegram.error import BadRequest, Unauthorized
+from telegram.error import BadRequest, Forbidden
 from sqlalchemy.sql.sqltypes import BigInteger
 
 
@@ -700,7 +700,7 @@ def get_fed_log(fed_id):
         except BadRequest:
             set_fed_log(fed_id, None)
             return False
-        except Unauthorized:
+        except Forbidden:
             set_fed_log(fed_id, None)
             return False
         return fed_setting.get("flog")

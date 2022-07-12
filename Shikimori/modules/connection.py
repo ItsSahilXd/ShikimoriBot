@@ -2,7 +2,7 @@ import time
 import re
 from telegram.constants import ParseMode
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton, Update, Bot
-from telegram.error import BadRequest, Unauthorized
+from telegram.error import BadRequest, Forbidden
 from telegram.ext import CommandHandler, CallbackQueryHandler
 
 import Shikimori.modules.sql.connection_sql as sql
@@ -11,7 +11,6 @@ from Shikimori.modules.helper_funcs import chat_status
 from Shikimori.modules.helper_funcs.alternate import send_message, typing_action
 
 user_admin = chat_status.user_admin
-
 
 @user_admin
 @typing_action
@@ -248,7 +247,7 @@ def connect_chat(update, context):
                     )
                 except BadRequest:
                     pass
-                except Unauthorized:
+                except Forbidden:
                     pass
             else:
                 send_message(update.effective_message, "Connection failed!")

@@ -34,7 +34,7 @@ from telegram import (
     Update,
 )
 from telegram.constants import ParseMode
-from telegram.error import BadRequest, TelegramError, Unauthorized
+from telegram.error import BadRequest, TelegramError, Forbidden
 from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
@@ -757,7 +757,7 @@ def fed_ban(update: Update, context: CallbackContext):
                 if excp.message in FBAN_ERRORS:
                     try:
                         SHIKIMORI_PTB.bot.getChat(fedschat)
-                    except Unauthorized:
+                    except Forbidden:
                         sql.chat_leave_fed(fedschat)
                         LOGGER.info(
                             "Chat {} has leave fed {} because I was kicked".format(
@@ -798,7 +798,7 @@ def fed_ban(update: Update, context: CallbackContext):
                         if excp.message in FBAN_ERRORS:
                             try:
                                 SHIKIMORI_PTB.bot.getChat(fedschat)
-                            except Unauthorized:
+                            except Forbidden:
                                 targetfed_id = sql.get_fed_id(fedschat)
                                 sql.unsubs_fed(fed_id, targetfed_id)
                                 LOGGER.info(
@@ -952,7 +952,7 @@ def fed_ban(update: Update, context: CallbackContext):
                         if excp.message in FBAN_ERRORS:
                             try:
                                 SHIKIMORI_PTB.bot.getChat(fedschat)
-                            except Unauthorized:
+                            except Forbidden:
                                 targetfed_id = sql.get_fed_id(fedschat)
                                 sql.unsubs_fed(fed_id, targetfed_id)
                                 LOGGER.info(
@@ -1151,7 +1151,7 @@ def unfban(update: Update, context: CallbackContext):
                     if excp.message in FBAN_ERRORS:
                         try:
                             SHIKIMORI_PTB.bot.getChat(fedschat)
-                        except Unauthorized:
+                        except Forbidden:
                             targetfed_id = sql.get_fed_id(fedschat)
                             sql.unsubs_fed(fed_id, targetfed_id)
                             LOGGER.info(
@@ -1324,7 +1324,7 @@ def fed_broadcast(update: Update, context: CallbackContext):
             except TelegramError:
                 try:
                     SHIKIMORI_PTB.bot.getChat(chat)
-                except Unauthorized:
+                except Forbidden:
                     failed += 1
                     sql.chat_leave_fed(chat)
                     LOGGER.info(
@@ -1600,7 +1600,7 @@ def fed_chats(update: Update, context: CallbackContext):
     for chats in getlist:
         try:
             chat_name = SHIKIMORI_PTB.bot.getChat(chats).title
-        except Unauthorized:
+        except Forbidden:
             sql.chat_leave_fed(chats)
             LOGGER.info(
                 "Chat {} has leave fed {} because I was kicked".format(

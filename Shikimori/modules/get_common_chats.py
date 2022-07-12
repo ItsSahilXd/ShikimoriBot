@@ -5,7 +5,7 @@ from Shikimori import DEV_USERS, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.extraction import extract_user
 from Shikimori.modules.sql.users_sql import get_user_com_chats
 from telegram import Update
-from telegram.error import BadRequest, RetryAfter, Unauthorized
+from telegram.error import BadRequest, RetryAfter, Forbidden
 from telegram.ext import CallbackContext, CommandHandler, Filters
 
 def get_user_common_chats(update: Update, context: CallbackContext):
@@ -29,7 +29,7 @@ def get_user_common_chats(update: Update, context: CallbackContext):
             text += f"• Name :- {chat_name} \n Username :- @{chat_limk} \n"
         except BadRequest:
             pass
-        except Unauthorized:
+        except Forbidden:
             pass
         except RetryAfter as e:
             sleep(e.retry_after)

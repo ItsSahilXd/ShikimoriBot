@@ -8,7 +8,7 @@ from time import sleep
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import TelegramError, Update
-from telegram.error import Unauthorized
+from telegram.error import Forbidden
 from telegram.ext import CallbackContext, CommandHandler
 
 
@@ -25,7 +25,7 @@ def leave(update: Update, context: CallbackContext):
                 "Beep boop, I could not leave that group(dunno why tho).",
             )
             return
-        with suppress(Unauthorized):
+        with suppress(Forbidden):
             update.effective_message.reply_text("Beep boop, I left that soup!.")
     else:
         update.effective_message.reply_text("Send a valid chat ID")

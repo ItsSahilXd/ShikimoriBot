@@ -5,7 +5,7 @@ from Shikimori import SHIKIMORI_PTB
 import Shikimori.modules.sql.nsfw_sql as sql
 from Shikimori.modules.log_channel import gloggable
 from telegram import Update
-from telegram.error import BadRequest, RetryAfter, Unauthorized
+from telegram.error import BadRequest, RetryAfter, Forbidden
 from telegram.ext import CommandHandler, CallbackContext
 from Shikimori.modules.helper_funcs.filters import CustomFilters
 from Shikimori.modules.helper_funcs.chat_status import user_admin
@@ -62,7 +62,7 @@ def list_nsfw_chats(update: Update, context: CallbackContext):
             text += f"• <code>{name}</code>\n"
         except BadRequest:
             sql.rem_nsfw(*chat)
-        except Unauthorized:
+        except Forbidden:
             sql.rem_nsfw(*chat)
         except RetryAfter as e:
             sleep(e.retry_after)

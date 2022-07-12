@@ -5,7 +5,7 @@ import Shikimori.modules.sql.users_sql as user_sql
 from Shikimori import DEV_USERS, OWNER_ID, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.error import BadRequest, Unauthorized
+from telegram.error import BadRequest, Forbidden
 from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
@@ -42,7 +42,7 @@ def get_invalid_chats(update: Update, context: CallbackContext, remove: bool = F
         sleep(0.1)
         try:
             bot.get_chat(cid, timeout=60)
-        except (BadRequest, Unauthorized):
+        except (BadRequest, Forbidden):
             kicked_chats += 1
             chat_list.append(cid)
         except:

@@ -13,7 +13,7 @@ from telegram import (CallbackQuery, Chat, MessageEntity, InlineKeyboardButton,
 from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
                           SHIKIMORI_PTBHandlerStop, Filters, MessageHandler,
                           run_async)
-from telegram.error import BadRequest, RetryAfter, Unauthorized
+from telegram.error import BadRequest, RetryAfter, Forbidden
 from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
 
 from Shikimori.modules.helper_funcs.filters import CustomFilters
@@ -132,7 +132,7 @@ def list_all_chats(update: Update, context: CallbackContext):
             x = context.bot.get_chat(int(*chat))
             name = x.title or x.first_name
             text += f"• <code>{name}</code>\n"
-        except (BadRequest, Unauthorized):
+        except (BadRequest, Forbidden):
             sql.rem_kuki(*chat)
         except RetryAfter as e:
             sleep(e.retry_after)
