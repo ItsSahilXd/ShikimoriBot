@@ -10,7 +10,6 @@ import requests as r
 import wikipedia
 from telegram import (
     constants,
-    ChatAction,
     Update,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -126,7 +125,7 @@ def wiki(update: Update, context: CallbackContext):
             )
 
 
-@send_action(ChatAction.UPLOAD_PHOTO)
+@send_action(constants.ChatAction.UPLOAD_PHOTO)
 def wall(update: Update, context: CallbackContext):
     chat_id = update.effective_chat.id
     msg = update.effective_message
