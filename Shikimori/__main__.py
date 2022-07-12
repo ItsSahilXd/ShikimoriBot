@@ -799,7 +799,7 @@ def migrate_chats(update: Update, context: CallbackContext):
 def main():
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            msg = telegram.bot.send_photo(
+            msg = telegram.Bot.send_photo(
                 f"@{SUPPORT_CHAT}",
                 photo=ALIVE_MEDIA,
                 caption="👋 Hi, i'm alive.",
