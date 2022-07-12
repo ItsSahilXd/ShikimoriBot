@@ -64,9 +64,9 @@ LEAVE_HANDLER = CommandHandler("leave", leave, block=False)
 GITPULL_HANDLER = CommandHandler("gitpull", gitpull, block=False)
 RESTART_HANDLER = CommandHandler("reboot", restart, block=False)
 
-SHIKIMORI_PTBdd_handler(LEAVE_HANDLER)
-SHIKIMORI_PTBdd_handler(GITPULL_HANDLER)
-SHIKIMORI_PTBdd_handler(RESTART_HANDLER)
+SHIKIMORI_PTB.add_handler(LEAVE_HANDLER)
+SHIKIMORI_PTB.add_handler(GITPULL_HANDLER)
+SHIKIMORI_PTB.add_handler(RESTART_HANDLER)
 
 __mod_name__ = "Dev Commands"
 
