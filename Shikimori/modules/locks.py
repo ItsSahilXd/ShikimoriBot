@@ -2,7 +2,7 @@ import Shikimori.modules.sql.locks_sql as sql
 import html
 import ast
 
-from telegram import Message, Chat, MessageEntity
+from telegram import Message, Chat, MessageEntity, constants
 from telegram.constants import ParseMode
 from telegram import ChatPermissions
 from telegram.error import BadRequest, TelegramError
@@ -574,13 +574,13 @@ __mod_name__ = "Locks 🔒"
 LOCKTYPES_HANDLER = DisableAbleCommandHandler("locktypes", locktypes, block=False)
 LOCK_HANDLER = CommandHandler(
     "lock", lock,  block=False
-)  # , filters=filters.ChatType.GROUPS)
+)  # , filters=constants.ChatType.GROUPS)
 UNLOCK_HANDLER = CommandHandler(
     "unlock", unlock,  block=False
-)  # , filters=filters.ChatType.GROUPS)
+)  # , filters=constants.ChatType.GROUPS)
 LOCKED_HANDLER = CommandHandler(
     "locks", list_locks, block=False
-)  # , filters=filters.ChatType.GROUPS)
+)  # , filters=constants.ChatType.GROUPS)
 
 SHIKIMORI_PTB.add_handler(LOCK_HANDLER)
 SHIKIMORI_PTB.add_handler(UNLOCK_HANDLER)
@@ -589,7 +589,7 @@ SHIKIMORI_PTB.add_handler(LOCKED_HANDLER)
 
 SHIKIMORI_PTB.add_handler(
     MessageHandler(
-        filters.ALL & filters.ChatType.GROUPS, del_lockables, block=False
+        filters.ALL & constants.ChatType.GROUPS, del_lockables, block=False
     ),
     PERM_GROUP,
 )

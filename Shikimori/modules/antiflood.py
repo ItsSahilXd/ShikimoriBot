@@ -2,7 +2,7 @@ import html
 from typing import Optional
 import re
 
-from telegram import Message, Chat, Update, User, ChatPermissions
+from telegram import Message, Chat, Update, User, ChatPermissions, constants
 
 from Shikimori import TIGERS, WOLVES, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import (
@@ -400,24 +400,24 @@ def __chat_settings__(chat_id, user_id):
 __mod_name__ = "Anti-Flood"
 
 FLOOD_BAN_HANDLER = MessageHandler(
-    filters.ALL & ~filters.StatusUpdate & filters.ChatType.GROUPS,
+    filters.ALL & ~filters.StatusUpdate & constants.ChatType.GROUPS,
     check_flood,
     block=False,
 )
 SET_FLOOD_HANDLER = CommandHandler(
-    "setflood", set_flood, filters=filters.ChatType.GROUPS, block=False
+    "setflood", set_flood, filters=constants.ChatType.GROUPS, block=False
 )
 SET_FLOOD_MODE_HANDLER = CommandHandler(
     "setfloodmode",
     set_flood_mode,
     
     block=False,
-)  # , filters=filters.ChatType.GROUPS)
+)  # , filters=constants.ChatType.GROUPS)
 FLOOD_QUERY_HANDLER = CallbackQueryHandler(
     flood_button, pattern=r"unmute_flooder", block=False
 )
 FLOOD_HANDLER = CommandHandler(
-    "flood", flood, filters=filters.ChatType.GROUPS, block=False
+    "flood", flood, filters=constants.ChatType.GROUPS, block=False
 )
 
 SHIKIMORI_PTB.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)

@@ -9,7 +9,7 @@ from Shikimori.modules.helper_funcs.chat_status import (
     user_admin,
 )
 from Shikimori.modules.sql import cleaner_sql as sql
-from telegram import Update
+from telegram import Update, constants
 from telegram.constants import ParseMode
 from telegram.ext import (
     CallbackContext,
@@ -238,7 +238,7 @@ LIST_CLEAN_BLUE_TEXT_HANDLER = CommandHandler(
     "listblue", bluetext_ignore_list, block=False
 )
 CLEAN_BLUE_TEXT_HANDLER = MessageHandler(
-    filters.command & filters.ChatType.GROUPS,
+    filters.command & constants.ChatType.GROUPS,
     clean_blue_text_must_click,
     block=False,
 )

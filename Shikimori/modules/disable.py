@@ -33,7 +33,7 @@ import asyncio
 from typing import Union
 
 from future.utils import string_types
-from telegram import Update
+from telegram import Update, constants
 from telegram.constants import ParseMode, ChatType
 from telegram.ext import CommandHandler, MessageHandler, ContextTypes
 from telegram.helpers import escape_markdown
@@ -306,13 +306,13 @@ if is_module_loaded(FILENAME):
     """
 
     SHIKIMORI_PTB.add_handler(CommandHandler(
-        "disable", disable))  # , filters=filters.ChatType.GROUPS)
+        "disable", disable))  # , filters=constants.ChatType.GROUPS)
     SHIKIMORI_PTB.add_handler(CommandHandler(
-        "enable", enable))  # , filters=filters.ChatType.GROUPS)
+        "enable", enable))  # , filters=constants.ChatType.GROUPS)
     SHIKIMORI_PTB.add_handler(CommandHandler(
-        ["cmds", "disabled"], commands))  # , filters=filters.ChatType.GROUPS)
+        ["cmds", "disabled"], commands))  # , filters=constants.ChatType.GROUPS)
     SHIKIMORI_PTB.add_handler(CommandHandler(
-        "listcmds", list_cmds))  # , filters=filters.ChatType.GROUPS)
+        "listcmds", list_cmds))  # , filters=constants.ChatType.GROUPS)
 
 else:
     DisableAbleCommandHandler = CommandHandler

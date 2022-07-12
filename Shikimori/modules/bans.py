@@ -5,6 +5,7 @@ from telegram import (
     Update,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
+    constants,
 )
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, filters, CommandHandler, CallbackQueryHandler
@@ -556,7 +557,7 @@ KICK_HANDLER = CommandHandler(["kick", "punch"], punch, block=False)
 UNBAN_HANDLER = CommandHandler("unban", unban, block=False)
 ROAR_HANDLER = CommandHandler("roar", selfunban, block=False)
 UNBAN_BUTTON_HANDLER = CallbackQueryHandler(unbanb_btn, pattern=r"unbanb_")
-KICKME_HANDLER = DisableAbleCommandHandler(["kickme", "punchme"], punchme, filters=filters.ChatType.GROUPS, block=False)
+KICKME_HANDLER = DisableAbleCommandHandler(["kickme", "punchme"], punchme, filters=constants.ChatType.GROUPS, block=False)
 BANME_HANDLER = CommandHandler("banme", banme, block=False)
 
 SHIKIMORI_PTB.add_handler(BAN_HANDLER)

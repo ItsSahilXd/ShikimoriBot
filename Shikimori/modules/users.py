@@ -8,6 +8,7 @@ from telegram.ext import (
     CommandHandler,
     filters,
     MessageHandler,
+    constants
 )
 
 import Shikimori.modules.sql.users_sql as sql
@@ -177,8 +178,8 @@ __help__ = ""  # no help string
 BROADCAST_HANDLER = CommandHandler(
     ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast
 , block=False)
-USER_HANDLER = MessageHandler(filters.ALL & filters.ChatType.GROUPS, log_user, block=False)
-CHAT_CHECKER_HANDLER = MessageHandler(filters.ALL & filters.ChatType.GROUPS, chat_checker, block=False)
+USER_HANDLER = MessageHandler(filters.ALL & constants.ChatType.GROUPS, log_user, block=False)
+CHAT_CHECKER_HANDLER = MessageHandler(filters.ALL & constants.ChatType.GROUPS, chat_checker, block=False)
 CHATLIST_HANDLER = CommandHandler("groups", chats, block=False)
 
 SHIKIMORI_PTB.add_handler(USER_HANDLER, USERS_GROUP)

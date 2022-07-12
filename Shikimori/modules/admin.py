@@ -2,7 +2,7 @@ import os
 import html
 import re
 
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, constants
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telethon import events
@@ -991,17 +991,17 @@ def button(update: Update, context: CallbackContext) -> str:
 
 
 
-SET_DESC_HANDLER = CommandHandler("setdesc", set_desc, filters=filters.ChatType.GROUPS, block=False)
-SET_STICKER_HANDLER = CommandHandler("setsticker", set_sticker, filters=filters.ChatType.GROUPS, block=False)
-SETCHATPIC_HANDLER = CommandHandler("setgpic", setchatpic, filters=filters.ChatType.GROUPS, block=False)
-RMCHATPIC_HANDLER = CommandHandler("delgpic", rmchatpic, filters=filters.ChatType.GROUPS, block=False)
-SETCHAT_TITLE_HANDLER = CommandHandler("setgtitle", setchat_title, filters=filters.ChatType.GROUPS, block=False)
+SET_DESC_HANDLER = CommandHandler("setdesc", set_desc, filters=constants.ChatType.GROUPS, block=False)
+SET_STICKER_HANDLER = CommandHandler("setsticker", set_sticker, filters=constants.ChatType.GROUPS, block=False)
+SETCHATPIC_HANDLER = CommandHandler("setgpic", setchatpic, filters=constants.ChatType.GROUPS, block=False)
+RMCHATPIC_HANDLER = CommandHandler("delgpic", rmchatpic, filters=constants.ChatType.GROUPS, block=False)
+SETCHAT_TITLE_HANDLER = CommandHandler("setgtitle", setchat_title, filters=constants.ChatType.GROUPS, block=False)
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler("admins", adminlist, block=False)
 
-PIN_HANDLER = CommandHandler("pin", pin, filters=filters.ChatType.GROUPS, block=False)
-UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=filters.ChatType.GROUPS, block=False)
-PINNED_HANDLER = CommandHandler("pinned", pinned, filters=filters.ChatType.GROUPS, block=False)
+PIN_HANDLER = CommandHandler("pin", pin, filters=constants.ChatType.GROUPS, block=False)
+UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=constants.ChatType.GROUPS, block=False)
+PINNED_HANDLER = CommandHandler("pinned", pinned, filters=constants.ChatType.GROUPS, block=False)
 
 INVITE_HANDLER = DisableAbleCommandHandler("invitelink", invite, block=False)
 
@@ -1011,7 +1011,7 @@ LOW_PROMOTE_HANDLER = DisableAbleCommandHandler("lowpromote", lowpromote, block=
 DEMOTE_HANDLER = DisableAbleCommandHandler("demote", demote, block=False)
 
 SET_TITLE_HANDLER = CommandHandler("title", set_title, block=False)
-ADMIN_REFRESH_HANDLER = CommandHandler("admincache", refresh_admin, filters=filters.ChatType.GROUPS, block=False)
+ADMIN_REFRESH_HANDLER = CommandHandler("admincache", refresh_admin, filters=constants.ChatType.GROUPS, block=False)
 
 SHIKIMORI_PTB.add_handler(SET_DESC_HANDLER)
 SHIKIMORI_PTB.add_handler(SET_STICKER_HANDLER)

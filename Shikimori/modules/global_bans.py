@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 from io import BytesIO
 
-from telegram import Update
+from telegram import Update, constants
 from telegram.constants import ParseMode
 from telegram.error import BadRequest, TelegramError, Forbidden
 from telegram.ext import (
@@ -521,10 +521,10 @@ GBAN_HANDLER = CommandHandler("gban", gban, block=False)
 UNGBAN_HANDLER = CommandHandler("ungban", ungban, block=False)
 GBAN_LIST = CommandHandler("gbanlist", gbanlist, block=False)
 GBAN_STATUS = CommandHandler(
-    "antispam", gbanstat, filters=filters.ChatType.GROUPS, block=False
+    "antispam", gbanstat, filters=constants.ChatType.GROUPS, block=False
 )
 GBAN_ENFORCER = MessageHandler(
-    filters.ALL & filters.ChatType.GROUPS, enforce_gban, block=False
+    filters.ALL & constants.ChatType.GROUPS, enforce_gban, block=False
 )
 
 SHIKIMORI_PTB.add_handler(GBAN_HANDLER)
