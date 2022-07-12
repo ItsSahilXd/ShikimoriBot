@@ -6,7 +6,7 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler
 
 import Shikimori.modules.sql.notes_sql as sql
-from Shikimori import dispatcher, LOGGER, OWNER_ID, JOIN_LOGGER, SUPPORT_CHAT
+from Shikimori import Application, LOGGER, OWNER_ID, JOIN_LOGGER, SUPPORT_CHAT
 from Shikimori.__main__ import DATA_IMPORT
 from Shikimori.modules.helper_funcs.chat_status import user_admin
 from Shikimori.modules.helper_funcs.alternate import typing_action
@@ -35,8 +35,8 @@ def import_data(update, context):
 
     conn = connected(context.bot, update, chat, user.id, need_admin=True)
     if conn:
-        chat = dispatcher.bot.getChat(conn)
-        chat_name = dispatcher.bot.getChat(conn).title
+        chat = Application.bot.getChat(conn)
+        chat_name = Application.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
             update.effective_message.reply_text("This is a group only command!")
@@ -130,9 +130,9 @@ def export_data(update, context):
     current_chat_id = update.effective_chat.id
     conn = connected(context.bot, update, chat, user.id, need_admin=True)
     if conn:
-        chat = dispatcher.bot.getChat(conn)
+        chat = Application.bot.getChat(conn)
         chat_id = conn
-        # chat_name = dispatcher.bot.getChat(conn).title
+        # chat_name = Application.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
             update.effective_message.reply_text("This is a group only command!")
@@ -386,8 +386,8 @@ EXPORT_HANDLER = CommandHandler(
     "export", export_data, pass_chat_data=True, block=False
 )
 
-dispatcher.add_handler(IMPORT_HANDLER)
-dispatcher.add_handler(EXPORT_HANDLER)
+Application.add_handler(IMPORT_HANDLER)
+Application.add_handler(EXPORT_HANDLER)
 
 
 __help__ = """

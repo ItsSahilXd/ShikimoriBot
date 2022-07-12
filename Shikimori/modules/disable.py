@@ -2,7 +2,7 @@ import importlib
 from typing import Union
 
 from future.utils import string_types
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.helper_funcs.handlers import CMD_STARTERS, SpamChecker
 from Shikimori.modules.helper_funcs.misc import is_module_loaded
 from telegram import ParseMode, Update
@@ -330,12 +330,12 @@ if is_module_loaded(FILENAME):
     COMMANDS_HANDLER = CommandHandler(["cmds", "disabled"], commands, block=False)
     TOGGLE_HANDLER = CommandHandler("listcmds", list_cmds, block=False)
 
-    dispatcher.add_handler(DISABLE_HANDLER)
-    dispatcher.add_handler(DISABLE_MODULE_HANDLER)
-    dispatcher.add_handler(ENABLE_HANDLER)
-    dispatcher.add_handler(ENABLE_MODULE_HANDLER)
-    dispatcher.add_handler(COMMANDS_HANDLER)
-    dispatcher.add_handler(TOGGLE_HANDLER)
+    Application.add_handler(DISABLE_HANDLER)
+    Application.add_handler(DISABLE_MODULE_HANDLER)
+    Application.add_handler(ENABLE_HANDLER)
+    Application.add_handler(ENABLE_MODULE_HANDLER)
+    Application.add_handler(COMMANDS_HANDLER)
+    Application.add_handler(TOGGLE_HANDLER)
 
     
 

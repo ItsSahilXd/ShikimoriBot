@@ -3,7 +3,7 @@ from random import randint
 from Shikimori.modules.helper_funcs.chat_status import user_admin
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori import (
-    dispatcher,
+    Application,
     WALL_API,
 )
 import requests as r
@@ -20,7 +20,7 @@ from telegram.ext import CallbackContext, Filters, CommandHandler
 from Shikimori.modules.helper_funcs.alternate import send_action
 
 MARKDOWN_HELP = f"""
-Markdown is a very powerful formatting tool supported by telegram. {dispatcher.bot.first_name} has some enhancements, to make sure that \
+Markdown is a very powerful formatting tool supported by telegram. {Application.bot.first_name} has some enhancements, to make sure that \
 saved messages are correctly parsed, and to allow you to create buttons.
 
 ❂ <code>_italic_</code>: wrapping text with '_' will produce italic text
@@ -194,10 +194,10 @@ MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, block=False)
 WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki)
 WALLPAPER_HANDLER = DisableAbleCommandHandler("wall", wall, block=False)
 
-dispatcher.add_handler(ECHO_HANDLER)
-dispatcher.add_handler(MD_HELP_HANDLER)
-dispatcher.add_handler(WIKI_HANDLER)
-dispatcher.add_handler(WALLPAPER_HANDLER)
+Application.add_handler(ECHO_HANDLER)
+Application.add_handler(MD_HELP_HANDLER)
+Application.add_handler(WIKI_HANDLER)
+Application.add_handler(WALLPAPER_HANDLER)
 
 __mod_name__ = "Extras"
 __command_list__ = ["id", "echo", "wiki", "wall"]

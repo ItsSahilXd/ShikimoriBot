@@ -1,6 +1,6 @@
 import random
 
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import Update
 from telegram.ext import CallbackContext
@@ -222,7 +222,7 @@ def react(update: Update, context: CallbackContext):
 
 REACT_HANDLER = DisableAbleCommandHandler("react", react, block=False)
 
-dispatcher.add_handler(REACT_HANDLER)
+Application.add_handler(REACT_HANDLER)
 
 __command_list__ = ["react"]
 __handlers__ = [REACT_HANDLER]

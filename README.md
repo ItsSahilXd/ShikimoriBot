@@ -165,13 +165,13 @@ Creating a module has been simplified as much as possible - but do not hesitate 
 
 All that is needed is that your .py file is in the modules folder.
 
-To add commands, make sure to import the dispatcher via
+To add commands, make sure to import the Application via
 
-`from SungJinwooRobot import dispatcher`.
+`from SungJinwooRobot import Application`.
 
 You can then add commands using the usual
 
-`dispatcher.add_handler()`.
+`Application.add_handler()`.
 
 Assigning the `__help__` variable to a string describing this modules' available
 commands will allow the bot to load it and add the documentation for

@@ -5,7 +5,7 @@ import sys
 from contextlib import suppress
 from time import sleep
 
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import TelegramError, Update
 from telegram.error import Unauthorized
@@ -64,9 +64,9 @@ LEAVE_HANDLER = CommandHandler("leave", leave, block=False)
 GITPULL_HANDLER = CommandHandler("gitpull", gitpull, block=False)
 RESTART_HANDLER = CommandHandler("reboot", restart, block=False)
 
-dispatcher.add_handler(LEAVE_HANDLER)
-dispatcher.add_handler(GITPULL_HANDLER)
-dispatcher.add_handler(RESTART_HANDLER)
+Application.add_handler(LEAVE_HANDLER)
+Application.add_handler(GITPULL_HANDLER)
+Application.add_handler(RESTART_HANDLER)
 
 __mod_name__ = "Dev Commands"
 

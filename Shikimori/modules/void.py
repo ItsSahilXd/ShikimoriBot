@@ -1,4 +1,4 @@
-from Shikimori import dispatcher
+from Shikimori import Application
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
 
 from telegram.ext import (
@@ -31,7 +31,7 @@ def void(update: Update, context: CallbackContext):
 
 
 void_handler = CommandHandler("void", void, block=False)
-dispatcher.add_handler(void_handler)
+Application.add_handler(void_handler)
 
 __help__ = """
  ──「Void Network」──                         

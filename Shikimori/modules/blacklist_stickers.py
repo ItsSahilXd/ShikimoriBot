@@ -2,7 +2,7 @@ import html
 from typing import Optional
 
 import Shikimori.modules.sql.blsticker_sql as sql
-from Shikimori import LOGGER, dispatcher
+from Shikimori import LOGGER, Application
 from Shikimori.modules.connection import connected
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.alternate import send_message
@@ -26,7 +26,7 @@ def blackliststicker(update: Update, context: CallbackContext):
     conn = connected(bot, update, chat, user.id, need_admin=False)
     if conn:
         chat_id = conn
-        chat_name = dispatcher.bot.getChat(conn).title
+        chat_name = Application.bot.getChat(conn).title
     else:
         if chat.type == "private":
             return
@@ -76,7 +76,7 @@ def add_blackliststicker(update: Update, context: CallbackContext):
     conn = connected(bot, update, chat, user.id)
     if conn:
         chat_id = conn
-        chat_name = dispatcher.bot.getChat(conn).title
+        chat_name = Application.bot.getChat(conn).title
     else:
         chat_id = update.effective_chat.id
         if chat.type == "private":
@@ -169,7 +169,7 @@ def unblackliststicker(update: Update, context: CallbackContext):
     conn = connected(bot, update, chat, user.id)
     if conn:
         chat_id = conn
-        chat_name = dispatcher.bot.getChat(conn).title
+        chat_name = Application.bot.getChat(conn).title
     else:
         chat_id = update.effective_chat.id
         if chat.type == "private":
@@ -267,9 +267,9 @@ def blacklist_mode(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     conn = connected(bot, update, chat, user.id, need_admin=True)
     if conn:
-        chat = dispatcher.bot.getChat(conn)
+        chat = Application.bot.getChat(conn)
         chat_id = conn
-        chat_name = dispatcher.bot.getChat(conn).title
+        chat_name = Application.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
             send_message(
@@ -532,8 +532,8 @@ BLACKLIST_STICKER_DEL_HANDLER = MessageHandler(
     block=False,
 )
 
-dispatcher.add_handler(BLACKLIST_STICKER_HANDLER)
-dispatcher.add_handler(ADDBLACKLIST_STICKER_HANDLER)
-dispatcher.add_handler(UNBLACKLIST_STICKER_HANDLER)
-dispatcher.add_handler(BLACKLISTMODE_HANDLER)
-dispatcher.add_handler(BLACKLIST_STICKER_DEL_HANDLER)
+Application.add_handler(BLACKLIST_STICKER_HANDLER)
+Application.add_handler(ADDBLACKLIST_STICKER_HANDLER)
+Application.add_handler(UNBLACKLIST_STICKER_HANDLER)
+Application.add_handler(BLACKLISTMODE_HANDLER)
+Application.add_handler(BLACKLIST_STICKER_DEL_HANDLER)

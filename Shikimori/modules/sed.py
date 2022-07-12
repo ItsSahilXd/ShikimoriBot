@@ -25,7 +25,7 @@ import sre_constants
 
 import regex
 import telegram
-from Shikimori import LOGGER, dispatcher
+from Shikimori import LOGGER, Application
 from Shikimori.modules.disable import DisableAbleMessageHandler
 from Shikimori.modules.helper_funcs.regex_helper import (infinite_loop_check)
 from telegram import Update
@@ -155,4 +155,4 @@ SED_HANDLER = DisableAbleMessageHandler(
     sed,
     friendly="sed", block=False)
 
-dispatcher.add_handler(SED_HANDLER)
+Application.add_handler(SED_HANDLER)

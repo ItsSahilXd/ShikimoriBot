@@ -1,6 +1,6 @@
 import subprocess
 
-from Shikimori import LOGGER, dispatcher
+from Shikimori import LOGGER, Application
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, CommandHandler
@@ -41,7 +41,7 @@ def shell(update: Update, context: CallbackContext):
 
 
 SHELL_HANDLER = CommandHandler(["sh", "shell"], shell, block=False)
-dispatcher.add_handler(SHELL_HANDLER)
+Application.add_handler(SHELL_HANDLER)
 __mod_name__ = "Shell"
 __command_list__ = ["sh"]
 __handlers__ = [SHELL_HANDLER]

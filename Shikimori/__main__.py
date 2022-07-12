@@ -23,7 +23,7 @@ from Shikimori import (
     TOKEN,
     URL,
     WEBHOOK,
-    dispatcher,
+    Application,
     StartTime,
     telethn,
     pbot,
@@ -53,10 +53,10 @@ from telegram.ext import (
     Filters,
     MessageHandler,
 )
-from telegram.ext.Application import DispatcherHandlerStop, run_async
+from telegram.ext.Application import ApplicationHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
 
-bot_name = f"{dispatcher.bot.first_name}"
+bot_name = f"{Application.bot.first_name}"
 
 def get_readable_time(seconds: int) -> str:
     count = 0
@@ -160,7 +160,7 @@ for module_name in ALL_MODULES:
 def send_help(chat_id, text, keyboard=None):
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
-    dispatcher.bot.send_message(
+    Application.bot.send_message(
         chat_id=chat_id,
         text=text,
         parse_mode=ParseMode.MARKDOWN,
@@ -196,7 +196,7 @@ def start(update: Update, context: CallbackContext):
 
             elif args[0].lower().startswith("stngs_"):
                 match = re.match("stngs_(.*)", args[0].lower())
-                chat = dispatcher.bot.getChat(match.group(1))
+                chat = Application.bot.getChat(match.group(1))
 
                 if is_user_admin(chat, update.effective_user.id):
                     send_settings(match.group(1), update.effective_user.id, False)
@@ -221,7 +221,7 @@ def start(update: Update, context: CallbackContext):
     else:
         chat_id = update.effective_chat.id
         first_name = update.effective_user.first_name
-        chat_name = dispatcher.bot.getChat(chat_id).title
+        chat_name = Application.bot.getChat(chat_id).title
         update.effective_message.reply_video(
             ShikimoriSTART, caption= "*Hey {}, I'm here for you at {} since :* `{}`\n"
             .format(escape_markdown(first_name), escape_markdown(chat_name), uptime), reply_markup=InlineKeyboardMarkup(
@@ -603,14 +603,14 @@ def send_settings(chat_id, user_id, user=False):
                 "*{}*:\n{}".format(mod.__mod_name__, mod.__user_settings__(user_id))
                 for mod in USER_SETTINGS.values()
             )
-            dispatcher.bot.send_message(
+            Application.bot.send_message(
                 user_id,
                 "These are your current settings:" + "\n\n" + settings,
                 parse_mode=ParseMode.MARKDOWN,
             )
 
         else:
-            dispatcher.bot.send_message(
+            Application.bot.send_message(
                 user_id,
                 "Seems like there aren't any user specific settings available :'(",
                 parse_mode=ParseMode.MARKDOWN,
@@ -618,8 +618,8 @@ def send_settings(chat_id, user_id, user=False):
 
     else:
         if CHAT_SETTINGS:
-            chat_name = dispatcher.bot.getChat(chat_id).title
-            dispatcher.bot.send_message(
+            chat_name = Application.bot.getChat(chat_id).title
+            Application.bot.send_message(
                 user_id,
                 text="Which module would you like to check {}'s settings for?".format(
                     chat_name
@@ -629,7 +629,7 @@ def send_settings(chat_id, user_id, user=False):
                 ),
             )
         else:
-            dispatcher.bot.send_message(
+            Application.bot.send_message(
                 user_id,
                 "Seems like there aren't any chat settings available :'(\nSend this "
                 "in a group chat you're admin in to find its current settings!",
@@ -800,7 +800,7 @@ def main():
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            msg = dispatcher.bot.send_photo(
+            msg = Application.bot.send_photo(
                 f"@{SUPPORT_CHAT}",
                 photo=ALIVE_MEDIA,
                 caption="👋 Hi, i'm alive.",
@@ -853,21 +853,21 @@ def main():
     )
 
 
-    dispatcher.add_handler(void_call_back_handler)
-    dispatcher.add_handler(git_call_back_handler)
-    dispatcher.add_handler(test_handler)
-    dispatcher.add_handler(start_handler)
-    dispatcher.add_handler(help_handler)
-    dispatcher.add_handler(about_callback_handler)
-    dispatcher.add_handler(license_call_back_handler)
-    dispatcher.add_handler(source_callback_handler)
-    dispatcher.add_handler(settings_handler)
-    dispatcher.add_handler(help_callback_handler)
-    dispatcher.add_handler(settings_callback_handler)
-    dispatcher.add_handler(migrate_handler)
-    dispatcher.add_handler(donate_handler)
+    Application.add_handler(void_call_back_handler)
+    Application.add_handler(git_call_back_handler)
+    Application.add_handler(test_handler)
+    Application.add_handler(start_handler)
+    Application.add_handler(help_handler)
+    Application.add_handler(about_callback_handler)
+    Application.add_handler(license_call_back_handler)
+    Application.add_handler(source_callback_handler)
+    Application.add_handler(settings_handler)
+    Application.add_handler(help_callback_handler)
+    Application.add_handler(settings_callback_handler)
+    Application.add_handler(migrate_handler)
+    Application.add_handler(donate_handler)
 
-    dispatcher.add_error_handler(error_callback)
+    Application.add_error_handler(error_callback)
 
     if WEBHOOK:
         LOGGER.info("Using webhooks.")

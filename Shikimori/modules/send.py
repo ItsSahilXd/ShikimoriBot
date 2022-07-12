@@ -5,7 +5,7 @@ from telegram import MessageEntity
 from telegram.error import BadRequest
 from telegram.ext import Filters, MessageHandler, run_async
 
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 
 from Shikimori.modules.helper_funcs.alternate import send_message
@@ -27,7 +27,7 @@ __mod_name__ = "Send"
 
 
 ADD_CCHAT_HANDLER = DisableAbleCommandHandler("snd", send, block=False)
-dispatcher.add_handler(ADD_CCHAT_HANDLER)
+Application.add_handler(ADD_CCHAT_HANDLER)
 __command_list__ = ["snd"]
 __handlers__ = [
     ADD_CCHAT_HANDLER

@@ -1,5 +1,5 @@
 import requests
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext
@@ -24,7 +24,7 @@ def ud(update: Update, context: CallbackContext):
 
 UD_HANDLER = DisableAbleCommandHandler(["ud"], ud, block=False)
 
-dispatcher.add_handler(UD_HANDLER)
+Application.add_handler(UD_HANDLER)
 
 __command_list__ = ["ud"]
 __handlers__ = [UD_HANDLER]

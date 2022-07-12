@@ -1,4 +1,4 @@
-from Shikimori import ALIVE_MEDIA, UPDATE_CHANNEL, SUPPORT_CHAT, OWNER_USERNAME, dispatcher, NETWORK, NETWORK_USERNAME
+from Shikimori import ALIVE_MEDIA, UPDATE_CHANNEL, SUPPORT_CHAT, OWNER_USERNAME, Application, NETWORK, NETWORK_USERNAME
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
@@ -37,7 +37,7 @@ def awake(update: Update, context: CallbackContext):
     message.reply_animation(PHOTO, caption=TEXT, reply_markup=InlineKeyboardMarkup(buttons),parse_mode=ParseMode.HTML)
 
 ALIVE_HANDLER = DisableAbleCommandHandler("alive", awake, block=False)
-dispatcher.add_handler(ALIVE_HANDLER)
+Application.add_handler(ALIVE_HANDLER)
 __command_list__ = ["alive"]
 __handlers__ = [
     ALIVE_HANDLER,

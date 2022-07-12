@@ -13,7 +13,7 @@ from pyrogram import __version__ as pyrover
 from Shikimori import (
     SUPPORT_CHAT,
     UPDATE_CHANNEL,
-    dispatcher,
+    Application,
     StartTime,
     STATS_IMG,
 )
@@ -126,7 +126,7 @@ def stats(update, context):
         )
 
 STATS_HANDLER = CommandHandler(["stats", "statistics"], stats, block=False)
-dispatcher.add_handler(STATS_HANDLER)
+Application.add_handler(STATS_HANDLER)
 
 __handlers__ = [
     STATS_HANDLER

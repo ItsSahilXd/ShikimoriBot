@@ -5,7 +5,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import Update
 from telegram.ext import CallbackContext, CallbackQueryHandler
-from Shikimori import pbot, dispatcher
+from Shikimori import pbot, Application
 import Shikimori.modules.sql.nsfw_sql as sql
 
 @pbot.on_message(filters.command("sauce"))
@@ -86,4 +86,4 @@ close_reply_handler = CallbackQueryHandler(
         close_reply, pattern=r"close_reply_", block=False
     )
 
-dispatcher.add_handler(close_reply_handler)
+Application.add_handler(close_reply_handler)

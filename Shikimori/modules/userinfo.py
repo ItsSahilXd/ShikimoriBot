@@ -17,7 +17,7 @@ from Shikimori import (
     DEMONS,
     TIGERS,
     WOLVES,
-    dispatcher,
+    Application,
 )
 from Shikimori.__main__ import TOKEN, USER_INFO
 import Shikimori.modules.sql.userinfo_sql as sql
@@ -84,7 +84,7 @@ def hpmanager(user):
         if not user.username:
             new_hp -= no_by_per(total_hp, 25)
         try:
-            dispatcher.bot.get_user_profile_photos(user.id).photos[0][-1]
+            Application.bot.get_user_profile_photos(user.id).photos[0][-1]
         except IndexError:
             # no profile photo ==> -25% of hp
             new_hp -= no_by_per(total_hp, 25)
@@ -515,13 +515,13 @@ INFO_HANDLER = DisableAbleCommandHandler("info", info, block=False)
 SET_ABOUT_HANDLER = DisableAbleCommandHandler("setme", set_about_me, block=False)
 GET_ABOUT_HANDLER = DisableAbleCommandHandler("me", about_me, block=False)
 
-dispatcher.add_handler(ID_HANDLER)
-dispatcher.add_handler(GIFID_HANDLER)
-dispatcher.add_handler(INFO_HANDLER)
-dispatcher.add_handler(SET_BIO_HANDLER)
-dispatcher.add_handler(GET_BIO_HANDLER)
-dispatcher.add_handler(SET_ABOUT_HANDLER)
-dispatcher.add_handler(GET_ABOUT_HANDLER)
+Application.add_handler(ID_HANDLER)
+Application.add_handler(GIFID_HANDLER)
+Application.add_handler(INFO_HANDLER)
+Application.add_handler(SET_BIO_HANDLER)
+Application.add_handler(GET_BIO_HANDLER)
+Application.add_handler(SET_ABOUT_HANDLER)
+Application.add_handler(GET_ABOUT_HANDLER)
 
 __mod_name__ = "Info ℹ️"
 __command_list__ = ["setbio", "bio", "setme", "me", "info"]

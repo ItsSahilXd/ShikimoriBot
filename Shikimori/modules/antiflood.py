@@ -4,7 +4,7 @@ import re
 
 from telegram import Message, Chat, Update, User, ChatPermissions
 
-from Shikimori import TIGERS, WOLVES, dispatcher
+from Shikimori import TIGERS, WOLVES, Application
 from Shikimori.modules.helper_funcs.chat_status import (
     bot_admin,
     is_user_admin,
@@ -154,7 +154,7 @@ def set_flood(update, context) -> str:
     conn = connected(context.bot, update, chat, user.id, need_admin=True)
     if conn:
         chat_id = conn
-        chat_name = dispatcher.bot.getChat(conn).title
+        chat_name = Application.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
             send_message(
@@ -245,7 +245,7 @@ def flood(update, context):
     conn = connected(context.bot, update, chat, user.id, need_admin=False)
     if conn:
         chat_id = conn
-        chat_name = dispatcher.bot.getChat(conn).title
+        chat_name = Application.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
             send_message(
@@ -289,9 +289,9 @@ def set_flood_mode(update, context):
 
     conn = connected(context.bot, update, chat, user.id, need_admin=True)
     if conn:
-        chat = dispatcher.bot.getChat(conn)
+        chat = Application.bot.getChat(conn)
         chat_id = conn
-        chat_name = dispatcher.bot.getChat(conn).title
+        chat_name = Application.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
             send_message(
@@ -420,11 +420,11 @@ FLOOD_HANDLER = CommandHandler(
     "flood", flood, filters=Filters.chat_type.groups, block=False
 )
 
-dispatcher.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
-dispatcher.add_handler(FLOOD_QUERY_HANDLER)
-dispatcher.add_handler(SET_FLOOD_HANDLER)
-dispatcher.add_handler(SET_FLOOD_MODE_HANDLER)
-dispatcher.add_handler(FLOOD_HANDLER)
+Application.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
+Application.add_handler(FLOOD_QUERY_HANDLER)
+Application.add_handler(SET_FLOOD_HANDLER)
+Application.add_handler(SET_FLOOD_MODE_HANDLER)
+Application.add_handler(FLOOD_HANDLER)
 
 __handlers__ = [
     (FLOOD_BAN_HANDLER, FLOOD_GROUP),

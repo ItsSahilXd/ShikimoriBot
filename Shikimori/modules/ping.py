@@ -26,7 +26,7 @@ from spamwatch import __version__ as __sw__
 from telegram import ParseMode, Update
 from telegram.ext import CommandHandler, Filters, CallbackContext
 
-from Shikimori import dispatcher, OWNER_ID
+from Shikimori import Application, OWNER_ID
 from Shikimori.modules.helper_funcs.alternate import typing_action
 from Shikimori.modules.helper_funcs.filters import CustomFilters
 
@@ -144,9 +144,9 @@ SYS_STATUS_HANDLER = CommandHandler(
     "sysinfo", system_status, filters=CustomFilters.dev_filter, block=False
 )
 
-dispatcher.add_handler(IP_HANDLER)
-dispatcher.add_handler(PING_HANDLER)
-dispatcher.add_handler(SYS_STATUS_HANDLER)
+Application.add_handler(IP_HANDLER)
+Application.add_handler(PING_HANDLER)
+Application.add_handler(SYS_STATUS_HANDLER)
 
 __mod_name__ = "Ping 🏓"
 __help__ = """

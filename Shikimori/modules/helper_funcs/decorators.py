@@ -9,13 +9,13 @@ from telegram.ext import (
     InlineQueryHandler,
 )
 from telegram.ext.filters import BaseFilter
-from Shikimori import dispatcher as d, LOGGER
+from Shikimori import Application as d, LOGGER
 from typing import Optional, Union, List
 
 
 class ShikimoriHandler:
     def __init__(self, d):
-        self._dispatcher = d
+        self._Application = d
 
     def command(
         self,
@@ -31,7 +31,7 @@ class ShikimoriHandler:
         def _command(func):
             try:
                 if can_disable:
-                    self._dispatcher.add_handler(
+                    self._Application.add_handler(
                         DisableAbleCommandHandler(
                             command,
                             func,
@@ -43,7 +43,7 @@ class ShikimoriHandler:
                         group,
                     )
                 else:
-                    self._dispatcher.add_handler(
+                    self._Application.add_handler(
                         CommandHandler(
                             command,
                             func,
@@ -58,7 +58,7 @@ class ShikimoriHandler:
                 )
             except TypeError:
                 if can_disable:
-                    self._dispatcher.add_handler(
+                    self._Application.add_handler(
                         DisableAbleCommandHandler(
                             command,
                             func,
@@ -70,7 +70,7 @@ class ShikimoriHandler:
                         )
                     )
                 else:
-                    self._dispatcher.add_handler(
+                    self._Application.add_handler(
                         CommandHandler(
                             command,
                             func,
@@ -99,14 +99,14 @@ class ShikimoriHandler:
         def _message(func):
             try:
                 if can_disable:
-                    self._dispatcher.add_handler(
+                    self._Application.add_handler(
                         DisableAbleMessageHandler(
                             pattern, func, friendly=friendly, run_async=run_async
                         ),
                         group,
                     )
                 else:
-                    self._dispatcher.add_handler(
+                    self._Application.add_handler(
                         MessageHandler(pattern, func, run_async=run_async), group
                     )
                 LOGGER.debug(
@@ -114,13 +114,13 @@ class ShikimoriHandler:
                 )
             except TypeError:
                 if can_disable:
-                    self._dispatcher.add_handler(
+                    self._Application.add_handler(
                         DisableAbleMessageHandler(
                             pattern, func, friendly=friendly, run_async=run_async
                         )
                     )
                 else:
-                    self._dispatcher.add_handler(
+                    self._Application.add_handler(
                         MessageHandler(pattern, func, run_async=run_async)
                     )
                 LOGGER.debug(
@@ -133,7 +133,7 @@ class ShikimoriHandler:
 
     def callbackquery(self, pattern: str = None, run_async: bool = True):
         def _callbackquery(func):
-            self._dispatcher.add_handler(
+            self._Application.add_handler(
                 CallbackQueryHandler(
                     pattern=pattern, callback=func, run_async=run_async
                 )
@@ -154,7 +154,7 @@ class ShikimoriHandler:
         chat_types: List[str] = None,
     ):
         def _inlinequery(func):
-            self._dispatcher.add_handler(
+            self._Application.add_handler(
                 InlineQueryHandler(
                     pattern=pattern,
                     callback=func,

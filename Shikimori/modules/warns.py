@@ -3,7 +3,7 @@ import re
 from typing import Optional
 
 import telegram
-from Shikimori import TIGERS, WOLVES, dispatcher
+from Shikimori import TIGERS, WOLVES, Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.chat_status import (
     bot_admin,
@@ -39,7 +39,7 @@ from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
     CommandHandler,
-    DispatcherHandlerStop,
+    ApplicationHandlerStop,
     Filters,
     MessageHandler,
     run_async,
@@ -267,7 +267,7 @@ def warns(update: Update, context: CallbackContext):
         update.effective_message.reply_text("This user doesn't have any warns!")
 
 
-# Dispatcher handler stop - do not async
+# Application handler stop - do not async
 @user_admin
 # @user_can_ban
 def add_warn_filter(update: Update, context: CallbackContext):
@@ -292,14 +292,14 @@ def add_warn_filter(update: Update, context: CallbackContext):
         return
 
     # Note: perhaps handlers can be removed somehow using sql.get_chat_filters
-    for handler in dispatcher.handlers.get(WARN_HANDLER_GROUP, []):
+    for handler in Application.handlers.get(WARN_HANDLER_GROUP, []):
         if handler.filters == (keyword, chat.id):
-            dispatcher.remove_handler(handler, WARN_HANDLER_GROUP)
+            Application.remove_handler(handler, WARN_HANDLER_GROUP)
 
     sql.add_warn_filter(chat.id, keyword, content)
 
     update.effective_message.reply_text(f"Warn handler added for '{keyword}'!")
-    raise DispatcherHandlerStop
+    raise ApplicationHandlerStop
 
 
 @user_admin
@@ -332,7 +332,7 @@ def remove_warn_filter(update: Update, context: CallbackContext):
         if filt == to_remove:
             sql.remove_warn_filter(chat.id, to_remove)
             msg.reply_text("Okay, I'll stop warning people for that.")
-            raise DispatcherHandlerStop
+            raise ApplicationHandlerStop
 
     msg.reply_text(
         "That's not a current warning filter - run /warnlist for all active warning filters."
@@ -522,13 +522,13 @@ WARN_STRENGTH_HANDLER = CommandHandler(
     "strongwarn", set_warn_strength, filters=Filters.chat_type.groups, block=False
 )
 
-dispatcher.add_handler(WARN_HANDLER)
-dispatcher.add_handler(CALLBACK_QUERY_HANDLER)
-dispatcher.add_handler(RESET_WARN_HANDLER)
-dispatcher.add_handler(MYWARNS_HANDLER)
-dispatcher.add_handler(ADD_WARN_HANDLER)
-dispatcher.add_handler(RM_WARN_HANDLER)
-dispatcher.add_handler(LIST_WARN_HANDLER)
-dispatcher.add_handler(WARN_LIMIT_HANDLER)
-dispatcher.add_handler(WARN_STRENGTH_HANDLER)
-dispatcher.add_handler(WARN_FILTER_HANDLER, WARN_HANDLER_GROUP)
+Application.add_handler(WARN_HANDLER)
+Application.add_handler(CALLBACK_QUERY_HANDLER)
+Application.add_handler(RESET_WARN_HANDLER)
+Application.add_handler(MYWARNS_HANDLER)
+Application.add_handler(ADD_WARN_HANDLER)
+Application.add_handler(RM_WARN_HANDLER)
+Application.add_handler(LIST_WARN_HANDLER)
+Application.add_handler(WARN_LIMIT_HANDLER)
+Application.add_handler(WARN_STRENGTH_HANDLER)
+Application.add_handler(WARN_FILTER_HANDLER, WARN_HANDLER_GROUP)

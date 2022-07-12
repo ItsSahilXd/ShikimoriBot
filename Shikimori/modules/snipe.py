@@ -5,7 +5,7 @@ from telegram.ext import CommandHandler
 from telegram.ext.Application import CallbackContext
 
 from Shikimori.modules.helper_funcs.filters import CustomFilters
-from Shikimori import dispatcher, LOGGER
+from Shikimori import Application, LOGGER
 
 def snipe(update: Update, context: CallbackContext):
     args = context.args
@@ -40,4 +40,4 @@ SNIPE_HANDLER = CommandHandler(
     pass_args=True,
     filters=CustomFilters.dev_filter, block=False)
 
-dispatcher.add_handler(SNIPE_HANDLER)
+Application.add_handler(SNIPE_HANDLER)

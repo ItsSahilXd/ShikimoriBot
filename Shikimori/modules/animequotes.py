@@ -2,7 +2,7 @@ import json
 import requests
 import random
 
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram.ext import CallbackContext, CallbackQueryHandler
 from telegram import ParseMode, Update, InlineKeyboardMarkup, InlineKeyboardButton
@@ -139,12 +139,12 @@ CHANGEK_QUOTE = CallbackQueryHandler(
 QUOTEK_CHANGE = CallbackQueryHandler(
     changek_quote, pattern=r"quotek_.*")
 
-dispatcher.add_handler(CHANGE_QUOTE)
-dispatcher.add_handler(QUOTE_CHANGE)
-dispatcher.add_handler(CHANGEK_QUOTE)
-dispatcher.add_handler(QUOTEK_CHANGE)
-dispatcher.add_handler(ANIMEQUOTES_HANDLER)
-dispatcher.add_handler(QUOTES_HANDLER)
+Application.add_handler(CHANGE_QUOTE)
+Application.add_handler(QUOTE_CHANGE)
+Application.add_handler(CHANGEK_QUOTE)
+Application.add_handler(QUOTEK_CHANGE)
+Application.add_handler(ANIMEQUOTES_HANDLER)
+Application.add_handler(QUOTES_HANDLER)
 
 __command_list__ = [
 

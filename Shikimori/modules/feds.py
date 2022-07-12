@@ -16,7 +16,7 @@ from Shikimori import (
     DRAGONS,
     TIGERS,
     WOLVES,
-    dispatcher,
+    Application,
 )
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.alternate import send_message
@@ -756,7 +756,7 @@ def fed_ban(update: Update, context: CallbackContext):
             except BadRequest as excp:
                 if excp.message in FBAN_ERRORS:
                     try:
-                        dispatcher.bot.getChat(fedschat)
+                        Application.bot.getChat(fedschat)
                     except Unauthorized:
                         sql.chat_leave_fed(fedschat)
                         LOGGER.info(
@@ -797,7 +797,7 @@ def fed_ban(update: Update, context: CallbackContext):
                     except BadRequest as excp:
                         if excp.message in FBAN_ERRORS:
                             try:
-                                dispatcher.bot.getChat(fedschat)
+                                Application.bot.getChat(fedschat)
                             except Unauthorized:
                                 targetfed_id = sql.get_fed_id(fedschat)
                                 sql.unsubs_fed(fed_id, targetfed_id)
@@ -951,7 +951,7 @@ def fed_ban(update: Update, context: CallbackContext):
                     except BadRequest as excp:
                         if excp.message in FBAN_ERRORS:
                             try:
-                                dispatcher.bot.getChat(fedschat)
+                                Application.bot.getChat(fedschat)
                             except Unauthorized:
                                 targetfed_id = sql.get_fed_id(fedschat)
                                 sql.unsubs_fed(fed_id, targetfed_id)
@@ -1150,7 +1150,7 @@ def unfban(update: Update, context: CallbackContext):
                 except BadRequest as excp:
                     if excp.message in FBAN_ERRORS:
                         try:
-                            dispatcher.bot.getChat(fedschat)
+                            Application.bot.getChat(fedschat)
                         except Unauthorized:
                             targetfed_id = sql.get_fed_id(fedschat)
                             sql.unsubs_fed(fed_id, targetfed_id)
@@ -1323,7 +1323,7 @@ def fed_broadcast(update: Update, context: CallbackContext):
                 bot.sendMessage(chat, title + text, parse_mode="markdown")
             except TelegramError:
                 try:
-                    dispatcher.bot.getChat(chat)
+                    Application.bot.getChat(chat)
                 except Unauthorized:
                     failed += 1
                     sql.chat_leave_fed(chat)
@@ -1599,7 +1599,7 @@ def fed_chats(update: Update, context: CallbackContext):
     text = "<b>New chat joined the federation {}:</b>\n".format(info["fname"])
     for chats in getlist:
         try:
-            chat_name = dispatcher.bot.getChat(chats).title
+            chat_name = Application.bot.getChat(chats).title
         except Unauthorized:
             sql.chat_leave_fed(chats)
             LOGGER.info(
@@ -2442,33 +2442,33 @@ FED_OWNER_HELP_HANDLER = CommandHandler("fedownerhelp", fed_owner_help, block=Fa
 FED_ADMIN_HELP_HANDLER = CommandHandler("fedadminhelp", fed_admin_help, block=False)
 FED_USER_HELP_HANDLER = CommandHandler("feduserhelp", fed_user_help, block=False)
 
-dispatcher.add_handler(NEW_FED_HANDLER)
-dispatcher.add_handler(DEL_FED_HANDLER)
-dispatcher.add_handler(RENAME_FED)
-dispatcher.add_handler(JOIN_FED_HANDLER)
-dispatcher.add_handler(LEAVE_FED_HANDLER)
-dispatcher.add_handler(PROMOTE_FED_HANDLER)
-dispatcher.add_handler(DEMOTE_FED_HANDLER)
-dispatcher.add_handler(INFO_FED_HANDLER)
-dispatcher.add_handler(BAN_FED_HANDLER)
-dispatcher.add_handler(UN_BAN_FED_HANDLER)
-dispatcher.add_handler(FED_BROADCAST_HANDLER)
-dispatcher.add_handler(FED_SET_RULES_HANDLER)
-dispatcher.add_handler(FED_GET_RULES_HANDLER)
-dispatcher.add_handler(FED_CHAT_HANDLER)
-dispatcher.add_handler(FED_ADMIN_HANDLER)
-dispatcher.add_handler(FED_USERBAN_HANDLER)
-dispatcher.add_handler(FED_NOTIF_HANDLER)
-dispatcher.add_handler(FED_CHATLIST_HANDLER)
-# dispatcher.add_handler(FED_IMPORTBAN_HANDLER)
-dispatcher.add_handler(FEDSTAT_USER)
-dispatcher.add_handler(SET_FED_LOG)
-dispatcher.add_handler(UNSET_FED_LOG)
-dispatcher.add_handler(SUBS_FED)
-dispatcher.add_handler(UNSUBS_FED)
-dispatcher.add_handler(MY_SUB_FED)
-dispatcher.add_handler(MY_FEDS_LIST)
-dispatcher.add_handler(DELETEBTN_FED_HANDLER)
-dispatcher.add_handler(FED_OWNER_HELP_HANDLER)
-dispatcher.add_handler(FED_ADMIN_HELP_HANDLER)
-dispatcher.add_handler(FED_USER_HELP_HANDLER)
+Application.add_handler(NEW_FED_HANDLER)
+Application.add_handler(DEL_FED_HANDLER)
+Application.add_handler(RENAME_FED)
+Application.add_handler(JOIN_FED_HANDLER)
+Application.add_handler(LEAVE_FED_HANDLER)
+Application.add_handler(PROMOTE_FED_HANDLER)
+Application.add_handler(DEMOTE_FED_HANDLER)
+Application.add_handler(INFO_FED_HANDLER)
+Application.add_handler(BAN_FED_HANDLER)
+Application.add_handler(UN_BAN_FED_HANDLER)
+Application.add_handler(FED_BROADCAST_HANDLER)
+Application.add_handler(FED_SET_RULES_HANDLER)
+Application.add_handler(FED_GET_RULES_HANDLER)
+Application.add_handler(FED_CHAT_HANDLER)
+Application.add_handler(FED_ADMIN_HANDLER)
+Application.add_handler(FED_USERBAN_HANDLER)
+Application.add_handler(FED_NOTIF_HANDLER)
+Application.add_handler(FED_CHATLIST_HANDLER)
+# Application.add_handler(FED_IMPORTBAN_HANDLER)
+Application.add_handler(FEDSTAT_USER)
+Application.add_handler(SET_FED_LOG)
+Application.add_handler(UNSET_FED_LOG)
+Application.add_handler(SUBS_FED)
+Application.add_handler(UNSUBS_FED)
+Application.add_handler(MY_SUB_FED)
+Application.add_handler(MY_FEDS_LIST)
+Application.add_handler(DELETEBTN_FED_HANDLER)
+Application.add_handler(FED_OWNER_HELP_HANDLER)
+Application.add_handler(FED_ADMIN_HELP_HANDLER)
+Application.add_handler(FED_USER_HELP_HANDLER)

@@ -7,7 +7,7 @@ from PIL import Image
 from telegram import Update
 from telegram.ext import CallbackContext
 
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.thonkify_dict import thonkifydict
 
@@ -64,7 +64,7 @@ def plet(update: Update, context: CallbackContext):
 
 PLET_HANDLER = DisableAbleCommandHandler("plet", plet, block=False)
 
-dispatcher.add_handler(PLET_HANDLER)
+Application.add_handler(PLET_HANDLER)
 
 __help__ = """
 `/plet` <text>: Creates a sticker with your Sending message

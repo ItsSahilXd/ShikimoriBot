@@ -1,6 +1,6 @@
 import html
 
-from Shikimori import ALLOW_EXCL, CustomCommandHandler, dispatcher
+from Shikimori import ALLOW_EXCL, CustomCommandHandler, Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.chat_status import (
     bot_can_delete,
@@ -36,8 +36,8 @@ command_list = [
     "leaderboard",
 ]
 
-for handler_list in dispatcher.handlers:
-    for handler in dispatcher.handlers[handler_list]:
+for handler_list in Application.handlers:
+    for handler in Application.handlers[handler_list]:
         if any(isinstance(handler, cmd_handler) for cmd_handler in CommandHandlerList):
             command_list += handler.command
 
@@ -242,13 +242,13 @@ CLEAN_BLUE_TEXT_HANDLER = MessageHandler(
     block=False,
 )
 
-dispatcher.add_handler(SET_CLEAN_BLUE_TEXT_HANDLER)
-dispatcher.add_handler(ADD_CLEAN_BLUE_TEXT_HANDLER)
-dispatcher.add_handler(REMOVE_CLEAN_BLUE_TEXT_HANDLER)
-dispatcher.add_handler(ADD_CLEAN_BLUE_TEXT_GLOBAL_HANDLER)
-dispatcher.add_handler(REMOVE_CLEAN_BLUE_TEXT_GLOBAL_HANDLER)
-dispatcher.add_handler(LIST_CLEAN_BLUE_TEXT_HANDLER)
-dispatcher.add_handler(CLEAN_BLUE_TEXT_HANDLER, BLUE_TEXT_CLEAN_GROUP)
+Application.add_handler(SET_CLEAN_BLUE_TEXT_HANDLER)
+Application.add_handler(ADD_CLEAN_BLUE_TEXT_HANDLER)
+Application.add_handler(REMOVE_CLEAN_BLUE_TEXT_HANDLER)
+Application.add_handler(ADD_CLEAN_BLUE_TEXT_GLOBAL_HANDLER)
+Application.add_handler(REMOVE_CLEAN_BLUE_TEXT_GLOBAL_HANDLER)
+Application.add_handler(LIST_CLEAN_BLUE_TEXT_HANDLER)
+Application.add_handler(CLEAN_BLUE_TEXT_HANDLER, BLUE_TEXT_CLEAN_GROUP)
 
 __handlers__ = [
     SET_CLEAN_BLUE_TEXT_HANDLER,

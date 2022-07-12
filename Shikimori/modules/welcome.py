@@ -15,7 +15,7 @@ from Shikimori import (
     UPDATE_CHANNEL,
     WOLVES,
     LOGGER,
-    dispatcher,
+    Application,
     TIGERS,
 )
 from Shikimori.modules.helper_funcs.chat_status import (
@@ -61,14 +61,14 @@ VALID_WELCOME_FORMATTERS = [
 ]
 
 ENUM_FUNC_MAP = {
-    sql.Types.TEXT.value: dispatcher.bot.send_message,
-    sql.Types.BUTTON_TEXT.value: dispatcher.bot.send_message,
-    sql.Types.STICKER.value: dispatcher.bot.send_sticker,
-    sql.Types.DOCUMENT.value: dispatcher.bot.send_document,
-    sql.Types.PHOTO.value: dispatcher.bot.send_photo,
-    sql.Types.AUDIO.value: dispatcher.bot.send_audio,
-    sql.Types.VOICE.value: dispatcher.bot.send_voice,
-    sql.Types.VIDEO.value: dispatcher.bot.send_video,
+    sql.Types.TEXT.value: Application.bot.send_message,
+    sql.Types.BUTTON_TEXT.value: Application.bot.send_message,
+    sql.Types.STICKER.value: Application.bot.send_sticker,
+    sql.Types.DOCUMENT.value: Application.bot.send_document,
+    sql.Types.PHOTO.value: Application.bot.send_photo,
+    sql.Types.AUDIO.value: Application.bot.send_audio,
+    sql.Types.VOICE.value: Application.bot.send_voice,
+    sql.Types.VIDEO.value: Application.bot.send_video,
 }
 
 VERIFIED_USER_WAITLIST = {}
@@ -82,7 +82,7 @@ def send(update, message, keyboard, backup_message):
     # Clean service welcome
     if cleanserv:
         try:
-            dispatcher.bot.delete_message(chat.id, update.message.message_id)
+            Application.bot.delete_message(chat.id, update.message.message_id)
         except BadRequest:
             pass
         reply = False
@@ -185,7 +185,7 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
         # Clean service welcome
         if cleanserv:
             try:
-                dispatcher.bot.delete_message(chat.id, update.message.message_id)
+                Application.bot.delete_message(chat.id, update.message.message_id)
             except BadRequest:
                 pass
             reply = False
@@ -539,7 +539,7 @@ def new_member(update: Update, context: CallbackContext):  # sourcery no-metrics
 
         if welcome_bool:
             if media_wel:
-                if ENUM_FUNC_MAP[welc_type] == dispatcher.bot.send_sticker:
+                if ENUM_FUNC_MAP[welc_type] == Application.bot.send_sticker:
                     sent = ENUM_FUNC_MAP[welc_type](
                         chat.id,
                         cust_content,
@@ -628,7 +628,7 @@ def left_member(update: Update, context: CallbackContext):  # sourcery no-metric
     # Clean service welcome
     if cleanserv:
         try:
-            dispatcher.bot.delete_message(chat.id, update.message.message_id)
+            Application.bot.delete_message(chat.id, update.message.message_id)
         except BadRequest:
             pass
         reply = False
@@ -1217,7 +1217,7 @@ WELC_HELP_TXT = (
     "Welcome messages also support markdown, so you can make any elements bold/italic/code/links. "
     "Buttons are also supported, so you can make your welcomes look awesome with some nice intro "
     "buttons.\n"
-    f"To create a button linking to your rules, use this: `[Rules](buttonurl://t.me/{dispatcher.bot.username}?start=group_id)`. "
+    f"To create a button linking to your rules, use this: `[Rules](buttonurl://t.me/{Application.bot.username}?start=group_id)`. "
     "Simply replace `group_id` with your group's id, which can be obtained via /id, and you're good to "
     "go. Note that group ids are usually preceded by a `-` sign; this is required, so please don't "
     "remove it.\n"
@@ -1336,21 +1336,21 @@ CAPTCHA_BUTTON_VERIFY_HANDLER = CallbackQueryHandler(
     block=False,
 )
 
-dispatcher.add_handler(NEW_MEM_HANDLER)
-dispatcher.add_handler(LEFT_MEM_HANDLER)
-dispatcher.add_handler(WELC_PREF_HANDLER)
-dispatcher.add_handler(GOODBYE_PREF_HANDLER)
-dispatcher.add_handler(SET_WELCOME)
-dispatcher.add_handler(SET_GOODBYE)
-dispatcher.add_handler(RESET_WELCOME)
-dispatcher.add_handler(RESET_GOODBYE)
-dispatcher.add_handler(CLEAN_WELCOME)
-dispatcher.add_handler(WELCOME_HELP)
-dispatcher.add_handler(WELCOMEMUTE_HANDLER)
-dispatcher.add_handler(CLEAN_SERVICE_HANDLER)
-dispatcher.add_handler(BUTTON_VERIFY_HANDLER)
-dispatcher.add_handler(WELCOME_MUTE_HELP)
-dispatcher.add_handler(CAPTCHA_BUTTON_VERIFY_HANDLER)
+Application.add_handler(NEW_MEM_HANDLER)
+Application.add_handler(LEFT_MEM_HANDLER)
+Application.add_handler(WELC_PREF_HANDLER)
+Application.add_handler(GOODBYE_PREF_HANDLER)
+Application.add_handler(SET_WELCOME)
+Application.add_handler(SET_GOODBYE)
+Application.add_handler(RESET_WELCOME)
+Application.add_handler(RESET_GOODBYE)
+Application.add_handler(CLEAN_WELCOME)
+Application.add_handler(WELCOME_HELP)
+Application.add_handler(WELCOMEMUTE_HANDLER)
+Application.add_handler(CLEAN_SERVICE_HANDLER)
+Application.add_handler(BUTTON_VERIFY_HANDLER)
+Application.add_handler(WELCOME_MUTE_HELP)
+Application.add_handler(CAPTCHA_BUTTON_VERIFY_HANDLER)
 
 __mod_name__ = "Greetings 👋 "
 __command_list__ = []

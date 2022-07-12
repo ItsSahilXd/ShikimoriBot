@@ -250,7 +250,7 @@ from Shikimori.modules.sql import SESSION
 defaults = tg.Defaults(block=False)
 updater = (tg.Application.builder().token(TOKEN).build())
 telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
-dispatcher = updater.Application
+Application = updater.Application
 print("[INFO]: INITIALIZING AIOHTTP SESSION")
 aiohttpsession = ClientSession()
 # ARQ Client

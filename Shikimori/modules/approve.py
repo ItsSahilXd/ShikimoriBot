@@ -1,6 +1,6 @@
 import html
 from Shikimori.modules.disable import DisableAbleCommandHandler
-from Shikimori import dispatcher, DRAGONS
+from Shikimori import Application, DRAGONS
 from Shikimori.modules.helper_funcs.extraction import extract_user
 from telegram.ext import CallbackContext, CallbackQueryHandler
 import Shikimori.modules.sql.approve_sql as sql
@@ -202,12 +202,12 @@ UNAPPROVEALL_BTN = CallbackQueryHandler(
     unapproveall_btn, pattern=r"unapproveall_.*", block=False
 )
 
-dispatcher.add_handler(APPROVE)
-dispatcher.add_handler(DISAPPROVE)
-dispatcher.add_handler(APPROVED)
-dispatcher.add_handler(APPROVAL)
-dispatcher.add_handler(UNAPPROVEALL)
-dispatcher.add_handler(UNAPPROVEALL_BTN)
+Application.add_handler(APPROVE)
+Application.add_handler(DISAPPROVE)
+Application.add_handler(APPROVED)
+Application.add_handler(APPROVAL)
+Application.add_handler(UNAPPROVEALL)
+Application.add_handler(UNAPPROVEALL_BTN)
 
 __command_list__ = ["approve", "unapprove", "approved", "approval"]
 __handlers__ = [APPROVE, DISAPPROVE, APPROVED, APPROVAL]

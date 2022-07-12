@@ -1,7 +1,7 @@
 from typing import Optional
 
 import Shikimori.modules.sql.rules_sql as sql
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.helper_funcs.chat_status import user_admin
 from Shikimori.modules.helper_funcs.string_handling import markdown_parser
 from telegram import (
@@ -24,7 +24,7 @@ def get_rules(update: Update, context: CallbackContext):
 
 # Do not async - not from a handler
 def send_rules(update, chat_id, from_pm=False):
-    bot = dispatcher.bot
+    bot = Application.bot
     user = update.effective_user  # type: Optional[User]
     reply_msg = update.message.reply_to_message
     try:
@@ -146,6 +146,6 @@ RESET_RULES_HANDLER = CommandHandler(
     "clearrules", clear_rules, filters=Filters.chat_type.groups, block=False
 )
 
-dispatcher.add_handler(GET_RULES_HANDLER)
-dispatcher.add_handler(SET_RULES_HANDLER)
-dispatcher.add_handler(RESET_RULES_HANDLER)
+Application.add_handler(GET_RULES_HANDLER)
+Application.add_handler(SET_RULES_HANDLER)
+Application.add_handler(RESET_RULES_HANDLER)

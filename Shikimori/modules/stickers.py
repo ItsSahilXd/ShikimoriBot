@@ -12,7 +12,7 @@ from telegram import TelegramError, Update
 from telegram.ext import CallbackContext
 from telegram.utils.helpers import mention_html
 
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.events import register as Shikimori
 from Shikimori import telethn as bot
@@ -608,8 +608,8 @@ KANG_HANDLER = DisableAbleCommandHandler(["kang", "steal"], kang, admin_ok=True,
 STICKERS_HANDLER = DisableAbleCommandHandler("stickers", cb_sticker, block=False)
 DELKANG_HANDLER = DisableAbleCommandHandler(["delsticker", "delkang"], delsticker, admin_ok=True, block=False)
 
-dispatcher.add_handler(STICKERS_HANDLER)
-dispatcher.add_handler(STICKERID_HANDLER)
-dispatcher.add_handler(GETSTICKER_HANDLER)
-dispatcher.add_handler(KANG_HANDLER)
-dispatcher.add_handler(DELKANG_HANDLER)
+Application.add_handler(STICKERS_HANDLER)
+Application.add_handler(STICKERID_HANDLER)
+Application.add_handler(GETSTICKER_HANDLER)
+Application.add_handler(KANG_HANDLER)
+Application.add_handler(DELKANG_HANDLER)

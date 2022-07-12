@@ -4,7 +4,7 @@ import random
 from typing import Optional
 
 import Shikimori.modules.sql.notes_sql as sql
-from Shikimori import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, dispatcher, DRAGONS
+from Shikimori import LOGGER, JOIN_LOGGER, SUPPORT_CHAT, Application, DRAGONS
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.handlers import MessageHandlerChecker
 from Shikimori.modules.helper_funcs.chat_status import user_admin, connection_status
@@ -42,14 +42,14 @@ MYVIDEO_MATCHER = re.compile(r"^###video(!photo)?###:")
 MYVIDEONOTE_MATCHER = re.compile(r"^###video_note(!photo)?###:")
 
 ENUM_FUNC_MAP = {
-    sql.Types.TEXT.value: dispatcher.bot.send_message,
-    sql.Types.BUTTON_TEXT.value: dispatcher.bot.send_message,
-    sql.Types.STICKER.value: dispatcher.bot.send_sticker,
-    sql.Types.DOCUMENT.value: dispatcher.bot.send_document,
-    sql.Types.PHOTO.value: dispatcher.bot.send_photo,
-    sql.Types.AUDIO.value: dispatcher.bot.send_audio,
-    sql.Types.VOICE.value: dispatcher.bot.send_voice,
-    sql.Types.VIDEO.value: dispatcher.bot.send_video,
+    sql.Types.TEXT.value: Application.bot.send_message,
+    sql.Types.BUTTON_TEXT.value: Application.bot.send_message,
+    sql.Types.STICKER.value: Application.bot.send_sticker,
+    sql.Types.DOCUMENT.value: Application.bot.send_document,
+    sql.Types.PHOTO.value: Application.bot.send_photo,
+    sql.Types.AUDIO.value: Application.bot.send_audio,
+    sql.Types.VOICE.value: Application.bot.send_voice,
+    sql.Types.VIDEO.value: Application.bot.send_video,
 }
 
 
@@ -524,7 +524,7 @@ def __import_data__(chat_id, data):
     if failures:
         with BytesIO(str.encode("\n".join(failures))) as output:
             output.name = "failed_imports.txt"
-            dispatcher.bot.send_document(
+            Application.bot.send_document(
                 chat_id,
                 document=output,
                 filename="failed_imports.txt",
@@ -587,11 +587,11 @@ LIST_HANDLER = DisableAbleCommandHandler(
 CLEARALL = DisableAbleCommandHandler("removeallnotes", clearall, block=False)
 CLEARALL_BTN = CallbackQueryHandler(clearall_btn, pattern=r"notes_.*", block=False)
 
-dispatcher.add_handler(GET_HANDLER)
-dispatcher.add_handler(SAVE_HANDLER)
-dispatcher.add_handler(LIST_HANDLER)
-dispatcher.add_handler(DELETE_HANDLER)
-dispatcher.add_handler(HASH_GET_HANDLER)
-dispatcher.add_handler(SLASH_GET_HANDLER)
-dispatcher.add_handler(CLEARALL)
-dispatcher.add_handler(CLEARALL_BTN)
+Application.add_handler(GET_HANDLER)
+Application.add_handler(SAVE_HANDLER)
+Application.add_handler(LIST_HANDLER)
+Application.add_handler(DELETE_HANDLER)
+Application.add_handler(HASH_GET_HANDLER)
+Application.add_handler(SLASH_GET_HANDLER)
+Application.add_handler(CLEARALL)
+Application.add_handler(CLEARALL_BTN)

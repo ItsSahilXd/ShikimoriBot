@@ -1,7 +1,7 @@
 import math
 
 import pynewtonmath as newton
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import Update
 from telegram.ext import CallbackContext
@@ -115,18 +115,18 @@ ARCTAN_HANDLER = DisableAbleCommandHandler("arctan", arctan, block=False)
 ABS_HANDLER = DisableAbleCommandHandler("abs", abs, block=False)
 LOG_HANDLER = DisableAbleCommandHandler("log", log, block=False)
 
-dispatcher.add_handler(SIMPLIFY_HANDLER)
-dispatcher.add_handler(FACTOR_HANDLER)
-dispatcher.add_handler(DERIVE_HANDLER)
-dispatcher.add_handler(INTEGRATE_HANDLER)
-dispatcher.add_handler(ZEROES_HANDLER)
-dispatcher.add_handler(TANGENT_HANDLER)
-dispatcher.add_handler(AREA_HANDLER)
-dispatcher.add_handler(COS_HANDLER)
-dispatcher.add_handler(SIN_HANDLER)
-dispatcher.add_handler(TAN_HANDLER)
-dispatcher.add_handler(ARCCOS_HANDLER)
-dispatcher.add_handler(ARCSIN_HANDLER)
-dispatcher.add_handler(ARCTAN_HANDLER)
-dispatcher.add_handler(ABS_HANDLER)
-dispatcher.add_handler(LOG_HANDLER)
+Application.add_handler(SIMPLIFY_HANDLER)
+Application.add_handler(FACTOR_HANDLER)
+Application.add_handler(DERIVE_HANDLER)
+Application.add_handler(INTEGRATE_HANDLER)
+Application.add_handler(ZEROES_HANDLER)
+Application.add_handler(TANGENT_HANDLER)
+Application.add_handler(AREA_HANDLER)
+Application.add_handler(COS_HANDLER)
+Application.add_handler(SIN_HANDLER)
+Application.add_handler(TAN_HANDLER)
+Application.add_handler(ARCCOS_HANDLER)
+Application.add_handler(ARCSIN_HANDLER)
+Application.add_handler(ARCTAN_HANDLER)
+Application.add_handler(ABS_HANDLER)
+Application.add_handler(LOG_HANDLER)

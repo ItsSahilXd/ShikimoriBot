@@ -6,7 +6,7 @@ from telegram.ext import CallbackContext
 from telegram.chatmemberupdated import ChatMemberUpdated
 from telegram.ext.chatmemberhandler import ChatMemberHandler
 
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.log_channel import loggable
 
 import Shikimori.modules.sql.logger_sql as sql
@@ -296,4 +296,4 @@ def chatmemberupdates(update: Update, context: CallbackContext) -> Optional[str]
                 return log_message
 
 
-dispatcher.add_handler(ChatMemberHandler(chatmemberupdates, ChatMemberHandler.CHAT_MEMBER, block=False))
+Application.add_handler(ChatMemberHandler(chatmemberupdates, ChatMemberHandler.CHAT_MEMBER, block=False))

@@ -3,7 +3,7 @@ import time
 from telegram import Update
 from telegram.ext import CallbackContext
 
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 
 # sleep how many times after each edit in 'love'
@@ -281,14 +281,14 @@ BLOCKANIMATION_HANDLER = DisableAbleCommandHandler(
 EARTHANIMATION_HANDLER = DisableAbleCommandHandler(
     "earth", earthanimation, block=False
 )
-dispatcher.add_handler(KILL_HANDLER)
-dispatcher.add_handler(LOVE_HANDLER)
-dispatcher.add_handler(HACK_HANDLER)
-dispatcher.add_handler(BOMBS_HANDLER)
-dispatcher.add_handler(EARTHANIMATION_HANDLER)
-dispatcher.add_handler(MOONANIMATION_HANDLER)
-dispatcher.add_handler(CLOCKANIMATION_HANDLER)
-dispatcher.add_handler(BLOCKANIMATION_HANDLER)
+Application.add_handler(KILL_HANDLER)
+Application.add_handler(LOVE_HANDLER)
+Application.add_handler(HACK_HANDLER)
+Application.add_handler(BOMBS_HANDLER)
+Application.add_handler(EARTHANIMATION_HANDLER)
+Application.add_handler(MOONANIMATION_HANDLER)
+Application.add_handler(CLOCKANIMATION_HANDLER)
+Application.add_handler(BLOCKANIMATION_HANDLER)
 
 
 __command_list__ = [

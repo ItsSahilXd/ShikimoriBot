@@ -9,7 +9,7 @@ from telegram.ext import CallbackContext, CommandHandler, Filters
 from telegram.utils.helpers import mention_html
 from telethon.tl import functions, types
 
-from Shikimori import DRAGONS, dispatcher,DEV_USERS, telethn as bot
+from Shikimori import DRAGONS, Application,DEV_USERS, telethn as bot
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.chat_status import (
     bot_admin,
@@ -1012,22 +1012,22 @@ DEMOTE_HANDLER = DisableAbleCommandHandler("demote", demote, block=False)
 SET_TITLE_HANDLER = CommandHandler("title", set_title, block=False)
 ADMIN_REFRESH_HANDLER = CommandHandler("admincache", refresh_admin, filters=Filters.chat_type.groups, block=False)
 
-dispatcher.add_handler(SET_DESC_HANDLER)
-dispatcher.add_handler(SET_STICKER_HANDLER)
-dispatcher.add_handler(SETCHATPIC_HANDLER)
-dispatcher.add_handler(RMCHATPIC_HANDLER)
-dispatcher.add_handler(SETCHAT_TITLE_HANDLER)
-dispatcher.add_handler(ADMINLIST_HANDLER)
-dispatcher.add_handler(PIN_HANDLER)
-dispatcher.add_handler(UNPIN_HANDLER)
-dispatcher.add_handler(PINNED_HANDLER)
-dispatcher.add_handler(INVITE_HANDLER)
-dispatcher.add_handler(PROMOTE_HANDLER)
-dispatcher.add_handler(FULLPROMOTE_HANDLER)
-dispatcher.add_handler(LOW_PROMOTE_HANDLER)
-dispatcher.add_handler(DEMOTE_HANDLER)
-dispatcher.add_handler(SET_TITLE_HANDLER)
-dispatcher.add_handler(ADMIN_REFRESH_HANDLER)
+Application.add_handler(SET_DESC_HANDLER)
+Application.add_handler(SET_STICKER_HANDLER)
+Application.add_handler(SETCHATPIC_HANDLER)
+Application.add_handler(RMCHATPIC_HANDLER)
+Application.add_handler(SETCHAT_TITLE_HANDLER)
+Application.add_handler(ADMINLIST_HANDLER)
+Application.add_handler(PIN_HANDLER)
+Application.add_handler(UNPIN_HANDLER)
+Application.add_handler(PINNED_HANDLER)
+Application.add_handler(INVITE_HANDLER)
+Application.add_handler(PROMOTE_HANDLER)
+Application.add_handler(FULLPROMOTE_HANDLER)
+Application.add_handler(LOW_PROMOTE_HANDLER)
+Application.add_handler(DEMOTE_HANDLER)
+Application.add_handler(SET_TITLE_HANDLER)
+Application.add_handler(ADMIN_REFRESH_HANDLER)
 
 __command_list__ = [
     "setdesc"

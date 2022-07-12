@@ -1,6 +1,6 @@
 from Shikimori.core.sections import section
 import requests
-from Shikimori import dispatcher
+from Shikimori import Application
 from telegram.ext import CommandHandler, CallbackContext
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 
@@ -40,7 +40,7 @@ def crypto(update: Update, context: CallbackContext):
 
 CRYPTO_HANDLER = CommandHandler("crypto", crypto, block=False)
 
-dispatcher.add_handler(CRYPTO_HANDLER)
+Application.add_handler(CRYPTO_HANDLER)
 
 __handlers__ = [
     CRYPTO_HANDLER

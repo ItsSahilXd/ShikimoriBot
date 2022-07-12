@@ -4,7 +4,7 @@ from Shikimori import (
     OWNER_ID,
     OWNER_USERNAME,
     SUPPORT_CHAT,
-    dispatcher
+    Application
 )
 import time
 from telegram import InlineKeyboardButton, ParseMode, InlineKeyboardMarkup, Update
@@ -69,7 +69,7 @@ Event Stamp :  {datetimes}</b>
                 ),
                 parse_mode=ParseMode.MARKDOWN
             )
-            dispatcher.bot.send_photo(
+            Application.bot.send_photo(
                 f"@{SUPPORT_CHAT}",
                 photo=STATS_IMG,
                 caption=f"{bug_report}",
@@ -125,9 +125,9 @@ close_send_photo_handler = CallbackQueryHandler(
 
 BUG_HANDLER = CommandHandler(("bug", "bugs"), bug, block=False)
 
-dispatcher.add_handler(BUG_HANDLER)
-dispatcher.add_handler(close_reply_handler)
-dispatcher.add_handler(close_send_photo_handler)
+Application.add_handler(BUG_HANDLER)
+Application.add_handler(close_reply_handler)
+Application.add_handler(close_send_photo_handler)
 
 __command_list__ = ["bug"]
 __handlers__ = [BUG_HANDLER]

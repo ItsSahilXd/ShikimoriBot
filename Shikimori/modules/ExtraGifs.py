@@ -3,7 +3,7 @@ import random
 import time
 
 import Shikimori.modules.ExtraGifs_strings as ExtraGifs_strings
-from Shikimori import dispatcher
+from Shikimori import Application
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.chat_status import is_user_admin
 from Shikimori.modules.helper_funcs.extraction import extract_user
@@ -305,20 +305,20 @@ TABLE_HANDLER = DisableAbleCommandHandler("table", table, block=False)
 SHOUT_HANDLER = DisableAbleCommandHandler("shout", shout, block=False)
 WEEBIFY_HANDLER = DisableAbleCommandHandler("weebify", weebify, block=False)
 
-dispatcher.add_handler(WEEBIFY_HANDLER)
-dispatcher.add_handler(SHOUT_HANDLER)
-dispatcher.add_handler(SANITIZE_HANDLER)
-dispatcher.add_handler(RUNS_HANDLER)
-dispatcher.add_handler(SLAP_HANDLER)
-dispatcher.add_handler(PAT_HANDLER)
-dispatcher.add_handler(ROLL_HANDLER)
-dispatcher.add_handler(TOSS_HANDLER)
-dispatcher.add_handler(SHRUG_HANDLER)
-dispatcher.add_handler(BLUETEXT_HANDLER)
-dispatcher.add_handler(RLG_HANDLER)
-dispatcher.add_handler(DECIDE_HANDLER)
-dispatcher.add_handler(EIGHTBALL_HANDLER)
-dispatcher.add_handler(TABLE_HANDLER)
+Application.add_handler(WEEBIFY_HANDLER)
+Application.add_handler(SHOUT_HANDLER)
+Application.add_handler(SANITIZE_HANDLER)
+Application.add_handler(RUNS_HANDLER)
+Application.add_handler(SLAP_HANDLER)
+Application.add_handler(PAT_HANDLER)
+Application.add_handler(ROLL_HANDLER)
+Application.add_handler(TOSS_HANDLER)
+Application.add_handler(SHRUG_HANDLER)
+Application.add_handler(BLUETEXT_HANDLER)
+Application.add_handler(RLG_HANDLER)
+Application.add_handler(DECIDE_HANDLER)
+Application.add_handler(EIGHTBALL_HANDLER)
+Application.add_handler(TABLE_HANDLER)
 
 __mod_name__ = "ᴍᴇᴍᴇs"
 __command_list__ = [
