@@ -4,7 +4,7 @@ from Shikimori import LOGGER, DRAGONS, TIGERS, WOLVES, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import user_admin, user_not_admin
 from Shikimori.modules.log_channel import loggable
 from Shikimori.modules.sql import reporting_sql as sql
-from telegram import Chat, InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram import Chat, InlineKeyboardButton, InlineKeyboardMarkup, Update, constants
 from telegram.constants import ParseMode
 from telegram.error import BadRequest, Forbidden
 from telegram.ext import (
@@ -13,7 +13,6 @@ from telegram.ext import (
     CommandHandler,
     filters,
     MessageHandler,
-    constants
 )
 from telegram.helpers import mention_html
 
