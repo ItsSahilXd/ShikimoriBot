@@ -6,7 +6,7 @@ from telegram.constants import ParseMode
 
 PHOTO = ALIVE_MEDIA
 
-def awake(update: Update, context: CallbackContext):
+async def awake(update: Update, context: CallbackContext):
     message = update.effective_message
     buttons = [
         [
@@ -35,7 +35,7 @@ def awake(update: Update, context: CallbackContext):
     else:
         TEXT = TEXT + "\n<b>Thanks For Adding Me Here ❤️</b>"
 
-    message.reply_animation(PHOTO, caption=TEXT, reply_markup=InlineKeyboardMarkup(buttons),parse_mode=ParseMode.HTML)
+    await message.reply_animation(PHOTO, caption=TEXT, reply_markup=InlineKeyboardMarkup(buttons),parse_mode=ParseMode.HTML)
 
 ALIVE_HANDLER = DisableAbleCommandHandler("alive", awake, block=False)
 SHIKIMORI_PTB.add_handler(ALIVE_HANDLER)
