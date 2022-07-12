@@ -3,8 +3,7 @@ from typing import Optional
 
 from telegram import Update, ChatMemberUpdated
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext
-from telegram.ext.chatmemberhandler import ChatMemberHandler
+from telegram.ext import CallbackContext, ChatMemberHandler
 
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.log_channel import loggable
