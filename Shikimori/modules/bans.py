@@ -1,12 +1,12 @@
 import html
 
 from telegram import (
-    ParseMode,
     Update,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     constants,
 )
+from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, filters, CommandHandler, CallbackQueryHandler
 from telegram.helpers import mention_html
