@@ -1,6 +1,7 @@
 import re
 import random
 from html import escape
+from Shikimori.modules.helper_funcs.decorators import Shikimoricmd, Shikimorimsg
 import telegram
 from telegram import InlineKeyboardMarkup, Message, InlineKeyboardButton, constants, Update
 from telegram.constants import ParseMode
@@ -261,7 +262,7 @@ def stop_filter(update, context):
         "That's not a filter - Click: /filters to get currently active filters.",
     )
 
-
+@Shikimoricmd((filters.TEXT & ~filters.UpdateType.EDITED_MESSAGE))
 def reply_filter(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
     message = update.effective_message  # type: Optional[Message]
@@ -493,7 +494,7 @@ def reply_filter(update, context):
                         pass
                 break
 
-
+@Shikimoricmd(command=["removeallfilters", "stopall"], filters=filters.ChatType.GROUPS)
 def rmall_filters(update, context):
     chat = update.effective_chat
     user = update.effective_user
@@ -633,31 +634,20 @@ __mod_name__ = "Filters"
 
 FILTER_HANDLER = CommandHandler("filter", filters)
 STOP_HANDLER = CommandHandler("stop", stop_filter)
-RMALLFILTER_HANDLER = CommandHandler(
-    "removeallfilters", rmall_filters, filters=constants.ChatType.GROUP, block=False
-)
 RMALLFILTER_CALLBACK = CallbackQueryHandler(
     rmall_callback, pattern=r"filters_.*", block=False
 )
 LIST_HANDLER = DisableAbleCommandHandler(
     "filters", list_handlers, admin_ok=True, block=False
 )
-CUST_FILTER_HANDLER = MessageHandler(
-    CustomFilters.has_text & Update.EDITED_MESSAGE,
-    reply_filter,
-    block=False,
-)
 
 SHIKIMORI_PTB.add_handler(FILTER_HANDLER)
 SHIKIMORI_PTB.add_handler(STOP_HANDLER)
 SHIKIMORI_PTB.add_handler(LIST_HANDLER)
-SHIKIMORI_PTB.add_handler(CUST_FILTER_HANDLER, HANDLER_GROUP)
-SHIKIMORI_PTB.add_handler(RMALLFILTER_HANDLER)
 SHIKIMORI_PTB.add_handler(RMALLFILTER_CALLBACK)
 
 __handlers__ = [
     FILTER_HANDLER,
     STOP_HANDLER,
     LIST_HANDLER,
-    (CUST_FILTER_HANDLER, HANDLER_GROUP, RMALLFILTER_HANDLER),
 ]
