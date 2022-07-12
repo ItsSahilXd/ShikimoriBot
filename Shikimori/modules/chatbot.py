@@ -14,7 +14,7 @@ from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
                           SHIKIMORI_PTBHandlerStop, filters, MessageHandler,
                           run_async)
 from telegram.error import BadRequest, RetryAfter, Forbidden
-from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
+from telegram.helpers import mention_html, mention_markdown, escape_markdown
 
 from Shikimori.modules.helper_funcs.filters import CustomFilters
 from Shikimori.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply

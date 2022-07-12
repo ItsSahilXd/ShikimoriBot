@@ -5,7 +5,7 @@ from telegram import ChatPermissions
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, MessageHandler, filters
-from telegram.utils.helpers import mention_html
+from telegram.helpers import mention_html
 
 import Shikimori.modules.sql.blacklist_sql as sql
 from Shikimori import SHIKIMORI_PTB, LOGGER

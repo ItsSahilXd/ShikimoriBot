@@ -9,7 +9,7 @@ from telegram import Update, MessageEntity, InlineKeyboardButton, InlineKeyboard
 from telegram.constants import ParseMode, MessageLimit
 from telegram.ext import CallbackContext
 from telegram.error import BadRequest
-from telegram.utils.helpers import escape_markdown, mention_html
+from telegram.helpers import escape_markdown, mention_html
 
 MAX_MESSAGE_LENGTH = MessageLimit.TEXT_LENGTH
 

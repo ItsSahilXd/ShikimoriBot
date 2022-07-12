@@ -12,7 +12,7 @@ from telegram.ext import (
     filters,
     MessageHandler,
 )
-from telegram.utils.helpers import mention_html
+from telegram.helpers import mention_html
 
 import Shikimori.modules.sql.global_bans_sql as sql
 from Shikimori.modules.sql.users_sql import get_user_com_chats

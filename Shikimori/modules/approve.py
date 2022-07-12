@@ -7,7 +7,7 @@ import Shikimori.modules.sql.approve_sql as sql
 from Shikimori.modules.helper_funcs.chat_status import user_admin
 from Shikimori.modules.log_channel import loggable
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton, Update
-from telegram.utils.helpers import mention_html
+from telegram.helpers import mention_html
 from telegram.error import BadRequest
 from telegram.constants import ParseMode
 

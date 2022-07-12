@@ -46,7 +46,7 @@ from telegram.ext import (
     filters,
     MessageHandler,
 )
-from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
+from telegram.helpers import escape_markdown, mention_html, mention_markdown
 from multicolorcaptcha import CaptchaGenerator
 
 VALID_WELCOME_FORMATTERS = [

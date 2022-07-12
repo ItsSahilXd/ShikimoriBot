@@ -10,7 +10,7 @@ if is_module_loaded(FILENAME):
     from telegram.constants import ParseMode
     from telegram.error import BadRequest, Forbidden
     from telegram.ext import CommandHandler, JobQueue
-    from telegram.utils.helpers import escape_markdown
+    from telegram.helpers import escape_markdown
 
     from Shikimori import LOG_CHANNEL, LOGGER, SHIKIMORI_PTB
     from Shikimori.modules.helper_funcs.chat_status import user_admin

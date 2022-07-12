@@ -14,7 +14,7 @@ from telegram.ext import (
     MessageHandler,
     RegexHandler,
 )
-from telegram.utils.helpers import escape_markdown
+from telegram.helpers import escape_markdown
 
 CMD_STARTERS = tuple(CMD_STARTERS)
 

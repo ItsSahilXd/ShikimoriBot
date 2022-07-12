@@ -7,7 +7,7 @@ from telegram.constants import ParseMode
 from telegram import TelegramError, ChatPermissions
 from telegram.error import BadRequest
 from telegram.ext import CommandHandler, MessageHandler, filters
-from telegram.utils.helpers import mention_html
+from telegram.helpers import mention_html
 from alphabet_detector import AlphabetDetector
 from Shikimori import SHIKIMORI_PTB, LOGGER
 from Shikimori.modules.disable import DisableAbleCommandHandler

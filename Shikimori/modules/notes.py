@@ -21,7 +21,7 @@ from telegram import (
 )
 from telegram.constants import ParseMode, MessageLimit
 from telegram.error import BadRequest
-from telegram.utils.helpers import escape_markdown, mention_markdown
+from telegram.helpers import escape_markdown, mention_markdown
 from telegram.ext import (
     CallbackContext,
     CommandHandler,

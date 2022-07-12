@@ -54,7 +54,7 @@ from telegram.ext import (
     filters,
     MessageHandler,
 )
-from telegram.utils.helpers import escape_markdown
+from telegram.helpers import escape_markdown
 
 bot_name = f"{SHIKIMORI_PTB.bot.first_name}"
 

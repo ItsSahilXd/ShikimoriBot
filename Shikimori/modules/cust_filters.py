@@ -12,7 +12,7 @@ from telegram.ext import (
     CallbackQueryHandler,
     filters,
 )
-from telegram.utils.helpers import mention_html, escape_markdown
+from telegram.helpers import mention_html, escape_markdown
 from Shikimori import SHIKIMORI_PTB, LOGGER, DRAGONS
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.handlers import MessageHandlerChecker
