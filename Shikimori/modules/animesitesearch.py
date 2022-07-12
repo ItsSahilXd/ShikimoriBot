@@ -6,7 +6,7 @@ from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup,
                       Update)
-from telegram.ext import CallbackContext, run_async
+from telegram.ext import CallbackContext
 from telegram.constants import ParseMode
 
 info_btn = "More Information"

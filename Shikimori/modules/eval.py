@@ -10,7 +10,7 @@ from Shikimori import LOGGER, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext, CommandHandler, run_async
+from telegram.ext import CallbackContext, CommandHandler
 
 namespaces = {}
 

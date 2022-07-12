@@ -2,7 +2,7 @@ import requests
 from Shikimori import CASH_API_KEY, SHIKIMORI_PTB
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext, CommandHandler, run_async
+from telegram.ext import CallbackContext, CommandHandler
 
 
 
