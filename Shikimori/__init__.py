@@ -1,4 +1,5 @@
 import logging
+import asyncio
 import os
 import sys
 import time
@@ -249,6 +250,7 @@ from Shikimori.modules.sql import SESSION
 
 defaults = tg.Defaults(block=False)
 SHIKIMORI_PTB = (tg.Application.builder().token(TOKEN).build())
+asyncio.get_event_loop().run_until_complete(SHIKIMORI_PTB.bot.initialize())
 telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 print("[INFO]: INITIALIZING AIOHTTP SESSION")
 aiohttpsession = ClientSession()
