@@ -9,7 +9,7 @@ import traceback
 import Shikimori.modules.sql.users_sql as sql
 from sys import argv
 from typing import Optional
-from telegram import __version__ as peler
+import telegram
 from platform import python_version as memek
 from Shikimori import (
     ALIVE_MEDIA,
@@ -797,10 +797,9 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
 def main():
-
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            msg = SHIKIMORI_PTB.bot.send_photo(
+            msg = telegram.bot.send_photo(
                 f"@{SUPPORT_CHAT}",
                 photo=ALIVE_MEDIA,
                 caption="👋 Hi, i'm alive.",
