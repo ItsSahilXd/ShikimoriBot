@@ -269,14 +269,10 @@ TIGERS = list(TIGERS)
 
 # Load at end to ensure all prev variables have been set
 from Shikimori.modules.helper_funcs.handlers import (
-    CustomCommandHandler,
-    CustomMessageHandler,
-    CustomRegexHandler,
+    CustomCommandHandler
 )
 
 # make sure the regex handler can take extra kwargs
-tg.RegexHandler = CustomRegexHandler
 tg.CommandHandler = CustomCommandHandler
-tg.MessageHandler = CustomMessageHandler
 
 
