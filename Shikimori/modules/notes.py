@@ -14,13 +14,12 @@ from Shikimori.modules.helper_funcs.string_handling import (
     escape_invalid_curly_brackets,
 )
 from telegram import (
-    MAX_MESSAGE_LENGTH,
     InlineKeyboardMarkup,
     Message,
     Update,
     InlineKeyboardButton,
 )
-from telegram.constants import ParseMode
+from telegram.constants import ParseMode, MessageLimit
 from telegram.error import BadRequest
 from telegram.utils.helpers import escape_markdown, mention_markdown
 from telegram.ext import (
@@ -30,6 +29,8 @@ from telegram.ext import (
     Filters,
     MessageHandler,
 )
+
+MAX_MESSAGE_LENGTH = MessageLimit.TEXT_LENGTH
 
 FILE_MATCHER = re.compile(r"^###file_id(!photo)?###:(.*?)(?:\s|$)")
 STICKER_MATCHER = re.compile(r"^###sticker(!photo)?###:")

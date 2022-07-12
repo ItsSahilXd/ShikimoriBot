@@ -2,10 +2,11 @@ from typing import Dict, List
 from math import ceil
 
 from Shikimori import NO_LOAD
-from telegram import MAX_MESSAGE_LENGTH, Bot, InlineKeyboardButton
-from telegram.constants import ParseMode
+from telegram import Bot, InlineKeyboardButton
+from telegram.constants import ParseMode, MessageLimit
 from telegram.error import TelegramError
 
+MAX_MESSAGE_LENGTH = MessageLimit.TEXT_LENGTH
 
 class EqInlineKeyboardButton(InlineKeyboardButton):
     def __eq__(self, other):

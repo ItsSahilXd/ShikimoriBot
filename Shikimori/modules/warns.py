@@ -350,7 +350,7 @@ def list_warn_filters(update: Update, context: CallbackContext):
     filter_list = CURRENT_WARNING_FILTER_STRING
     for keyword in all_handlers:
         entry = f" - {html.escape(keyword)}\n"
-        if len(entry) + len(filter_list) > telegram.MAX_MESSAGE_LENGTH:
+        if len(entry) + len(filter_list) > telegram.constants.MessageLimit.TEXT_LENGTH:
             update.effective_message.reply_text(filter_list, parse_mode=ParseMode.HTML)
             filter_list = entry
         else:

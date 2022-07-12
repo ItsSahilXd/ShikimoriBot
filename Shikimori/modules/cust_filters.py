@@ -75,7 +75,7 @@ def list_handlers(update, context):
 
     for keyword in all_handlers:
         entry = " • `{}`\n".format(escape_markdown(keyword))
-        if len(entry) + len(filter_list) > telegram.MAX_MESSAGE_LENGTH:
+        if len(entry) + len(filter_list) > telegram.constants.MessageLimit.TEXT_LENGTH:
             send_message(
                 update.effective_message,
                 filter_list.format(chat_name),
@@ -88,7 +88,7 @@ def list_handlers(update, context):
     send_message(
         update.effective_message,
         filter_list.format(chat_name),
-        parse_mode=telegram.ParseMode.MARKDOWN,
+        parse_mode=telegram.constants.ParseMode.MARKDOWN,
     )
 
 

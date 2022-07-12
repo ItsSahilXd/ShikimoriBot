@@ -6,8 +6,9 @@ from Shikimori import SHIKIMORI_PTB, SHIKIMORI_PTB, SUPPORT_CHAT
 from Shikimori.modules.helper_funcs.chat_status import user_admin
 from Shikimori.modules.sql import rss_sql as sql
 from telegram import Update, constants, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.constants import ParseMode
+from telegram.constants import ParseMode, MessageLimit
 from telegram.ext import CallbackContext, CommandHandler
+MAX_MESSAGE_LENGTH = MessageLimit.TEXT_LENGTH
 
 @user_admin
 def subscribe(update: Update, context: CallbackContext):
@@ -132,7 +133,7 @@ def list_urls(update: Update, context: CallbackContext):
     if len(final_content) == 0:
         bot.send_message(
             chat_id=tg_chat_id, text="This chat is not subscribed to any links")
-    elif len(final_content) <= constants.MAX_MESSAGE_LENGTH:
+    elif len(final_content) <= MAX_MESSAGE_LENGTH:
         bot.send_message(
             chat_id=tg_chat_id,
             text="This chat is subscribed to the following links:\n" +
@@ -253,7 +254,7 @@ def rss_update(context: CallbackContext):
                     html.escape(title), html.escape(description), html.escape(link))
                 buttons = [[InlineKeyboardButton("More Info", url=link)]]
 
-                if len(final_message) <= constants.MAX_MESSAGE_LENGTH:
+                if len(final_message) <= MAX_MESSAGE_LENGTH:
                     bot.send_message(
                         chat_id=tg_chat_id,
                         text=final_message,
@@ -275,7 +276,7 @@ def rss_update(context: CallbackContext):
                     html.escape(title), html.escape(description), html.escape(link))
                 buttons = [[InlineKeyboardButton("More Info", url=link)]]
 
-                if len(final_message) <= constants.MAX_MESSAGE_LENGTH:
+                if len(final_message) <= MAX_MESSAGE_LENGTH:
                     bot.send_message(
                         chat_id=tg_chat_id,
                         text=final_message,
