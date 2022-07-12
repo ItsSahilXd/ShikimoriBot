@@ -527,14 +527,9 @@ UNBLACKLIST_STICKER_HANDLER = CommandHandler(
     block=False,
 )
 BLACKLISTMODE_HANDLER = CommandHandler("blstickermode", blacklist_mode)
-BLACKLIST_STICKER_DEL_HANDLER = MessageHandler(
-    Sticker & filters.ChatType.GROUPS,
-    del_blackliststicker,
-    block=False,
-)
 
+SHIKIMORI_PTB.add_handler(MessageHandler(filters.Sticker.ALL & filters.ChatType.GROUPS, del_blackliststicker))
 SHIKIMORI_PTB.add_handler(BLACKLIST_STICKER_HANDLER)
 SHIKIMORI_PTB.add_handler(ADDBLACKLIST_STICKER_HANDLER)
 SHIKIMORI_PTB.add_handler(UNBLACKLIST_STICKER_HANDLER)
 SHIKIMORI_PTB.add_handler(BLACKLISTMODE_HANDLER)
-SHIKIMORI_PTB.add_handler(BLACKLIST_STICKER_DEL_HANDLER)
