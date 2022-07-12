@@ -26,22 +26,32 @@ from Shikimori.modules.helper_funcs.alternate import send_message, typing_action
 ad = AlphabetDetector()
 
 LOCK_TYPES = {
-    "audio": filters.audio,
-    "voice": filters.voice,
-    "document": filters.document,
-    "video": filters.video,
-    "contact": filters.contact,
-    "photo": filters.photo,
-    "url": filters.entity(MessageEntity.URL)
-    | filters.caption_entity(MessageEntity.URL),
+    "audio": filters.AUDIO,
+    "voice": filters.VOICE,
+    "document": filters.Document.ALL,
+    "video": filters.VIDEO,
+    "contact": filters.CONTACT,
+    "photo": filters.PHOTO,
+    "url": filters.Entity(MessageEntity.URL)
+    | filters.CaptionEntity(MessageEntity.URL),
     "bots": filters.StatusUpdate.NEW_CHAT_MEMBERS,
-    "forward": filters.forwarded,
-    "game": filters.game,
-    "location": filters.location,
-    "egame": filters.dice,
+    "forward": filters.FORWARDED & ~filters.IS_AUTOMATIC_FORWARD,
+    "game": filters.GAME,
+    "location": filters.LOCATION,
+    "egame": filters.Dice.ALL,
     "rtl": "rtl",
     "button": "button",
     "inline": "inline",
+    "apk" : filters.Document.MimeType("application/vnd.android.package-archive"),
+    "doc" : filters.Document.MimeType("application/msword"),
+    "exe" : filters.Document.MimeType("application/x-ms-dos-executable"),
+    "gif" : filters.Document.MimeType("video/mp4"),
+    "jpg" : filters.Document.MimeType("image/jpeg"),
+    "mp3" : filters.Document.MimeType("audio/mpeg"),
+    "pdf" : filters.Document.MimeType("application/pdf"),
+    "txt" : filters.Document.MimeType("text/plain"),
+    "xml" : filters.Document.MimeType("application/xml"),
+    "zip" : filters.Document.MimeType("application/zip"),
 }
 
 LOCK_CHAT_RESTRICTION = {
