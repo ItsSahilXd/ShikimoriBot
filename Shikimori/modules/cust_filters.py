@@ -8,7 +8,6 @@ from telegram.error import BadRequest
 from telegram.ext import (
     CommandHandler,
     MessageHandler,
-    SHIKIMORI_PTBHandlerStop,
     CallbackQueryHandler,
     filters,
 )
@@ -216,7 +215,6 @@ def filters(update, context):
             "Saved filter '{}' in *{}*!".format(keyword, chat_name),
             parse_mode=telegram.ParseMode.MARKDOWN,
         )
-    raise SHIKIMORI_PTBHandlerStop
 
 
 # NOT ASYNC BECAUSE SHIKIMORI_PTB HANDLER RAISED
@@ -256,7 +254,7 @@ def stop_filter(update, context):
                 "Okay, I'll stop replying to that filter in *{}*.".format(chat_name),
                 parse_mode=telegram.ParseMode.MARKDOWN,
             )
-            raise SHIKIMORI_PTBHandlerStop
+
 
     send_message(
         update.effective_message,

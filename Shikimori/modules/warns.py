@@ -39,7 +39,6 @@ from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
     CommandHandler,
-    SHIKIMORI_PTBHandlerStop,
     filters,
     MessageHandler,
 )
@@ -298,7 +297,6 @@ def add_warn_filter(update: Update, context: CallbackContext):
     sql.add_warn_filter(chat.id, keyword, content)
 
     update.effective_message.reply_text(f"Warn handler added for '{keyword}'!")
-    raise SHIKIMORI_PTBHandlerStop
 
 
 @user_admin
@@ -331,7 +329,6 @@ def remove_warn_filter(update: Update, context: CallbackContext):
         if filt == to_remove:
             sql.remove_warn_filter(chat.id, to_remove)
             msg.reply_text("Okay, I'll stop warning people for that.")
-            raise SHIKIMORI_PTBHandlerStop
 
     msg.reply_text(
         "That's not a current warning filter - run /warnlist for all active warning filters."

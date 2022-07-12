@@ -11,7 +11,7 @@ from telegram.constants import ParseMode
 from telegram import (CallbackQuery, Chat, MessageEntity, InlineKeyboardButton,
                       InlineKeyboardMarkup, Update, Bot, User)
 from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
-                          SHIKIMORI_PTBHandlerStop, filters, MessageHandler,
+                         filters, MessageHandler,
                           )
 from telegram.error import BadRequest, RetryAfter, Forbidden
 from telegram.helpers import mention_html, mention_markdown, escape_markdown
