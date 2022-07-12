@@ -2,7 +2,7 @@ import re
 import random
 from html import escape
 import telegram
-from telegram import InlineKeyboardMarkup, Message, InlineKeyboardButton, constants
+from telegram import InlineKeyboardMarkup, Message, InlineKeyboardButton, constants, Update
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import (
@@ -643,7 +643,7 @@ LIST_HANDLER = DisableAbleCommandHandler(
     "filters", list_handlers, admin_ok=True, block=False
 )
 CUST_FILTER_HANDLER = MessageHandler(
-    CustomFilters.has_text & ~filters.UpdateType.EDITED_MESSAGE,
+    CustomFilters.has_text & Update.EDITED_MESSAGE,
     reply_filter,
     block=False,
 )
