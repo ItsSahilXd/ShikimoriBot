@@ -810,6 +810,8 @@ def main():
                 msg.delete()
             except BadRequest:
                 pass
+            except:
+                pass
         except Forbidden:
             LOGGER.warning(
                 "Bot isnt able to send message to support_chat, go and check!"
