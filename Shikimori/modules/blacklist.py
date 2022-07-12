@@ -464,7 +464,7 @@ BLACKLISTMODE_HANDLER = CommandHandler(
     "blacklistmode", blacklist_mode,  block=False
 )
 BLACKLIST_DEL_HANDLER = MessageHandler(
-    (filters.TEXT | ~filters.COMMAND | Sticker | filters.PHOTO)
+    (filters.TEXT | ~filters.COMMAND | filters.Sticker.ALL | filters.PHOTO)
     & filters.ChatType.GROUPS,
     del_blacklist,
     allow_edit=True,
