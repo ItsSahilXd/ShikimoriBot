@@ -416,14 +416,12 @@ FLOOD_HANDLER = CommandHandler(
 )
 
 SHIKIMORI_PTB.add_handler(MessageHandler(filters.ALL & ~filters.StatusUpdate.ALL & filters.ChatType.GROUPS, check_flood))
-SHIKIMORI_PTB.add_handler(FLOOD_GROUP)
 SHIKIMORI_PTB.add_handler(FLOOD_QUERY_HANDLER)
 SHIKIMORI_PTB.add_handler(SET_FLOOD_HANDLER)
 SHIKIMORI_PTB.add_handler(SET_FLOOD_MODE_HANDLER)
 SHIKIMORI_PTB.add_handler(FLOOD_HANDLER)
 
 __handlers__ = [
-    (FLOOD_GROUP),
     SET_FLOOD_HANDLER,
     FLOOD_HANDLER,
     SET_FLOOD_MODE_HANDLER,
