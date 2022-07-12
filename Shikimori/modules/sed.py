@@ -151,7 +151,7 @@ If you want to use these characters, make sure you escape them!
 __mod_name__ = "Sed/Regex"
 
 SED_HANDLER = DisableAbleMessageHandler(
-    filters.regex(r's([{}]).*?\1.*'.format("".join(DELIMITERS))),
+    filters.Regex(r's([{}]).*?\1.*'.format("".join(DELIMITERS))),
     sed,
     friendly="sed", block=False)
 

@@ -281,7 +281,7 @@ REPORT_HANDLER = CommandHandler(
     "report", report, filters=filters.ChatType.GROUPS, block=False
 )
 ADMIN_REPORT_HANDLER = MessageHandler(
-    filters.regex(r"(?i)@admin(s)?"), report, block=False
+    filters.Regex(r"(?i)@admin(s)?"), report, block=False
 )
 REPORT_BUTTON_USER_HANDLER = CallbackQueryHandler(
     buttons, pattern=r"report_", block=False
