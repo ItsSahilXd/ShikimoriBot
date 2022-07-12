@@ -7,7 +7,7 @@ from telegram import Update, ParseMode
 from telegram.ext import CallbackContext, CommandHandler
 from telegram.error import BadRequest
 
-from Shikimori import telethn, Application
+from Shikimori import telethn, app_build
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 
 DEBUG_MODE = False
@@ -67,10 +67,10 @@ def logs(update: Update, context: CallbackContext):
             pass
 
 LOG_HANDLER = CommandHandler(("logs", "log"), logs, block=False)
-Application.add_handler(LOG_HANDLER)
+app_build.add_handler(LOG_HANDLER)
 
 DEBUG_HANDLER = CommandHandler("debug", debug, block=False)
-Application.add_handler(DEBUG_HANDLER)
+app_build.add_handler(DEBUG_HANDLER)
 
 __mod_name__ = "Debug"
 __command_list__ = ["debug"]

@@ -5,7 +5,7 @@ import textwrap
 import bs4
 import jikanpy
 import requests
-from Shikimori import DEV_USERS, OWNER_ID, DRAGONS, Application
+from Shikimori import DEV_USERS, OWNER_ID, DRAGONS, app_build
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
                       Update)
@@ -563,15 +563,15 @@ KAIZOKU_SEARCH_HANDLER = DisableAbleCommandHandler("kaizoku", kaizoku, block=Fal
 KAYO_SEARCH_HANDLER = DisableAbleCommandHandler("kayo", kayo, block=False)
 BUTTON_HANDLER = CallbackQueryHandler(button, pattern='anime_.*')
 
-Application.add_handler(BUTTON_HANDLER)
-Application.add_handler(ANIME_HANDLER)
-Application.add_handler(CHARACTER_HANDLER)
-Application.add_handler(MANGA_HANDLER)
-Application.add_handler(AIRING_HANDLER)
-Application.add_handler(USER_HANDLER)
-Application.add_handler(KAIZOKU_SEARCH_HANDLER)
-Application.add_handler(KAYO_SEARCH_HANDLER)
-Application.add_handler(UPCOMING_HANDLER)
+app_build.add_handler(BUTTON_HANDLER)
+app_build.add_handler(ANIME_HANDLER)
+app_build.add_handler(CHARACTER_HANDLER)
+app_build.add_handler(MANGA_HANDLER)
+app_build.add_handler(AIRING_HANDLER)
+app_build.add_handler(USER_HANDLER)
+app_build.add_handler(KAIZOKU_SEARCH_HANDLER)
+app_build.add_handler(KAYO_SEARCH_HANDLER)
+app_build.add_handler(UPCOMING_HANDLER)
 
 
 __command_list__ = [

@@ -7,12 +7,12 @@ from telegram.error import BadRequest
 from telegram.ext import (
     CommandHandler,
     MessageHandler,
-    ApplicationHandlerStop,
+    app_buildHandlerStop,
     CallbackQueryHandler,
     Filters,
 )
 from telegram.utils.helpers import mention_html, escape_markdown
-from Shikimori import Application, LOGGER, DRAGONS
+from Shikimori import app_build, LOGGER, DRAGONS
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.handlers import MessageHandlerChecker
 from Shikimori.modules.helper_funcs.chat_status import user_admin
@@ -33,15 +33,15 @@ from Shikimori.modules.helper_funcs.alternate import send_message, typing_action
 HANDLER_GROUP = 10
 
 ENUM_FUNC_MAP = {
-    sql.Types.TEXT.value: Application.bot.send_message,
-    sql.Types.BUTTON_TEXT.value: Application.bot.send_message,
-    sql.Types.STICKER.value: Application.bot.send_sticker,
-    sql.Types.DOCUMENT.value: Application.bot.send_document,
-    sql.Types.PHOTO.value: Application.bot.send_photo,
-    sql.Types.AUDIO.value: Application.bot.send_audio,
-    sql.Types.VOICE.value: Application.bot.send_voice,
-    sql.Types.VIDEO.value: Application.bot.send_video,
-    # sql.Types.VIDEO_NOTE.value: Application.bot.send_video_note
+    sql.Types.TEXT.value: app_build.bot.send_message,
+    sql.Types.BUTTON_TEXT.value: app_build.bot.send_message,
+    sql.Types.STICKER.value: app_build.bot.send_sticker,
+    sql.Types.DOCUMENT.value: app_build.bot.send_document,
+    sql.Types.PHOTO.value: app_build.bot.send_photo,
+    sql.Types.AUDIO.value: app_build.bot.send_audio,
+    sql.Types.VOICE.value: app_build.bot.send_voice,
+    sql.Types.VIDEO.value: app_build.bot.send_video,
+    # sql.Types.VIDEO_NOTE.value: app_build.bot.send_video_note
 }
 
 
@@ -53,7 +53,7 @@ def list_handlers(update, context):
     conn = connected(context.bot, update, chat, user.id, need_admin=False)
     if not conn is False:
         chat_id = conn
-        chat_name = Application.bot.getChat(conn).title
+        chat_name = app_build.bot.getChat(conn).title
         filter_list = "*Filter in {}:*\n"
     else:
         chat_id = update.effective_chat.id
@@ -91,7 +91,7 @@ def list_handlers(update, context):
     )
 
 
-# NOT ASYNC BECAUSE Application HANDLER RAISED
+# NOT ASYNC BECAUSE app_build HANDLER RAISED
 @user_admin
 @typing_action
 def filters(update, context):
@@ -105,7 +105,7 @@ def filters(update, context):
     conn = connected(context.bot, update, chat, user.id)
     if not conn is False:
         chat_id = conn
-        chat_name = Application.bot.getChat(conn).title
+        chat_name = app_build.bot.getChat(conn).title
     else:
         chat_id = update.effective_chat.id
         if chat.type == "private":
@@ -138,9 +138,9 @@ def filters(update, context):
 
     # Add the filter
     # Note: perhaps handlers can be removed somehow using sql.get_chat_filters
-    for handler in Application.handlers.get(HANDLER_GROUP, []):
+    for handler in app_build.handlers.get(HANDLER_GROUP, []):
         if handler.filters == (keyword, chat_id):
-            Application.remove_handler(handler, HANDLER_GROUP)
+            app_build.remove_handler(handler, HANDLER_GROUP)
 
     text, file_type, file_id = get_filter_type(msg)
     if not msg.reply_to_message and len(extracted) >= 2:
@@ -215,10 +215,10 @@ def filters(update, context):
             "Saved filter '{}' in *{}*!".format(keyword, chat_name),
             parse_mode=telegram.ParseMode.MARKDOWN,
         )
-    raise ApplicationHandlerStop
+    raise app_buildHandlerStop
 
 
-# NOT ASYNC BECAUSE Application HANDLER RAISED
+# NOT ASYNC BECAUSE app_build HANDLER RAISED
 @user_admin
 @typing_action
 def stop_filter(update, context):
@@ -229,7 +229,7 @@ def stop_filter(update, context):
     conn = connected(context.bot, update, chat, user.id)
     if not conn is False:
         chat_id = conn
-        chat_name = Application.bot.getChat(conn).title
+        chat_name = app_build.bot.getChat(conn).title
     else:
         chat_id = update.effective_chat.id
         if chat.type == "private":
@@ -255,7 +255,7 @@ def stop_filter(update, context):
                 "Okay, I'll stop replying to that filter in *{}*.".format(chat_name),
                 parse_mode=telegram.ParseMode.MARKDOWN,
             )
-            raise ApplicationHandlerStop
+            raise app_buildHandlerStop
 
     send_message(
         update.effective_message,
@@ -400,7 +400,7 @@ def reply_filter(update, context):
                                 )
                                 pass
                 else:
-                    if ENUM_FUNC_MAP[filt.file_type] == Application.bot.send_sticker:
+                    if ENUM_FUNC_MAP[filt.file_type] == app_build.bot.send_sticker:
                         ENUM_FUNC_MAP[filt.file_type](
                             chat.id,
                             filt.file_id,
@@ -649,12 +649,12 @@ CUST_FILTER_HANDLER = MessageHandler(
     block=False,
 )
 
-Application.add_handler(FILTER_HANDLER)
-Application.add_handler(STOP_HANDLER)
-Application.add_handler(LIST_HANDLER)
-Application.add_handler(CUST_FILTER_HANDLER, HANDLER_GROUP)
-Application.add_handler(RMALLFILTER_HANDLER)
-Application.add_handler(RMALLFILTER_CALLBACK)
+app_build.add_handler(FILTER_HANDLER)
+app_build.add_handler(STOP_HANDLER)
+app_build.add_handler(LIST_HANDLER)
+app_build.add_handler(CUST_FILTER_HANDLER, HANDLER_GROUP)
+app_build.add_handler(RMALLFILTER_HANDLER)
+app_build.add_handler(RMALLFILTER_CALLBACK)
 
 __handlers__ = [
     FILTER_HANDLER,

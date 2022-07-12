@@ -1,7 +1,7 @@
 # This module is made by https://github.com/SOME-1HING/
 # You are free to use this module. But don't delete this commented text. Thank you.
 
-from Shikimori import Application, MEDIA_BYE, MEDIA_GM, MEDIA_GN, MEDIA_HELLO
+from Shikimori import app_build, MEDIA_BYE, MEDIA_GM, MEDIA_GN, MEDIA_HELLO
 from telegram import ParseMode
 from telegram.ext import Filters, MessageHandler
 import time
@@ -147,7 +147,7 @@ HELLO_HANDLER = MessageHandler(
     Filters.regex("(?i)(hello)"), hello, friendly="hello", block=False
 )
 
-Application.add_handler(GDMORNING_HANDLER)
-Application.add_handler(GDNIGHT_HANDLER)
-Application.add_handler(HELLO_HANDLER)
-Application.add_handler(BYE_HANDLER)
+app_build.add_handler(GDMORNING_HANDLER)
+app_build.add_handler(GDNIGHT_HANDLER)
+app_build.add_handler(HELLO_HANDLER)
+app_build.add_handler(BYE_HANDLER)

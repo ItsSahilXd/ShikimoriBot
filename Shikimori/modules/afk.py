@@ -4,7 +4,7 @@ from telegram import MessageEntity, ParseMode
 from telegram.error import BadRequest
 from telegram.ext import Filters, MessageHandler
 
-from Shikimori import Application
+from Shikimori import app_build
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.redis.afk_redis import start_afk, end_afk, is_user_afk, afk_reason
 from Shikimori import REDIS
@@ -157,10 +157,10 @@ AFK_REGEX_HANDLER = MessageHandler(Filters.regex("(?i)brb"), afk, friendly="afk"
 NO_AFK_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, no_longer_afk, block=False)
 AFK_REPLY_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, reply_afk, block=False)
 
-Application.add_handler(AFK_HANDLER, AFK_GROUP)
-Application.add_handler(AFK_REGEX_HANDLER, AFK_GROUP)
-Application.add_handler(NO_AFK_HANDLER, AFK_GROUP)
-Application.add_handler(AFK_REPLY_HANDLER, AFK_REPLY_GROUP)
+app_build.add_handler(AFK_HANDLER, AFK_GROUP)
+app_build.add_handler(AFK_REGEX_HANDLER, AFK_GROUP)
+app_build.add_handler(NO_AFK_HANDLER, AFK_GROUP)
+app_build.add_handler(AFK_REPLY_HANDLER, AFK_REPLY_GROUP)
 
 __mod_name__ = "AFK 💤"
 __help__ = """

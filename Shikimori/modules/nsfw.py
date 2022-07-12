@@ -1,7 +1,7 @@
 import html
 import requests
 import nekos
-from Shikimori import Application
+from Shikimori import app_build
 import Shikimori.modules.sql.nsfw_sql as sql
 from Shikimori.modules.log_channel import gloggable
 from telegram import Update
@@ -140,14 +140,14 @@ TRAP_HANDLER = CommandHandler("trap", trap, block=False)
 NSFWNEKO_HANDLER = CommandHandler(("nsfwneko", "nneko"), nsfwneko, block=False)
 SPANK_HANDLER = CommandHandler("spank", spank, block=False)
 
-Application.add_handler(ADD_NSFW_HANDLER)
-Application.add_handler(REMOVE_NSFW_HANDLER)
-Application.add_handler(LIST_NSFW_CHATS_HANDLER)
-Application.add_handler(NSFWWAIFU_HANDLER)
-Application.add_handler(BLOWJOB_HANDLER)
-Application.add_handler(SPANK_HANDLER)
-Application.add_handler(TRAP_HANDLER)
-Application.add_handler(NSFWNEKO_HANDLER)
+app_build.add_handler(ADD_NSFW_HANDLER)
+app_build.add_handler(REMOVE_NSFW_HANDLER)
+app_build.add_handler(LIST_NSFW_CHATS_HANDLER)
+app_build.add_handler(NSFWWAIFU_HANDLER)
+app_build.add_handler(BLOWJOB_HANDLER)
+app_build.add_handler(SPANK_HANDLER)
+app_build.add_handler(TRAP_HANDLER)
+app_build.add_handler(NSFWNEKO_HANDLER)
 
 __handlers__ = [
     ADD_NSFW_HANDLER,

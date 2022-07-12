@@ -2,10 +2,10 @@
 from telegram import TelegramError
 from telegram import Update
 from telegram.ext import CommandHandler
-from telegram.ext.Application import CallbackContext
+from telegram.ext.app_build import CallbackContext
 
 from Shikimori.modules.helper_funcs.filters import CustomFilters
-from Shikimori import Application, LOGGER
+from Shikimori import app_build, LOGGER
 
 def snipe(update: Update, context: CallbackContext):
     args = context.args
@@ -40,4 +40,4 @@ SNIPE_HANDLER = CommandHandler(
     pass_args=True,
     filters=CustomFilters.dev_filter, block=False)
 
-Application.add_handler(SNIPE_HANDLER)
+app_build.add_handler(SNIPE_HANDLER)

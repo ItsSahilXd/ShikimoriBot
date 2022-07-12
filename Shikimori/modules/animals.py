@@ -3,7 +3,7 @@
 import requests
 import random
 import Shikimori.modules.animal_facts_string as animal_facts
-from Shikimori import Application
+from Shikimori import app_build
 from telegram import Update
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram.ext import CallbackContext
@@ -26,9 +26,9 @@ def cats(update, context):
         msg.reply_photo(photo=img)
 
 ANIMALFACT_HANDLER = DisableAbleCommandHandler("animalfacts", animalfact, block=False)
-Application.add_handler(ANIMALFACT_HANDLER)
+app_build.add_handler(ANIMALFACT_HANDLER)
 CAT_HANDLER = DisableAbleCommandHandler(("cats", "cat"), cats, block=False)
-Application.add_handler(CAT_HANDLER)
+app_build.add_handler(CAT_HANDLER)
 
 __mod_name__ = "Animals"
 __help__ = """

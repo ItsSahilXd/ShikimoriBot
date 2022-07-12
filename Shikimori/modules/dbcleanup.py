@@ -2,7 +2,7 @@ from time import sleep
 
 import Shikimori.modules.sql.global_bans_sql as gban_sql
 import Shikimori.modules.sql.users_sql as user_sql
-from Shikimori import DEV_USERS, OWNER_ID, Application
+from Shikimori import DEV_USERS, OWNER_ID, app_build
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.error import BadRequest, Unauthorized
@@ -142,8 +142,8 @@ def callback_button(update: Update, context: CallbackContext):
 DB_CLEANUP_HANDLER = CommandHandler("dbcleanup", dbcleanup, block=False)
 BUTTON_HANDLER = CallbackQueryHandler(callback_button, pattern="db_.*", block=False)
 
-Application.add_handler(DB_CLEANUP_HANDLER)
-Application.add_handler(BUTTON_HANDLER)
+app_build.add_handler(DB_CLEANUP_HANDLER)
+app_build.add_handler(BUTTON_HANDLER)
 
 __mod_name__ = "DB Cleanup"
 __handlers__ = [DB_CLEANUP_HANDLER, BUTTON_HANDLER]

@@ -6,7 +6,7 @@ import textwrap
 import traceback
 from contextlib import redirect_stdout
 
-from Shikimori import LOGGER, Application
+from Shikimori import LOGGER, app_build
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, CommandHandler, run_async
@@ -119,7 +119,7 @@ def clear(update: Update, context: CallbackContext):
 EXEC_HANDLER = CommandHandler(("x", "ex", "exe", "exec", "py"), execute, block=False)
 CLEAR_HANDLER = CommandHandler("clearlocals", clear, block=False)
 
-Application.add_handler(EXEC_HANDLER)
-Application.add_handler(CLEAR_HANDLER)
+app_build.add_handler(EXEC_HANDLER)
+app_build.add_handler(CLEAR_HANDLER)
 
 __mod_name__ = "Eval Module"

@@ -26,7 +26,7 @@ from Shikimori import (
     DEMONS,
     TIGERS,
     WOLVES,
-    Application,
+    app_build,
 )
 from Shikimori.modules.helper_funcs.chat_status import (
     is_user_admin,
@@ -492,7 +492,7 @@ def __user_info__(user_id):
     text = "Malicious: <b>{}</b>"
     if user_id in [777000, 1087968824]:
         return ""
-    if user_id == Application.bot.id:
+    if user_id == app_build.bot.id:
         return ""
     if int(user_id) in DRAGONS + TIGERS + WOLVES:
         return ""
@@ -526,16 +526,16 @@ GBAN_ENFORCER = MessageHandler(
     Filters.all & Filters.chat_type.groups, enforce_gban, block=False
 )
 
-Application.add_handler(GBAN_HANDLER)
-Application.add_handler(UNGBAN_HANDLER)
-Application.add_handler(GBAN_LIST)
-Application.add_handler(GBAN_STATUS)
+app_build.add_handler(GBAN_HANDLER)
+app_build.add_handler(UNGBAN_HANDLER)
+app_build.add_handler(GBAN_LIST)
+app_build.add_handler(GBAN_STATUS)
 
 
 __handlers__ = [GBAN_HANDLER, UNGBAN_HANDLER, GBAN_LIST, GBAN_STATUS]
 
 if STRICT_GBAN:  # enforce GBANS if this is set
-    Application.add_handler(GBAN_ENFORCER, GBAN_ENFORCE_GROUP)
+    app_build.add_handler(GBAN_ENFORCER, GBAN_ENFORCE_GROUP)
     __handlers__.append((GBAN_ENFORCER, GBAN_ENFORCE_GROUP))
 
 

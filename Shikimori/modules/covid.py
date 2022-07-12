@@ -2,7 +2,7 @@ import requests
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext
 
-from Shikimori import Application
+from Shikimori import app_build
 from Shikimori.modules.disable import DisableAbleCommandHandler
 
 
@@ -21,7 +21,7 @@ def covid(update: Update, context: CallbackContext):
 
 
 COVID_HANDLER = DisableAbleCommandHandler(["covid", "corona"], covid, block=False)
-Application.add_handler(COVID_HANDLER)
+app_build.add_handler(COVID_HANDLER)
 
 __mod_name__ = "COVID 19 🦠"
 __help__ = """

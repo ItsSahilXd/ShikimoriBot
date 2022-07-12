@@ -11,7 +11,7 @@ from telegram import InputMediaPhoto, TelegramError
 from telegram import Update
 from telegram.ext import CallbackContext
 
-from Shikimori import Application
+from Shikimori import app_build
 from Shikimori.modules.disable import DisableAbleCommandHandler
 
 opener = urllib.request.build_opener()
@@ -483,9 +483,9 @@ GG_HANDLER = DisableAbleCommandHandler(
     "gg", gg, pass_args=True, admin_ok=True, block=False
 )
 
-Application.add_handler(REVERSE_HANDLER)
-Application.add_handler(GRS_HANDLER)
-Application.add_handler(GG_HANDLER)
+app_build.add_handler(REVERSE_HANDLER)
+app_build.add_handler(GRS_HANDLER)
+app_build.add_handler(GG_HANDLER)
 
 __mod_name__ = "Reverse 🔄"
 __help__ = """

@@ -2,7 +2,7 @@ import datetime
 from typing import List
 
 import requests
-from Shikimori import TIME_API_KEY, Application
+from Shikimori import TIME_API_KEY, app_build
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext
@@ -98,7 +98,7 @@ def gettime(update: Update, context: CallbackContext):
 
 TIME_HANDLER = DisableAbleCommandHandler("time", gettime, block=False)
 
-Application.add_handler(TIME_HANDLER)
+app_build.add_handler(TIME_HANDLER)
 
 __mod_name__ = "Time ⏰"
 __help__ = """

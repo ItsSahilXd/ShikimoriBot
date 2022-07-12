@@ -7,7 +7,7 @@ from telegram.ext import CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
 
 import Shikimori.modules.sql.blacklist_sql as sql
-from Shikimori import Application, LOGGER
+from Shikimori import app_build, LOGGER
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.chat_status import user_admin, user_not_admin
 from Shikimori.modules.helper_funcs.extraction import extract_text
@@ -32,7 +32,7 @@ def blacklist(update, context):
     conn = connected(context.bot, update, chat, user.id, need_admin=False)
     if conn:
         chat_id = conn
-        chat_name = Application.bot.getChat(conn).title
+        chat_name = app_build.bot.getChat(conn).title
     else:
         if chat.type == "private":
             return
@@ -78,7 +78,7 @@ def add_blacklist(update, context):
     conn = connected(context.bot, update, chat, user.id)
     if conn:
         chat_id = conn
-        chat_name = Application.bot.getChat(conn).title
+        chat_name = app_build.bot.getChat(conn).title
     else:
         chat_id = update.effective_chat.id
         if chat.type == "private":
@@ -131,7 +131,7 @@ def unblacklist(update, context):
     conn = connected(context.bot, update, chat, user.id)
     if conn:
         chat_id = conn
-        chat_name = Application.bot.getChat(conn).title
+        chat_name = app_build.bot.getChat(conn).title
     else:
         chat_id = update.effective_chat.id
         if chat.type == "private":
@@ -210,9 +210,9 @@ def blacklist_mode(update, context):
 
     conn = connected(context.bot, update, chat, user.id, need_admin=True)
     if conn:
-        chat = Application.bot.getChat(conn)
+        chat = app_build.bot.getChat(conn)
         chat_id = conn
-        chat_name = Application.bot.getChat(conn).title
+        chat_name = app_build.bot.getChat(conn).title
     else:
         if update.effective_message.chat.type == "private":
             send_message(
@@ -470,11 +470,11 @@ BLACKLIST_DEL_HANDLER = MessageHandler(
     block=False,
 )
 
-Application.add_handler(BLACKLIST_HANDLER)
-Application.add_handler(ADD_BLACKLIST_HANDLER)
-Application.add_handler(UNBLACKLIST_HANDLER)
-Application.add_handler(BLACKLISTMODE_HANDLER)
-Application.add_handler(BLACKLIST_DEL_HANDLER, group=BLACKLIST_GROUP)
+app_build.add_handler(BLACKLIST_HANDLER)
+app_build.add_handler(ADD_BLACKLIST_HANDLER)
+app_build.add_handler(UNBLACKLIST_HANDLER)
+app_build.add_handler(BLACKLISTMODE_HANDLER)
+app_build.add_handler(BLACKLIST_DEL_HANDLER, group=BLACKLIST_GROUP)
 
 __handlers__ = [
     BLACKLIST_HANDLER,

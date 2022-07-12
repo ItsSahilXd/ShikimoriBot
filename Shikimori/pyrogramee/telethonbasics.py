@@ -40,7 +40,7 @@ async def convert_to_image(event, borg):
         return
     if lmao and lmao.photo:
         lmao_final = downloaded_file_name
-    elif lmao.sticker and lmao.sticker.mime_type == "application/x-tgsticker":
+    elif lmao.sticker and lmao.sticker.mime_type == "app_build/x-tgsticker":
         rpath = downloaded_file_name
         image_name20 = os.path.join(sedpath, "SED.png")
         cmd = f"lottie_convert.py --frame 0 -if lottie -of png {downloaded_file_name} {image_name20}"
