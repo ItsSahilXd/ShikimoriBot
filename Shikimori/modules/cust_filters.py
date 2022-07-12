@@ -262,7 +262,7 @@ def stop_filter(update, context):
         "That's not a filter - Click: /filters to get currently active filters.",
     )
 
-@Shikimoricmd((filters.TEXT & ~filters.UpdateType.EDITED_MESSAGE))
+@Shikimorimsg((filters.TEXT & ~filters.UpdateType.EDITED_MESSAGE))
 def reply_filter(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
     message = update.effective_message  # type: Optional[Message]
