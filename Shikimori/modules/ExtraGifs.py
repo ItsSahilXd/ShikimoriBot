@@ -7,7 +7,8 @@ from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.chat_status import is_user_admin
 from Shikimori.modules.helper_funcs.extraction import extract_user
-from telegram import ChatPermissions, ParseMode, Update
+from telegram import ChatPermissions, Update
+from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext
 

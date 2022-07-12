@@ -1,7 +1,8 @@
 import requests
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
-from telegram import ParseMode, Update
+from telegram import Update
+from telegram.constants import ParseMode
 from telegram.ext import CallbackContext
 
 

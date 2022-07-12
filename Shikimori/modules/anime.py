@@ -7,8 +7,9 @@ import jikanpy
 import requests
 from Shikimori import DEV_USERS, OWNER_ID, DRAGONS, SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
-from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
+from telegram import (InlineKeyboardButton, InlineKeyboardMarkup,
                       Update)
+from telegram.constants import ParseMode
 from telegram.ext import CallbackContext, CallbackQueryHandler
 
 info_btn = "More Information"

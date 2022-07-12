@@ -3,7 +3,7 @@
 
 # Imports from external libraries. (DON'T EDIT)
 import requests
-from telegram import ParseMode
+from telegram.constants import ParseMode
 from telegram.ext import CommandHandler
 
 import random

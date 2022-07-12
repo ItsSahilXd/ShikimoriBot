@@ -1,7 +1,8 @@
 from Shikimori import ALIVE_MEDIA, UPDATE_CHANNEL, SUPPORT_CHAT, OWNER_USERNAME, SHIKIMORI_PTB, NETWORK, NETWORK_USERNAME
 from Shikimori.modules.disable import DisableAbleCommandHandler
-from telegram import ParseMode, Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackContext
+from telegram.constants import ParseMode
 
 PHOTO = ALIVE_MEDIA
 

@@ -7,9 +7,9 @@ import Shikimori.modules.sql.chatbot_sql as sql
 from Shikimori import AI_API_KEY as api
 
 from time import sleep
-from telegram import ParseMode
+from telegram.constants import ParseMode
 from telegram import (CallbackQuery, Chat, MessageEntity, InlineKeyboardButton,
-                      InlineKeyboardMarkup, Message, ParseMode, Update, Bot, User)
+                      InlineKeyboardMarkup, Update, Bot, User)
 from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
                           SHIKIMORI_PTBHandlerStop, Filters, MessageHandler,
                           run_async)
@@ -18,7 +18,7 @@ from telegram.utils.helpers import mention_html, mention_markdown, escape_markdo
 
 from Shikimori.modules.helper_funcs.filters import CustomFilters
 from Shikimori.modules.helper_funcs.chat_status import user_admin, user_admin_no_reply
-from Shikimori import  SHIKIMORI_PTB, updater, SUPPORT_CHAT
+from Shikimori import  SHIKIMORI_PTB,  SUPPORT_CHAT
 from Shikimori.modules.log_channel import gloggable
 from Shikimori.__main__ import bot_name
 

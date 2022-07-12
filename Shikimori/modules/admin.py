@@ -2,7 +2,8 @@ import os
 import html
 import re
 
-from telegram import ParseMode, Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telethon import events
 from telegram.ext import CallbackContext, CommandHandler, Filters

@@ -1,6 +1,6 @@
 # Imports from external libraries. (DON'T EDIT)
 import requests
-from telegram import ParseMode
+from telegram.constants import ParseMode
 from telegram.ext import CommandHandler
 
 # Imports SHIKIMORI_PTB = SHIKIMORI_PTB.SHIKIMORI_PTB from __init__.py (*MUST EDIT* CHANGE MODULE NAME TO THE FOLDER NAME OF MODULES IN YOUR BOT)

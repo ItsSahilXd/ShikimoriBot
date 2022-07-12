@@ -5,7 +5,8 @@ from future.utils import string_types
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.handlers import CMD_STARTERS, SpamChecker
 from Shikimori.modules.helper_funcs.misc import is_module_loaded
-from telegram import ParseMode, Update
+from telegram import Update
+from telegram.constants import ParseMode
 from telegram.ext import (
     CallbackContext,
     CommandHandler,

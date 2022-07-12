@@ -1,7 +1,8 @@
 import html
 from typing import Optional
 
-from telegram import Update, ParseMode
+from telegram import Update
+from telegram.constants import ParseMode
 from telegram.ext import CallbackContext
 from telegram.chatmemberupdated import ChatMemberUpdated
 from telegram.ext.chatmemberhandler import ChatMemberHandler

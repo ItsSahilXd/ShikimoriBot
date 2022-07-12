@@ -1,7 +1,7 @@
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.helper_funcs.alternate import typing_action
-from telegram import ParseMode
+from telegram.constants import ParseMode
 
 normiefont = [
     "a",

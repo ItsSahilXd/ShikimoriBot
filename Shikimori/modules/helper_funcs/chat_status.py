@@ -13,7 +13,8 @@ from Shikimori import (
     SHIKIMORI_PTB,
 )
 
-from telegram import Chat, ChatMember, ParseMode, Update
+from telegram import Chat, ChatMember, Update
+from telegram.constants import ParseMode
 from telegram.ext import CallbackContext
 
 # stores admemes in memory for 10 min.

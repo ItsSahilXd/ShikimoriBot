@@ -4,9 +4,10 @@ import bs4
 import requests
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
-from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
+from telegram import (InlineKeyboardButton, InlineKeyboardMarkup,
                       Update)
 from telegram.ext import CallbackContext, run_async
+from telegram.constants import ParseMode
 
 info_btn = "More Information"
 kayo_btn = "Kayo 🏴‍☠️"

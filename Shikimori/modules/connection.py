@@ -1,7 +1,7 @@
 import time
 import re
-
-from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, Update, Bot
+from telegram.constants import ParseMode
+from telegram import InlineKeyboardMarkup, InlineKeyboardButton, Update, Bot
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import CommandHandler, CallbackQueryHandler
 

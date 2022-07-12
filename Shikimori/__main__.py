@@ -37,7 +37,8 @@ from Shikimori import (
 from Shikimori.modules import ALL_MODULES
 from Shikimori.modules.helper_funcs.chat_status import is_user_admin
 from Shikimori.modules.helper_funcs.misc import paginate_modules
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.constants import ParseMode
 from telegram.error import (
     BadRequest,
     ChatMigrated,

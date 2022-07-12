@@ -1,5 +1,6 @@
 from Shikimori import SHIKIMORI_PTB
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.constants import ParseMode
 
 from telegram.ext import (
     CallbackContext,

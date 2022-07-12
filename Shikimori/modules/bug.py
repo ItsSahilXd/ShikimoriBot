@@ -7,7 +7,8 @@ from Shikimori import (
     SHIKIMORI_PTB
 )
 import time
-from telegram import InlineKeyboardButton, ParseMode, InlineKeyboardMarkup, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.constants import ParseMode
 from telegram.ext import CallbackContext, CallbackQueryHandler, CommandHandler
 
 def bug(update: Update, context: CallbackContext):

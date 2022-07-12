@@ -1,6 +1,7 @@
 import time
 
-from telegram import MessageEntity, ParseMode
+from telegram import MessageEntity
+from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import Filters, MessageHandler
 

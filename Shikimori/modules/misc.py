@@ -13,8 +13,8 @@ from telegram import (
     Update,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
-    ParseMode,
 )
+from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, Filters, CommandHandler
 from Shikimori.modules.helper_funcs.alternate import send_action
