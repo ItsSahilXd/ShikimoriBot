@@ -137,13 +137,13 @@ def __chat_settings__(chat_id, user_id):
 __mod_name__ = "Rules"
 
 GET_RULES_HANDLER = CommandHandler(
-    "rules", get_rules, filters=filters.chat_type.groups, block=False
+    "rules", get_rules, filters=filters.ChatType.GROUPS, block=False
 )
 SET_RULES_HANDLER = CommandHandler(
-    "setrules", set_rules, filters=filters.chat_type.groups, block=False
+    "setrules", set_rules, filters=filters.ChatType.GROUPS, block=False
 )
 RESET_RULES_HANDLER = CommandHandler(
-    "clearrules", clear_rules, filters=filters.chat_type.groups, block=False
+    "clearrules", clear_rules, filters=filters.ChatType.GROUPS, block=False
 )
 
 SHIKIMORI_PTB.add_handler(GET_RULES_HANDLER)

@@ -528,7 +528,7 @@ UNBLACKLIST_STICKER_HANDLER = CommandHandler(
 )
 BLACKLISTMODE_HANDLER = CommandHandler("blstickermode", blacklist_mode)
 BLACKLIST_STICKER_DEL_HANDLER = MessageHandler(
-    filters.sticker & filters.chat_type.groups,
+    filters.sticker & filters.ChatType.GROUPS,
     del_blackliststicker,
     block=False,
 )

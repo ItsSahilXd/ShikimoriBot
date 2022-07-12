@@ -278,7 +278,7 @@ __help__ = """
 
 SETTING_HANDLER = CommandHandler("reports", report_setting, block=False)
 REPORT_HANDLER = CommandHandler(
-    "report", report, filters=filters.chat_type.groups, block=False
+    "report", report, filters=filters.ChatType.GROUPS, block=False
 )
 ADMIN_REPORT_HANDLER = MessageHandler(
     filters.regex(r"(?i)@admin(s)?"), report, block=False

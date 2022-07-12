@@ -564,13 +564,13 @@ __mod_name__ = "Locks 🔒"
 LOCKTYPES_HANDLER = DisableAbleCommandHandler("locktypes", locktypes, block=False)
 LOCK_HANDLER = CommandHandler(
     "lock", lock,  block=False
-)  # , filters=filters.chat_type.groups)
+)  # , filters=filters.ChatType.GROUPS)
 UNLOCK_HANDLER = CommandHandler(
     "unlock", unlock,  block=False
-)  # , filters=filters.chat_type.groups)
+)  # , filters=filters.ChatType.GROUPS)
 LOCKED_HANDLER = CommandHandler(
     "locks", list_locks, block=False
-)  # , filters=filters.chat_type.groups)
+)  # , filters=filters.ChatType.GROUPS)
 
 SHIKIMORI_PTB.add_handler(LOCK_HANDLER)
 SHIKIMORI_PTB.add_handler(UNLOCK_HANDLER)
@@ -579,7 +579,7 @@ SHIKIMORI_PTB.add_handler(LOCKED_HANDLER)
 
 SHIKIMORI_PTB.add_handler(
     MessageHandler(
-        filters.ALL & filters.chat_type.groups, del_lockables, block=False
+        filters.ALL & filters.ChatType.GROUPS, del_lockables, block=False
     ),
     PERM_GROUP,
 )
