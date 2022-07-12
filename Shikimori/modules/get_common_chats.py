@@ -45,7 +45,7 @@ def get_user_common_chats(update: Update, context: CallbackContext):
 
 
 COMMON_CHATS_HANDLER = CommandHandler(
-    "getchats", get_user_common_chats, filters=filters.user(DEV_USERS), block=False
+    "getchats", get_user_common_chats, filters=filters.User(DEV_USERS), block=False
 )
 
 SHIKIMORI_PTB.add_handler(COMMON_CHATS_HANDLER)

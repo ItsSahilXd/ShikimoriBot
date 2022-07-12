@@ -231,7 +231,7 @@ else:
 
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
-SUDOERS = filters.user()
+SUDOERS = filters.User()
 
 
 REDIS = StrictRedis.from_url(REDIS_URL,decode_responses=True)
