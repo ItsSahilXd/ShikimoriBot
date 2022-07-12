@@ -27,8 +27,6 @@ def cats(update, context):
         img = result['file']
         msg.reply_photo(photo=img)
 
-ANIMALFACT_HANDLER = DisableAbleCommandHandler("animalfacts", animalfact, block=False)
-SHIKIMORI_PTB.add_handler(ANIMALFACT_HANDLER)
 CAT_HANDLER = DisableAbleCommandHandler(("cats", "cat"), cats, block=False)
 SHIKIMORI_PTB.add_handler(CAT_HANDLER)
 
