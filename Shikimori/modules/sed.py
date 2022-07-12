@@ -74,7 +74,7 @@ def separate_sed(sed_string):
         return replace, replace_with, flags.lower()
 
 
-def sed(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def sed(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     sed_result = separate_sed(update.effective_message.text)
     if sed_result and update.effective_message.reply_to_message:
         if update.effective_message.reply_to_message.text:

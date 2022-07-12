@@ -9,7 +9,7 @@ from Shikimori.modules.sql.antichannel_sql import antichannel_status, disable_an
 
 @Shikimoricmd(command="antichannel", group=100)
 @user_admin(AdminPerms.CAN_RESTRICT_MEMBERS)
-def set_antichannel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def set_antichannel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     chat = update.effective_chat
     args = context.args
@@ -29,7 +29,7 @@ def set_antichannel(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @Shikimorimsg(filters.ChatType.GROUPS, group=110)
-def eliminate_channel(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def eliminate_channel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     chat = update.effective_chat
     bot = context.bot

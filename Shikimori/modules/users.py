@@ -54,7 +54,7 @@ def get_user_id(username):
 
 
 @dev_plus
-def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     to_send = update.effective_message.text.split(None, 1)
 
     if len(to_send) >= 2:
@@ -100,7 +100,7 @@ def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-def log_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def log_user(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     msg = update.effective_message
 
@@ -120,7 +120,7 @@ def log_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @sudo_plus
-def chats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def chats(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     all_chats = sql.get_all_chats() or []
     chatfile = "List of chats.\n0. Chat name | Chat ID | Members count\n"
     P = 1
@@ -146,7 +146,7 @@ def chats(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-def chat_checker(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def chat_checker(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     try:
         if update.effective_message.chat.get_member(bot.id).can_send_messages is False:

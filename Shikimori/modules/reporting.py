@@ -21,7 +21,7 @@ REPORT_IMMUNE_USERS = DRAGONS + TIGERS + WOLVES
 
 
 @user_admin
-def report_setting(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def report_setting(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     chat = update.effective_chat
     msg = update.effective_message
@@ -222,7 +222,7 @@ def __user_settings__(user_id):
     return text
 
 
-def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     query = update.callback_query
     splitter = query.data.replace("report_", "").split("=")

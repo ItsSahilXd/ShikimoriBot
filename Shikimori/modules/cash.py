@@ -6,7 +6,7 @@ from telegram.ext import ContextTypes, CommandHandler
 
 
 
-def convert(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def convert(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = update.effective_message.text.split(" ")
 
     if len(args) == 4:

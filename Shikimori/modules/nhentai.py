@@ -77,7 +77,7 @@ Tags ➢** `{tags}`
     except:
         return await message.reply_text("Not Found. Make sure only integers are allowed.")
 
-def close_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def close_reply(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     if query.data == "close_reply_":
         query.message.delete()

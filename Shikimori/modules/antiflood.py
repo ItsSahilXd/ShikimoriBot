@@ -116,7 +116,7 @@ def check_flood(update, context) -> str:
 
 @user_admin_no_reply
 @bot_admin
-def flood_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def flood_button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     query = update.callback_query
     user = update.effective_user

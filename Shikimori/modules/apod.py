@@ -7,7 +7,7 @@ from telegram.ext import (
 )
 import requests
 
-def apod(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def apod(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     result = requests.get('https://api.nasa.gov/planetary/apod?api_key=' + APOD_API_KEY).json()
     img = result['hdurl']
     title = result['title']

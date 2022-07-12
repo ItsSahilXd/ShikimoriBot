@@ -9,7 +9,7 @@ from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram.ext import ContextTypes
 
 
-def animalfact(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def animalfact(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     update.effective_message.reply_text(random.choice(animal_facts.ANIMAL_FACTS))
 
 def cats(update, context):

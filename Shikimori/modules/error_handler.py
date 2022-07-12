@@ -39,7 +39,7 @@ class ErrorsDict(dict):
 errors = ErrorsDict()
 
 
-def error_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def error_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if not update:
         return
     if context.error not in errors:
@@ -109,7 +109,7 @@ def error_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
 
-def list_errors(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def list_errors(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if update.effective_user.id not in DEV_USERS:
         return
     e = dict(sorted(errors.items(), key=lambda item: item[1], reverse=True))

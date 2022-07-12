@@ -7,7 +7,7 @@ from telegram.ext import ContextTypes
 
 
 
-def ud(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def ud(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     args = context.args
     if len(args) == 0:

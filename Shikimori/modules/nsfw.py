@@ -14,7 +14,7 @@ url_nsfw = "https://api.waifu.pics/nsfw/"
 
 @user_admin
 @gloggable
-def add_nsfw(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def add_nsfw(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     msg = update.effective_message
     user = update.effective_user
@@ -34,7 +34,7 @@ def add_nsfw(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_admin
 @gloggable
-def rem_nsfw(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def rem_nsfw(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message
     chat = update.effective_chat
     user = update.effective_user
@@ -52,7 +52,7 @@ def rem_nsfw(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return message
 
-def list_nsfw_chats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def list_nsfw_chats(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chats = sql.get_all_nsfw_chats()
     text = "<b>NSFW Activated Chats</b>\n"
     for chat in chats:

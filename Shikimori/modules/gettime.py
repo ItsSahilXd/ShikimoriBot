@@ -62,7 +62,7 @@ def generate_time(to_find: str, findtype: List[str]) -> str:
     return result
 
 
-def gettime(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def gettime(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
 
     try:

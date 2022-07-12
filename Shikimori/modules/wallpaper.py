@@ -9,7 +9,7 @@ from telegram.ext import ContextTypes
 # Wallpapers module by @TheRealPhoenix using wall.alphacoders.com
 
 
-def wall(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def wall(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = update.effective_chat.id
     msg = update.effective_message
     args = context.args

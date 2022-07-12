@@ -21,7 +21,7 @@ from Shikimori import telethn as bot
 
 combot_stickers_url = "https://combot.org/telegram/stickers?q="
 
-def stickerid(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def stickerid(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message
     if msg.reply_to_message and msg.reply_to_message.sticker:
         update.effective_message.reply_text(
@@ -42,7 +42,7 @@ def stickerid(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-def cb_sticker(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def cb_sticker(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message
     split = msg.text.split(" ", 1)
     if len(split) == 1:
@@ -63,7 +63,7 @@ def cb_sticker(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply += f"\n• [{title.get_text()}]({link})"
     msg.reply_text(reply, parse_mode=ParseMode.MARKDOWN)
 
-def getsticker(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def getsticker(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     msg = update.effective_message
     chat_id = update.effective_chat.id
@@ -80,7 +80,7 @@ def getsticker(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-def kang(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def kang(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message
     user = update.effective_user
     args = context.args

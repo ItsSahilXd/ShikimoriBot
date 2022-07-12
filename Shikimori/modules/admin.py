@@ -68,7 +68,7 @@ async def member_permissions(chat_id: int, user_id: int):
 
 @bot_admin
 @user_admin
-def set_sticker(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def set_sticker(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message
     chat = update.effective_chat
     user = update.effective_user
@@ -97,7 +97,7 @@ def set_sticker(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
 @bot_admin
 @user_admin
-def setchatpic(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def setchatpic(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     msg = update.effective_message
     user = update.effective_user
@@ -132,7 +132,7 @@ def setchatpic(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
 @bot_admin
 @user_admin
-def rmchatpic(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def rmchatpic(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     msg = update.effective_message
     user = update.effective_user
@@ -149,7 +149,7 @@ def rmchatpic(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
 @bot_admin
 @user_admin
-def set_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def set_desc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message
     chat = update.effective_chat
     user = update.effective_user
@@ -172,7 +172,7 @@ def set_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
 @bot_admin
 @user_admin
-def setchat_title(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def setchat_title(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     msg = update.effective_message
     user = update.effective_user
@@ -536,7 +536,7 @@ def refresh_admin(update, _):
 @bot_admin
 @can_promote
 @user_admin
-def set_title(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def set_title(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     args = context.args
 
@@ -668,7 +668,7 @@ def pin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
 @can_pin
 @user_admin
 @loggable
-def unpin(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def unpin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     user = update.effective_user
     msg = update.effective_message
@@ -771,7 +771,7 @@ def pinned(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
 @bot_admin
 @user_admin
 @connection_status
-def invite(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def invite(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     chat = update.effective_chat
 

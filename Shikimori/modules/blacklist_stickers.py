@@ -19,7 +19,7 @@ from telegram.ext import ContextTypes, CommandHandler, filters, MessageHandler
 from telegram.helpers import mention_html, mention_markdown
 
 
-def blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message  # type: Optional[Message]
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
@@ -67,7 +67,7 @@ def blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_admin
-def add_blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def add_blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     msg = update.effective_message  # type: Optional[Message]
     chat = update.effective_chat  # type: Optional[Chat]
@@ -160,7 +160,7 @@ def add_blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_admin
-def unblackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def unblackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     msg = update.effective_message  # type: Optional[Message]
     chat = update.effective_chat  # type: Optional[Chat]
@@ -261,7 +261,7 @@ def unblackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @loggable
 @user_admin
-def blacklist_mode(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def blacklist_mode(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
     msg = update.effective_message  # type: Optional[Message]
@@ -373,7 +373,7 @@ def blacklist_mode(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_not_admin
-def del_blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def del_blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     chat = update.effective_chat  # type: Optional[Chat]
     message = update.effective_message  # type: Optional[Message]

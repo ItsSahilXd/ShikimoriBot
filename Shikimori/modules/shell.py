@@ -7,7 +7,7 @@ from telegram.constants import ParseMode
 from telegram.ext import ContextTypes, CommandHandler
 
 @dev_plus
-def shell(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def shell(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     cmd = message.text.split(" ", 1)
     if len(cmd) == 1:

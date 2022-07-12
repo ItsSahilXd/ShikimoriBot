@@ -169,13 +169,13 @@ def send_help(chat_id, text, keyboard=None):
     )
 
 
-def test(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def test(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # pprint(eval(str(update)))
     # update.effective_message.reply_text("Hola tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN)
     update.effective_message.reply_text("This person edited a message")
     print(update.effective_message)
 
-def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     uptime = get_readable_time((time.time() - StartTime))
     if update.effective_chat.type == "private":
@@ -264,7 +264,7 @@ def error_handler(update, context):
 
 
 # for test purposes
-def error_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def error_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     error = context.error
     try:
         raise error
@@ -400,7 +400,7 @@ def Shikimori_about_callback(update, context):
                 disable_web_page_preview=False,
         )
 
-def git_call_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def git_call_back(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     if query.data == "github_":
         query.message.edit_text(
@@ -433,7 +433,7 @@ def git_call_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 disable_web_page_preview=False,
         )
 
-def void_call_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def void_call_back(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     if query.data == "void_":
         query.message.edit_text(
@@ -465,7 +465,7 @@ def void_call_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 disable_web_page_preview=False,
         )
 
-def license_call_back(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def license_call_back(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     if query.data == "license_":
         query.message.edit_text(
@@ -537,7 +537,7 @@ def Source_about_callback(update, context):
                 disable_web_page_preview=False,
         )
 
-def get_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def get_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat  # type: Optional[Chat]
     args = update.effective_message.text.split(None, 1)
 
@@ -637,7 +637,7 @@ def send_settings(chat_id, user_id, user=False):
             )
 
 
-def settings_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def settings_button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     user = update.effective_user
     bot = context.bot
@@ -720,7 +720,7 @@ def settings_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             LOGGER.exception("Exception in settings buttons. %s", str(query.data))
 
 
-def get_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def get_settings(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
     msg = update.effective_message  # type: Optional[Message]
@@ -751,7 +751,7 @@ def get_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
         send_settings(chat.id, user.id, True)
 
 
-def donate(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def donate(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.effective_message.from_user
     chat = update.effective_chat  # type: Optional[Chat]
     bot = context.bot
@@ -778,7 +778,7 @@ def donate(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
 
 
-def migrate_chats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def migrate_chats(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message  # type: Optional[Message]
     if msg.migrate_to_chat_id:
         old_chat = update.effective_chat.id

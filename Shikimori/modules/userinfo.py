@@ -123,7 +123,7 @@ def make_bar(per):
     return "❤" * done + "♡" * (10 - done)
 
 
-def get_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def get_id(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     message = update.effective_message
     chat = update.effective_chat
@@ -202,7 +202,7 @@ async def group_info(event) -> None:
 
 
 
-def gifid(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def gifid(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message
     if msg.reply_to_message and msg.reply_to_message.animation:
         update.effective_message.reply_text(
@@ -213,7 +213,7 @@ def gifid(update: Update, context: ContextTypes.DEFAULT_TYPE):
         update.effective_message.reply_text("Please reply to a gif to get its ID.")
 
 
-def info(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def info(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     message = update.effective_message
     chat = update.effective_chat
@@ -353,7 +353,7 @@ def info(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     rep.delete()
 
-def about_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def about_me(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     message = update.effective_message
     user_id = extract_user(message, args)
@@ -377,7 +377,7 @@ def about_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-def set_about_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def set_about_me(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     user_id = message.from_user.id
     if user_id in [777000, 1087968824]:
@@ -408,7 +408,7 @@ def set_about_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 ),
             )
         
-def about_bio(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def about_bio(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     message = update.effective_message
 
@@ -433,7 +433,7 @@ def about_bio(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
 
-def set_about_bio(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def set_about_bio(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     sender_id = update.effective_user.id
     bot = context.bot

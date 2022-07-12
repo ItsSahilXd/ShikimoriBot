@@ -237,7 +237,7 @@ def reset_warns(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     return ""
 
 
-def warns(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def warns(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message: Optional[Message] = update.effective_message
     chat: Optional[Chat] = update.effective_chat
@@ -269,7 +269,7 @@ def warns(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # SHIKIMORI_PTB handler stop - do not async
 @user_admin
 # @user_can_ban
-def add_warn_filter(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def add_warn_filter(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat: Optional[Chat] = update.effective_chat
     msg: Optional[Message] = update.effective_message
 
@@ -302,7 +302,7 @@ def add_warn_filter(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_admin
 # @user_can_ban
-def remove_warn_filter(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def remove_warn_filter(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat: Optional[Chat] = update.effective_chat
     msg: Optional[Message] = update.effective_message
 
@@ -336,7 +336,7 @@ def remove_warn_filter(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-def list_warn_filters(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def list_warn_filters(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat: Optional[Chat] = update.effective_chat
     all_handlers = sql.get_chat_warn_triggers(chat.id)
 
@@ -414,7 +414,7 @@ def set_warn_limit(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
 
 @user_admin
 # @user_can_ban
-def set_warn_strength(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def set_warn_strength(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     chat: Optional[Chat] = update.effective_chat
     user: Optional[User] = update.effective_user

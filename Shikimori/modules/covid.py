@@ -8,7 +8,7 @@ from Shikimori.modules.disable import DisableAbleCommandHandler
 
 
 
-def covid(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def covid(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     text = message.text.split(" ", 1)
     if len(text) == 1:

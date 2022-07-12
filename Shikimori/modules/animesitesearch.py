@@ -96,13 +96,13 @@ def site_search(update: Update, context: ContextTypes.DEFAULT_TYPE, site: str):
             result, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 
-def kayo(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def kayo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     site_search(update, context, "kayo")
     
-def animespot(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def animespot(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     site_search(update, context, "animespot")
    
-def animetm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def animetm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     site_search(update, context, "animetm")
 
 

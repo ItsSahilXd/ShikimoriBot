@@ -22,7 +22,7 @@ def anime_quote():
     return quote, character, anime
 
 
-def quotes(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def quotes(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     quote, character, anime = anime_quote()
     msg = f"<i>❝{quote}❞</i>\n\n<b>{character} from {anime}</b>"
@@ -36,7 +36,7 @@ def quotes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         parse_mode=ParseMode.HTML,
     )
 
-def change_quote(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def change_quote(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     quote, character, anime = anime_quote()
     msg = f"<i>❝{quote}❞</i>\n\n<b>{character} from {anime}</b>"
@@ -48,12 +48,12 @@ def change_quote(update: Update, context: ContextTypes.DEFAULT_TYPE):
                       parse_mode=ParseMode.HTML)
  
  
-def animequotes(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def animequotes(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     keyboard = [[InlineKeyboardButton(text="Change", callback_data="changek_quote")]]
     message.reply_photo(random.choice(QUOTES_IMG),reply_markup=InlineKeyboardMarkup(keyboard))
 
-def changek_quote(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def changek_quote(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     keyboard = [[InlineKeyboardButton(text="Change", callback_data="quotek_change")]]
     message.reply_photo(random.choice(QUOTES_IMG),reply_markup=InlineKeyboardMarkup(keyboard))

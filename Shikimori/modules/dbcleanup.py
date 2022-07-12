@@ -87,7 +87,7 @@ def get_invalid_gban(update: Update, context: ContextTypes.DEFAULT_TYPE, remove:
 
 
 @dev_plus
-def dbcleanup(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def dbcleanup(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message
 
     msg.reply_text("Getting invalid chat count ...")
@@ -107,7 +107,7 @@ def dbcleanup(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-def callback_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def callback_button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     query = update.callback_query
     message = query.message

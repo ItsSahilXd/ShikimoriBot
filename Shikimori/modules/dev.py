@@ -13,7 +13,7 @@ from telegram.ext import ContextTypes, CommandHandler
 
 
 @dev_plus
-def leave(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def leave(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     args = context.args
     if args:
@@ -32,7 +32,7 @@ def leave(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @dev_plus
-def gitpull(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def gitpull(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     sent_msg = update.effective_message.reply_text(
         "Pulling all changes from remote and then attempting to restart.",
     )
@@ -51,7 +51,7 @@ def gitpull(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @dev_plus
-def restart(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def restart(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     update.effective_message.reply_text(
         "Starting a new instance and shutting down this one",
     )

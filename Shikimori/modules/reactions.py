@@ -211,7 +211,7 @@ reactions = [
 ]
 
 
-def react(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def react(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     react = random.choice(reactions)
     if message.reply_to_message:

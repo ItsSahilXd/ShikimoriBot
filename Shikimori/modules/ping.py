@@ -102,7 +102,7 @@ def get_bot_ip(update, _):
 
 
 @typing_action
-def system_status(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def system_status(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     uptime = datetime.datetime.fromtimestamp(boot_time()).strftime("%Y-%m-%d %H:%M:%S")
     status = "<b>======[ 𝚂𝚈𝚂𝚃𝙴𝙼 𝚂𝚃𝙰𝚃𝙸𝚂𝚃𝙸𝙲𝚂 ]======</b>\n\n"
     status += f"<b>📍 𝚂𝚢𝚜𝚝𝚎𝚖 𝚞𝚙𝚝𝚒𝚖𝚎 :</b> <code>{str(uptime)}" + "</code>\n\n"

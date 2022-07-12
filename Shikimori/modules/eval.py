@@ -50,7 +50,7 @@ def send(msg, bot, update):
 
 
 @dev_plus
-def execute(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def execute(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     send(do(exec, bot, update), bot, update)
 
@@ -108,7 +108,7 @@ def do(func, bot, update):
 
 
 @dev_plus
-def clear(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def clear(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     log_input(update)
     global namespaces

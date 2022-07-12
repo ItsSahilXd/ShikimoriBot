@@ -12,7 +12,7 @@ def convert(speed):
 
 
 @dev_plus
-def speedtestxyz(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def speedtestxyz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     buttons = [
         [
             InlineKeyboardButton("Image", callback_data="speedtest_image"),
@@ -25,7 +25,7 @@ def speedtestxyz(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-def speedtestxyz_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def speedtestxyz_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
 
     if query.from_user.id in DEV_USERS:

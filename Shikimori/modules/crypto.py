@@ -5,7 +5,7 @@ from telegram.ext import CommandHandler, ContextTypes
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.constants import ParseMode
 
-def crypto(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def crypto(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     args = context.args
     if len(args) == 0:

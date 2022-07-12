@@ -20,7 +20,7 @@ from telegram.ext import ContextTypes, CommandHandler
 
 
 @dev_plus
-def load(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def load(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     text = message.text.split(" ", 1)[1]
     load_messasge = message.reply_text(
@@ -91,7 +91,7 @@ def load(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @dev_plus
-def unload(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def unload(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     text = message.text.split(" ", 1)[1]
     unload_messasge = message.reply_text(
@@ -163,7 +163,7 @@ def unload(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @sudo_plus
-def listmodules(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def listmodules(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     module_list = []
 

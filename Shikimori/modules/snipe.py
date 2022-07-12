@@ -7,7 +7,7 @@ from telegram.ext import ContextTypes
 from Shikimori.modules.helper_funcs.filters import CustomFilters
 from Shikimori import SHIKIMORI_PTB, LOGGER
 
-def snipe(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def snipe(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     bot = context.bot
     try:

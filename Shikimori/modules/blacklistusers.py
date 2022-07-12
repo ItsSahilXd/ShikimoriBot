@@ -107,7 +107,7 @@ def unbl_user(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
 
 
 @dev_plus
-def bl_users(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def bl_users(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     users = []
     bot = context.bot
     for each_user in sql.BLACKLIST_USERS:

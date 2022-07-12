@@ -461,7 +461,7 @@ def removetiger(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
 
 
 @whitelist_plus
-def whitelistlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def whitelistlist(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     reply = "<b>Known Slaves:</b>\n"
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
@@ -480,7 +480,7 @@ def whitelistlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @whitelist_plus
-def tigerlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def tigerlist(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     reply = "<b>Known Peasants:</b>\n"
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
@@ -498,7 +498,7 @@ def tigerlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @whitelist_plus
-def supportlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def supportlist(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
@@ -516,7 +516,7 @@ def supportlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @whitelist_plus
-def sudolist(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def sudolist(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
@@ -535,7 +535,7 @@ def sudolist(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @whitelist_plus
-def devlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def devlist(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML

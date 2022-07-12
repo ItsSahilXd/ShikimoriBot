@@ -11,7 +11,7 @@ from telegram.ext import ContextTypes, CommandHandler
 MAX_MESSAGE_LENGTH = MessageLimit.TEXT_LENGTH
 
 @user_admin
-def subscribe(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def subscribe(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     tg_chat_id = str(update.effective_chat.id)
 
     tg_feed_link = "https://www.animenewsnetwork.com/all/rss.xml?ann-edition=in"
@@ -41,7 +41,7 @@ def subscribe(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"Something went worng. Contact {SUPPORT_CHAT}")
 
 @user_admin
-def unsubscribe(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def unsubscribe(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     tg_chat_id = str(update.effective_chat.id)
 
     tg_feed_link = "https://www.animenewsnetwork.com/all/rss.xml?ann-edition=in"
@@ -64,7 +64,7 @@ def unsubscribe(update: Update, context: ContextTypes.DEFAULT_TYPE):
         update.effective_message.reply_text(
             f"Something went worng. Contact {SUPPORT_CHAT}")
 
-def show_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def show_url(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     tg_chat_id = str(update.effective_chat.id)
     bot = context.bot
     args = context.args
@@ -119,7 +119,7 @@ def show_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
         update.effective_message.reply_text("URL missing")
 
 
-def list_urls(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def list_urls(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     tg_chat_id = str(update.effective_chat.id)
     bot = context.bot
     user_data = sql.get_urls(tg_chat_id)
@@ -146,7 +146,7 @@ def list_urls(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_admin
-def add_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def add_url(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     args = context.args
     if len(args) >= 1:
@@ -183,7 +183,7 @@ def add_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_admin
-def remove_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def remove_url(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     args = context.args
     if len(args) >= 1:
@@ -211,7 +211,7 @@ def remove_url(update: Update, context: ContextTypes.DEFAULT_TYPE):
         update.effective_message.reply_text("URL missing")
 
 
-def rss_update(context: ContextTypes.DEFAULT_TYPE):
+def rss_update(context: ContextTypes.DEFAULT_TYPE) -> None:
     user_data = sql.get_all()
     job = context.job
     bot = context.bot
@@ -296,7 +296,7 @@ def rss_update(context: ContextTypes.DEFAULT_TYPE):
                 .format(len(new_entry_links) - 5))
 
 
-def rss_set(context: ContextTypes.DEFAULT_TYPE):
+def rss_set(context: ContextTypes.DEFAULT_TYPE) -> None:
     user_data = sql.get_all()
     bot, job = context.bot, context.job
     # this loop checks for every row in the DB

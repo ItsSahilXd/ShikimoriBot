@@ -18,7 +18,7 @@ from telegram.ext import ContextTypes, CommandHandler, filters
 from telegram.helpers import escape_markdown
 
 
-def get_rules(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def get_rules(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = update.effective_chat.id
     send_rules(update, chat_id)
 
@@ -92,7 +92,7 @@ def send_rules(update, chat_id, from_pm=False):
 
 
 @user_admin
-def set_rules(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def set_rules(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = update.effective_chat.id
     msg = update.effective_message  # type: Optional[Message]
     raw_text = msg.text
@@ -111,7 +111,7 @@ def set_rules(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_admin
-def clear_rules(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def clear_rules(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = update.effective_chat.id
     sql.set_rules(chat_id, "")
     update.effective_message.reply_text("Successfully cleared rules!")

@@ -226,7 +226,7 @@ def get(update, context, notename, show_none=True, no_format=False):
 
 
 @connection_status
-def cmd_get(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def cmd_get(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     if len(args) >= 2 and args[1].lower() == "noformat":
         get(update, context, args[0].lower(), show_none=True, no_format=True)
@@ -237,7 +237,7 @@ def cmd_get(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @connection_status
-def hash_get(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def hash_get(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message.text
     fst_word = message.split()[0]
     no_hash = fst_word[1:].lower()
@@ -245,7 +245,7 @@ def hash_get(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @connection_status
-def slash_get(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def slash_get(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message, chat_id = update.effective_message.text, update.effective_chat.id
     no_slash = message[1:]
     note_list = sql.get_all_chat_notes(chat_id)
@@ -260,7 +260,7 @@ def slash_get(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_admin
 @connection_status
-def save(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def save(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = update.effective_chat.id
     msg = update.effective_message  # type: Optional[Message]
 
@@ -304,7 +304,7 @@ def save(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @user_admin
 @connection_status
-def clear(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def clear(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     chat_id = update.effective_chat.id
     if len(args) >= 1:
@@ -316,7 +316,7 @@ def clear(update: Update, context: ContextTypes.DEFAULT_TYPE):
             update.effective_message.reply_text("That's not a note in my database!")
 
 
-def clearall(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def clearall(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     user = update.effective_user
     member = chat.get_member(user.id)
@@ -343,7 +343,7 @@ def clearall(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
 
-def clearall_btn(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def clearall_btn(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     chat = update.effective_chat
     message = update.effective_message
@@ -375,7 +375,7 @@ def clearall_btn(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @connection_status
-def list_notes(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def list_notes(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = update.effective_chat.id
     note_list = sql.get_all_chat_notes(chat_id)
     notes = len(note_list) + 1

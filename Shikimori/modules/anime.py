@@ -160,7 +160,7 @@ query ($id: Int,$search: String) {
 url = 'https://graphql.anilist.co'
 
 
-def airing(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def airing(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     search_str = message.text.split(" ", 1)
     if len(search_str) == 1:
@@ -189,7 +189,7 @@ def airing(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
-def anime(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def anime(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
@@ -255,7 +255,7 @@ def anime(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 reply_markup=InlineKeyboardMarkup(buttons))
 
 
-def character(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def character(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
@@ -290,7 +290,7 @@ def character(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 msg.replace('<b>', '</b>'), parse_mode=ParseMode.MARKDOWN)
 
 
-def manga(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def manga(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
@@ -353,7 +353,7 @@ def manga(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 reply_markup=InlineKeyboardMarkup(buttons))
 
 
-def user(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def user(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     args = message.text.strip().split(" ", 1)
 
@@ -435,7 +435,7 @@ def user(update: Update, context: ContextTypes.DEFAULT_TYPE):
     progress_message.delete()
 
 
-def upcoming(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def upcoming(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     jikan = jikanpy.jikan.Jikan()
     upcoming = jikan.top('anime', page=1, subtype="upcoming")
 
@@ -450,7 +450,7 @@ def upcoming(update: Update, context: ContextTypes.DEFAULT_TYPE):
     update.effective_message.reply_text(upcoming_message)
 
 
-def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     query = update.callback_query
     message = query.message
@@ -544,11 +544,11 @@ def site_search(update: Update, context: ContextTypes.DEFAULT_TYPE, site: str):
             result, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 
-def kaizoku(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def kaizoku(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     site_search(update, context, "kaizoku")
 
 
-def kayo(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def kayo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     site_search(update, context, "kayo")
 
 

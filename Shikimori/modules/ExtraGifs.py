@@ -15,10 +15,10 @@ from telegram.ext import ContextTypes
 GIF_ID = "CgACAgQAAx0CSVUvGgAC7KpfWxMrgGyQs-GUUJgt-TSO8cOIDgACaAgAAlZD0VHT3Zynpr5nGxsE"
 
 
-def runs(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def runs(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     update.effective_message.reply_text(random.choice(ExtraGifs_strings.RUN_STRINGS))
 
-def sanitize(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def sanitize(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     name = (
         message.reply_to_message.from_user.first_name
@@ -33,7 +33,7 @@ def sanitize(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply_animation(random.choice(ExtraGifs_strings.GIFS), caption=f"*Sanitizes {name}*")
 
 
-def slap(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def slap(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     message = update.effective_message
     chat = update.effective_chat
@@ -90,7 +90,7 @@ def slap(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     reply_text(reply, parse_mode=ParseMode.HTML)
 
-def pat(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def pat(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     args = context.args
     message = update.effective_message
@@ -130,10 +130,10 @@ def pat(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_to.reply_text(reply, parse_mode=ParseMode.HTML)
 
 
-def roll(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def roll(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     update.message.reply_text(random.choice(range(1, 7)))
 
-def shout(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def shout(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     text = " ".join(args)
     result = []
@@ -147,12 +147,12 @@ def shout(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return update.effective_message.reply_text(msg, parse_mode="MARKDOWN")
 
 
-def toss(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def toss(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     update.message.reply_text(random.choice(ExtraGifs_strings.TOSS))
 
 
 
-def shrug(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def shrug(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message
     reply_text = (
         msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
@@ -161,7 +161,7 @@ def shrug(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-def bluetext(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def bluetext(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = update.effective_message
     reply_text = (
         msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
@@ -171,7 +171,7 @@ def bluetext(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-def rlg(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def rlg(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     eyes = random.choice(ExtraGifs_strings.EYES)
     mouth = random.choice(ExtraGifs_strings.MOUTHS)
     ears = random.choice(ExtraGifs_strings.EARS)
@@ -183,7 +183,7 @@ def rlg(update: Update, context: ContextTypes.DEFAULT_TYPE):
     update.message.reply_text(repl)
 
 
-def decide(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def decide(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     reply_text = (
         update.effective_message.reply_to_message.reply_text
         if update.effective_message.reply_to_message
@@ -191,7 +191,7 @@ def decide(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     reply_text(random.choice(ExtraGifs_strings.DECIDE))
 
-def eightball(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def eightball(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     reply_text = (
         update.effective_message.reply_to_message.reply_text
         if update.effective_message.reply_to_message
@@ -200,7 +200,7 @@ def eightball(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply_text(random.choice(ExtraGifs_strings.EIGHTBALL))
 
 
-def table(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def table(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     reply_text = (
         update.effective_message.reply_to_message.reply_text
         if update.effective_message.reply_to_message
@@ -266,7 +266,7 @@ weebyfont = [
     "乙",
 ]
 
-def weebify(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def weebify(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     string = ""

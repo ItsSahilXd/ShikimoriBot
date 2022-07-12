@@ -7,91 +7,91 @@ from telegram import Update
 from telegram.ext import ContextTypes
 
 
-def simplify(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def simplify(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(newton.simplify("{}".format(args[0])))
 
 
-def factor(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def factor(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(newton.factor("{}".format(args[0])))
 
 
-def derive(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def derive(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(newton.derive("{}".format(args[0])))
 
 
-def integrate(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def integrate(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(newton.integrate("{}".format(args[0])))
 
 
-def zeroes(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def zeroes(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(newton.zeroes("{}".format(args[0])))
 
 
-def tangent(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def tangent(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(newton.tangent("{}".format(args[0])))
 
 
-def area(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def area(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(newton.area("{}".format(args[0])))
 
 
-def cos(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def cos(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(math.cos(int(args[0])))
 
 
-def sin(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def sin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(math.sin(int(args[0])))
 
 
-def tan(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def tan(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(math.tan(int(args[0])))
 
 
-def arccos(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def arccos(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(math.acos(int(args[0])))
 
 
-def arcsin(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def arcsin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(math.asin(int(args[0])))
 
 
-def arctan(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def arctan(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(math.atan(int(args[0])))
 
 
-def abs(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def abs(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(math.fabs(int(args[0])))
 
 
-def log(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def log(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     message = update.effective_message
     message.reply_text(math.log(int(args[0])))

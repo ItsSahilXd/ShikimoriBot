@@ -189,7 +189,7 @@ earth_ani = [
 ]
 
 
-def blockanimation(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def blockanimation(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     msg = update.effective_message.reply_text("⬜")
     for x in range(EDIT_TIMES):
@@ -198,7 +198,7 @@ def blockanimation(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg.edit_text("🟥")
 
 
-def clockanimation(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def clockanimation(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     msg = update.effective_message
     reply_text = (
@@ -210,7 +210,7 @@ def clockanimation(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg.edit_text("🕚")
 
 
-def earthanimation(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def earthanimation(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     msg = update.effective_message
     reply_text = (
@@ -222,7 +222,7 @@ def earthanimation(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg.edit_text("🌍")
 
 
-def moonanimation(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def moonanimation(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     msg = update.effective_message.reply_text("🌚")
     for x in range(EDIT_TIMES):
@@ -231,7 +231,7 @@ def moonanimation(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg.edit_text("🌙")
 
 
-def bombs(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def bombs(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     msg = update.effective_message.reply_text("💣")
     for x in range(EDIT_TIMES):
@@ -240,7 +240,7 @@ def bombs(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg.edit_text("RIP PLOX...")
 
 
-def hack(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def hack(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     msg = update.effective_message.reply_text("Target selected")
     for x in range(EDIT_TIMES):
@@ -249,7 +249,7 @@ def hack(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg.edit_text("successful hacked all data send on my Database")
 
 
-def love(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def love(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     msg = update.effective_message.reply_text("❣️")
     for x in range(EDIT_TIMES):
@@ -258,7 +258,7 @@ def love(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg.edit_text("True Love💞")
 
 
-def kill(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def kill(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot, args = context.bot, context.args
     msg = update.effective_message.reply_text("🔫")
     for x in range(EDIT_TIMES):

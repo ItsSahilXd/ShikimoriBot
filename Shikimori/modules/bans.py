@@ -397,7 +397,7 @@ def punch(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
 
 @bot_admin
 @can_restrict
-def punchme(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def punchme(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.effective_message.from_user.id
     if is_user_admin(update.effective_chat, user_id):
         update.effective_message.reply_text("I wish I could... but you're an admin.")
@@ -521,7 +521,7 @@ def selfunban(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
 @bot_admin
 @can_restrict
 @loggable
-def banme(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def banme(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_id = update.effective_message.from_user.id
     chat = update.effective_chat
     user = update.effective_user

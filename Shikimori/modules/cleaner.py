@@ -43,7 +43,7 @@ for handler_list in SHIKIMORI_PTB.handlers:
             command_list += handler.commands
 
 
-def clean_blue_text_must_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def clean_blue_text_must_click(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     bot = context.bot
     chat = update.effective_chat
     message = update.effective_message
@@ -68,7 +68,7 @@ def clean_blue_text_must_click(update: Update, context: ContextTypes.DEFAULT_TYP
 @connection_status
 @bot_can_delete
 @user_admin
-def set_blue_text_must_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def set_blue_text_must_click(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     message = update.effective_message
     bot, args = context.bot, context.args
@@ -102,7 +102,7 @@ def set_blue_text_must_click(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
 
 @user_admin
-def add_bluetext_ignore(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def add_bluetext_ignore(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     chat = update.effective_chat
     args = context.args
@@ -123,7 +123,7 @@ def add_bluetext_ignore(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_admin
-def remove_bluetext_ignore(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def remove_bluetext_ignore(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     chat = update.effective_chat
     args = context.args
@@ -146,7 +146,7 @@ def remove_bluetext_ignore(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_admin
-def add_bluetext_ignore_global(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def add_bluetext_ignore_global(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     args = context.args
     if len(args) >= 1:
@@ -166,7 +166,7 @@ def add_bluetext_ignore_global(update: Update, context: ContextTypes.DEFAULT_TYP
 
 
 @dev_plus
-def remove_bluetext_ignore_global(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def remove_bluetext_ignore_global(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     args = context.args
     if len(args) >= 1:
@@ -186,7 +186,7 @@ def remove_bluetext_ignore_global(update: Update, context: ContextTypes.DEFAULT_
 
 
 @dev_plus
-def bluetext_ignore_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def bluetext_ignore_list(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
     message = update.effective_message
     chat = update.effective_chat

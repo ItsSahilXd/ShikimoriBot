@@ -14,7 +14,7 @@ from Shikimori.modules.helper_funcs.chat_status import dev_plus
 DEBUG_MODE = False
 
 @dev_plus
-def debug(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def debug(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     global DEBUG_MODE
     args = update.effective_message.text.split(None, 1)
     message = update.effective_message
@@ -52,7 +52,7 @@ async def i_do_nothing_yes(event):
 support_chat = os.getenv("SUPPORT_CHAT")
 
 @dev_plus
-def logs(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def logs(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     user = update.effective_user
     with open("shikimori_logs.txt", "rb") as f:

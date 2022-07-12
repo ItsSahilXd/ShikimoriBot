@@ -131,7 +131,7 @@ def approval(update, context):
         )
 
 
-def unapproveall(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def unapproveall(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     user = update.effective_user
     member = chat.get_member(user.id)
@@ -163,7 +163,7 @@ def unapproveall(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
 
-def unapproveall_btn(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def unapproveall_btn(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     chat = update.effective_chat
     message = update.effective_message

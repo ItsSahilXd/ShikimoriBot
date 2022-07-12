@@ -5,19 +5,19 @@ from telegram import Update
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram.ext import ContextTypes
 
-def truth(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def truth(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     update.effective_message.reply_text(random.choice(truth_and_dare_string.TRUTH))
 
-def dare(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def dare(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     update.effective_message.reply_text(random.choice(truth_and_dare_string.DARE))
 
-def wyr(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def wyr(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     update.effective_message.reply_text(random.choice(truth_and_dare_string.WYR))
 
 
-def tord(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def tord(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     update.effective_message.reply_text(random.choice(truth_and_dare_string.TORD))
 
 

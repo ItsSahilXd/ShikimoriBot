@@ -7,7 +7,7 @@ from telegram.ext import ContextTypes
 from wikipedia.exceptions import DisambiguationError, PageError
 
 
-def wiki(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def wiki(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = (
         update.effective_message.reply_to_message
         if update.effective_message.reply_to_message

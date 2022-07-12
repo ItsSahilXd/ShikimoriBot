@@ -76,7 +76,7 @@ def kukiadd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
 
 @user_admin
 @gloggable
-def kuki(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def kuki(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.effective_user
     message = update.effective_message
     msg = "Choose an option"
@@ -105,7 +105,7 @@ def kuki_message(context: ContextTypes.DEFAULT_TYPE, message):
         return False
         
 
-def chatbot(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def chatbot(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = update.effective_message
     chat_id = update.effective_chat.id
     bot = context.bot
@@ -124,7 +124,7 @@ def chatbot(update: Update, context: ContextTypes.DEFAULT_TYPE):
         sleep(0.3)
         message.reply_text(kuki, timeout=60)
 
-def list_all_chats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def list_all_chats(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chats = sql.get_all_kuki_chats()
     text = "<b>CHATBOT-Enabled Chats</b>\n"
     for chat in chats:

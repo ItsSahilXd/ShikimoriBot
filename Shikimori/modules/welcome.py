@@ -160,7 +160,7 @@ def send(update, message, keyboard, backup_message):
     return msg
 
 @loggable
-def new_member(update: Update, context: ContextTypes.DEFAULT_TYPE):  # sourcery no-metrics
+def new_member(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:  # sourcery no-metrics
     bot, job_queue = context.bot, context.job_queue
     chat = update.effective_chat
     user = update.effective_user
@@ -615,7 +615,7 @@ def check_not_bot(member, chat_id, message_id, context):
             pass
 
 
-def left_member(update: Update, context: ContextTypes.DEFAULT_TYPE):  # sourcery no-metrics
+def left_member(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:  # sourcery no-metrics
     bot = context.bot
     chat = update.effective_chat
     user = update.effective_user
@@ -719,7 +719,7 @@ def left_member(update: Update, context: ContextTypes.DEFAULT_TYPE):  # sourcery
 
 
 @user_admin
-def welcome(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def welcome(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     chat = update.effective_chat
     # if no args, show current replies.
@@ -781,7 +781,7 @@ def welcome(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 @user_admin
-def goodbye(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def goodbye(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     args = context.args
     chat = update.effective_chat
 
@@ -1053,7 +1053,7 @@ def cleanservice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
         )
 
 
-def user_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def user_button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat = update.effective_chat
     user = update.effective_user
     query = update.callback_query
@@ -1116,7 +1116,7 @@ def user_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         query.answer(text="You're not allowed to do this!")
 
 
-def user_captcha_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def user_captcha_button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # sourcery no-metrics
     chat = update.effective_chat
     user = update.effective_user
@@ -1238,12 +1238,12 @@ WELC_MUTE_HELP_TXT = (
 
 
 @user_admin
-def welcome_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def welcome_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     update.effective_message.reply_text(WELC_HELP_TXT, parse_mode=ParseMode.MARKDOWN)
 
 
 @user_admin
-def welcome_mute_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def welcome_mute_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     update.effective_message.reply_text(
         WELC_MUTE_HELP_TXT, parse_mode=ParseMode.MARKDOWN
     )

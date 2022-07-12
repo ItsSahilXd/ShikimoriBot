@@ -99,7 +99,7 @@ if is_module_loaded(FILENAME):
                 )
 
     @user_admin
-    def logging(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    def logging(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         bot = context.bot
         message = update.effective_message
         chat = update.effective_chat
@@ -117,7 +117,7 @@ if is_module_loaded(FILENAME):
             message.reply_text("No log channel has been set for this group!")
 
     @user_admin
-    def setlog(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    def setlog(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         bot = context.bot
         message = update.effective_message
         chat = update.effective_chat
@@ -160,7 +160,7 @@ if is_module_loaded(FILENAME):
             )
 
     @user_admin
-    def unsetlog(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    def unsetlog(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         bot = context.bot
         message = update.effective_message
         chat = update.effective_chat

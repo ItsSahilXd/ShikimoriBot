@@ -19,7 +19,7 @@ useragent = "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebK
 opener.addheaders = [("User-agent", useragent)]
 
 
-def reverse(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def reverse(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
@@ -153,7 +153,7 @@ def reverse(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as exception:
         print(exception)
 
-def grs(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def grs(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
@@ -287,7 +287,7 @@ def grs(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as exception:
         print(exception)
 
-def gg(update: Update, context: ContextTypes.DEFAULT_TYPE):
+def gg(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
