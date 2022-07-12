@@ -1,12 +1,12 @@
 from Shikimori import ALIVE_MEDIA, UPDATE_CHANNEL, SUPPORT_CHAT, OWNER_USERNAME, SHIKIMORI_PTB, NETWORK, NETWORK_USERNAME
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 from telegram.constants import ParseMode
 
 PHOTO = ALIVE_MEDIA
 
-async def awake(update: Update, context: CallbackContext):
+async def awake(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     buttons = [
         [
@@ -37,7 +37,7 @@ async def awake(update: Update, context: CallbackContext):
 
     await message.reply_animation(PHOTO, caption=TEXT, reply_markup=InlineKeyboardMarkup(buttons),parse_mode=ParseMode.HTML)
 
-SHIKIMORI_PTB.add_handler(DisableAbleCommandHandler("alive", awake, block=False))
+SHIKIMORI_PTB.add_handler(DisableAbleCommandHandler("alive", awake))
 __command_list__ = ["alive"]
 
 __mod_name__ = "Alive ✨"

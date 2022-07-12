@@ -8,7 +8,7 @@ from telegram import (
 )
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, filters, CommandHandler, CallbackQueryHandler
+from telegram.ext import ContextTypes, filters, CommandHandler, CallbackQueryHandler
 from telegram.helpers import mention_html
 from typing import Optional
 
@@ -48,7 +48,7 @@ from Shikimori.modules.log_channel import gloggable, loggable
 @user_admin
 @user_can_ban
 @loggable
-def ban(update: Update, context: CallbackContext) -> str:
+def ban(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     chat = update.effective_chat
     user = update.effective_user
     message = update.effective_message
@@ -182,7 +182,7 @@ def ban(update: Update, context: CallbackContext) -> str:
 @user_admin
 @user_can_ban
 @loggable
-def temp_ban(update: Update, context: CallbackContext) -> str:
+def temp_ban(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     chat = update.effective_chat
     user = update.effective_user
     message = update.effective_message
@@ -288,7 +288,7 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
 @user_admin_no_reply
 @user_can_ban
 @loggable
-def unbanb_btn(update: Update, context: CallbackContext) -> str:
+def unbanb_btn(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     bot = context.bot
     query = update.callback_query
     chat = update.effective_chat
@@ -341,7 +341,7 @@ def unbanb_btn(update: Update, context: CallbackContext) -> str:
 @user_admin
 @user_can_ban
 @loggable
-def punch(update: Update, context: CallbackContext) -> str:
+def punch(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     chat = update.effective_chat
     user = update.effective_user
     message = update.effective_message
@@ -397,7 +397,7 @@ def punch(update: Update, context: CallbackContext) -> str:
 
 @bot_admin
 @can_restrict
-def punchme(update: Update, context: CallbackContext):
+def punchme(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_message.from_user.id
     if is_user_admin(update.effective_chat, user_id):
         update.effective_message.reply_text("I wish I could... but you're an admin.")
@@ -418,7 +418,7 @@ def punchme(update: Update, context: CallbackContext):
 @user_admin
 @user_can_ban
 @loggable
-def unban(update: Update, context: CallbackContext) -> Optional[str]:
+def unban(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Optional[str]:
     message = update.effective_message
     user = update.effective_user
     chat = update.effective_chat
@@ -478,7 +478,7 @@ def unban(update: Update, context: CallbackContext) -> Optional[str]:
 @bot_admin
 @can_restrict
 @gloggable
-def selfunban(update: Update, context: CallbackContext) -> str:
+def selfunban(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     message = update.effective_message
     user = update.effective_user
     bot, args = context.bot, context.args
@@ -521,7 +521,7 @@ def selfunban(update: Update, context: CallbackContext) -> str:
 @bot_admin
 @can_restrict
 @loggable
-def banme(update: Update, context: CallbackContext):
+def banme(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_message.from_user.id
     chat = update.effective_chat
     user = update.effective_user

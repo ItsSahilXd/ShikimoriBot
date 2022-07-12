@@ -4,10 +4,10 @@ from Shikimori import LOGGER, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext, CommandHandler
+from telegram.ext import ContextTypes, CommandHandler
 
 @dev_plus
-def shell(update: Update, context: CallbackContext):
+def shell(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     cmd = message.text.split(" ", 1)
     if len(cmd) == 1:

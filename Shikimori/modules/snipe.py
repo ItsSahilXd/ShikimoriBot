@@ -2,12 +2,12 @@
 from telegram.error import TelegramError
 from telegram import Update
 from telegram.ext import CommandHandler
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 from Shikimori.modules.helper_funcs.filters import CustomFilters
 from Shikimori import SHIKIMORI_PTB, LOGGER
 
-def snipe(update: Update, context: CallbackContext):
+def snipe(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
     bot = context.bot
     try:

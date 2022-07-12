@@ -1,6 +1,6 @@
 from datetime import datetime
 from functools import wraps
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 from Shikimori.modules.helper_funcs.misc import is_module_loaded
 
 FILENAME = __name__.rsplit(".", 1)[-1]
@@ -20,7 +20,7 @@ if is_module_loaded(FILENAME):
         @wraps(func)
         def log_action(
             update: Update,
-            context: CallbackContext,
+            context: ContextTypes.DEFAULT_TYPE,
             job_queue: JobQueue = None,
             *args,
             **kwargs,
@@ -49,7 +49,7 @@ if is_module_loaded(FILENAME):
 
     def gloggable(func):
         @wraps(func)
-        def glog_action(update: Update, context: CallbackContext, *args, **kwargs):
+        def glog_action(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
             result = func(update, context, *args, **kwargs)
             chat = update.effective_chat
             message = update.effective_message
@@ -71,7 +71,7 @@ if is_module_loaded(FILENAME):
         return glog_action
 
     def send_log(
-        context: CallbackContext, log_chat_id: str, orig_chat_id: str, result: str
+        context: ContextTypes.DEFAULT_TYPE, log_chat_id: str, orig_chat_id: str, result: str
     ):
         bot = context.bot
         try:
@@ -99,7 +99,7 @@ if is_module_loaded(FILENAME):
                 )
 
     @user_admin
-    def logging(update: Update, context: CallbackContext):
+    def logging(update: Update, context: ContextTypes.DEFAULT_TYPE):
         bot = context.bot
         message = update.effective_message
         chat = update.effective_chat
@@ -117,7 +117,7 @@ if is_module_loaded(FILENAME):
             message.reply_text("No log channel has been set for this group!")
 
     @user_admin
-    def setlog(update: Update, context: CallbackContext):
+    def setlog(update: Update, context: ContextTypes.DEFAULT_TYPE):
         bot = context.bot
         message = update.effective_message
         chat = update.effective_chat
@@ -160,7 +160,7 @@ if is_module_loaded(FILENAME):
             )
 
     @user_admin
-    def unsetlog(update: Update, context: CallbackContext):
+    def unsetlog(update: Update, context: ContextTypes.DEFAULT_TYPE):
         bot = context.bot
         message = update.effective_message
         chat = update.effective_chat

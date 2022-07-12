@@ -3,7 +3,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.constants import ParseMode
 
 from telegram.ext import (
-    CallbackContext,
+    ContextTypes,
     CommandHandler,
 )
 
@@ -11,7 +11,7 @@ PHOTO = "https://telegra.ph/file/f9b0895ae78578fda9202.jpg"
 
 
 
-def void(update: Update, context: CallbackContext):
+def void(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     TEXT = f"Welcome to **[【V๏ɪ፝֟𝔡】 ✧Network✧](https://t.me/voidxnetwork)** \n\n◈ Void is an anime based Community with a motive to spread love and peace around telegram. Go through the channel and join the Community if it draws your attention. ◈"
 

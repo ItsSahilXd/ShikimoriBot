@@ -3,21 +3,21 @@ import Shikimori.modules.truth_and_dare_string as truth_and_dare_string
 from Shikimori import SHIKIMORI_PTB
 from telegram import Update
 from Shikimori.modules.disable import DisableAbleCommandHandler
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
-def truth(update: Update, context: CallbackContext):
+def truth(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
     update.effective_message.reply_text(random.choice(truth_and_dare_string.TRUTH))
 
-def dare(update: Update, context: CallbackContext):
+def dare(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
     update.effective_message.reply_text(random.choice(truth_and_dare_string.DARE))
 
-def wyr(update: Update, context: CallbackContext):
+def wyr(update: Update, context: ContextTypes.DEFAULT_TYPE):
     update.effective_message.reply_text(random.choice(truth_and_dare_string.WYR))
 
 
-def tord(update: Update, context: CallbackContext):
+def tord(update: Update, context: ContextTypes.DEFAULT_TYPE):
     update.effective_message.reply_text(random.choice(truth_and_dare_string.TORD))
 
 

@@ -6,7 +6,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, constan
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telethon import events
-from telegram.ext import CallbackContext, CommandHandler, filters
+from telegram.ext import ContextTypes, CommandHandler, filters
 from telegram.helpers import mention_html
 from telethon.tl import functions, types
 
@@ -68,7 +68,7 @@ async def member_permissions(chat_id: int, user_id: int):
 
 @bot_admin
 @user_admin
-def set_sticker(update: Update, context: CallbackContext):
+def set_sticker(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = update.effective_message
     chat = update.effective_chat
     user = update.effective_user
@@ -97,7 +97,7 @@ def set_sticker(update: Update, context: CallbackContext):
     
 @bot_admin
 @user_admin
-def setchatpic(update: Update, context: CallbackContext):
+def setchatpic(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     msg = update.effective_message
     user = update.effective_user
@@ -132,7 +132,7 @@ def setchatpic(update: Update, context: CallbackContext):
         
 @bot_admin
 @user_admin
-def rmchatpic(update: Update, context: CallbackContext):
+def rmchatpic(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     msg = update.effective_message
     user = update.effective_user
@@ -149,7 +149,7 @@ def rmchatpic(update: Update, context: CallbackContext):
     
 @bot_admin
 @user_admin
-def set_desc(update: Update, context: CallbackContext):
+def set_desc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = update.effective_message
     chat = update.effective_chat
     user = update.effective_user
@@ -172,7 +172,7 @@ def set_desc(update: Update, context: CallbackContext):
         
 @bot_admin
 @user_admin
-def setchat_title(update: Update, context: CallbackContext):
+def setchat_title(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     msg = update.effective_message
     user = update.effective_user
@@ -203,7 +203,7 @@ def setchat_title(update: Update, context: CallbackContext):
 @can_promote
 @user_admin
 @loggable
-def promote(update: Update, context: CallbackContext) -> str:
+def promote(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     bot = context.bot
     args = context.args
 
@@ -285,7 +285,7 @@ def promote(update: Update, context: CallbackContext) -> str:
 @can_promote
 @user_admin
 @loggable
-def lowpromote(update: Update, context: CallbackContext) -> str:
+def lowpromote(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     bot = context.bot
     args = context.args
 
@@ -362,7 +362,7 @@ def lowpromote(update: Update, context: CallbackContext) -> str:
 @can_promote
 @user_admin
 @loggable
-def fullpromote(update: Update, context: CallbackContext) -> str:
+def fullpromote(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     bot = context.bot
     args = context.args
 
@@ -450,7 +450,7 @@ def fullpromote(update: Update, context: CallbackContext) -> str:
 @can_promote
 @user_admin
 @loggable
-def demote(update: Update, context: CallbackContext) -> str:
+def demote(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     bot = context.bot
     args = context.args
 
@@ -536,7 +536,7 @@ def refresh_admin(update, _):
 @bot_admin
 @can_promote
 @user_admin
-def set_title(update: Update, context: CallbackContext):
+def set_title(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     args = context.args
 
@@ -602,7 +602,7 @@ def set_title(update: Update, context: CallbackContext):
 @can_pin
 @user_admin
 @loggable
-def pin(update: Update, context: CallbackContext) -> str:
+def pin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     bot, args = context.bot, context.args
     user = update.effective_user
     chat = update.effective_chat
@@ -668,7 +668,7 @@ def pin(update: Update, context: CallbackContext) -> str:
 @can_pin
 @user_admin
 @loggable
-def unpin(update: Update, context: CallbackContext):
+def unpin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     user = update.effective_user
     msg = update.effective_message
@@ -732,7 +732,7 @@ def unpin(update: Update, context: CallbackContext):
 
 
 @bot_admin
-def pinned(update: Update, context: CallbackContext) -> str:
+def pinned(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     bot = context.bot
     msg = update.effective_message
     msg_id = (
@@ -771,7 +771,7 @@ def pinned(update: Update, context: CallbackContext) -> str:
 @bot_admin
 @user_admin
 @connection_status
-def invite(update: Update, context: CallbackContext):
+def invite(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     chat = update.effective_chat
 
@@ -935,7 +935,7 @@ def adminlist(update, context):
 @can_promote
 @user_admin
 @loggable
-def button(update: Update, context: CallbackContext) -> str:
+def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
     bot: Optional[Bot] = context.bot

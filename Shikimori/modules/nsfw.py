@@ -6,7 +6,7 @@ import Shikimori.modules.sql.nsfw_sql as sql
 from Shikimori.modules.log_channel import gloggable
 from telegram import Update
 from telegram.error import BadRequest, RetryAfter, Forbidden
-from telegram.ext import CommandHandler, CallbackContext
+from telegram.ext import CommandHandler, ContextTypes
 from Shikimori.modules.helper_funcs.filters import CustomFilters
 from Shikimori.modules.helper_funcs.chat_status import user_admin
 from telegram.helpers import mention_html
@@ -14,7 +14,7 @@ url_nsfw = "https://api.waifu.pics/nsfw/"
 
 @user_admin
 @gloggable
-def add_nsfw(update: Update, context: CallbackContext):
+def add_nsfw(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     msg = update.effective_message
     user = update.effective_user
@@ -34,7 +34,7 @@ def add_nsfw(update: Update, context: CallbackContext):
 
 @user_admin
 @gloggable
-def rem_nsfw(update: Update, context: CallbackContext):
+def rem_nsfw(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = update.effective_message
     chat = update.effective_chat
     user = update.effective_user
@@ -52,7 +52,7 @@ def rem_nsfw(update: Update, context: CallbackContext):
         )
         return message
 
-def list_nsfw_chats(update: Update, context: CallbackContext):
+def list_nsfw_chats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chats = sql.get_all_nsfw_chats()
     text = "<b>NSFW Activated Chats</b>\n"
     for chat in chats:

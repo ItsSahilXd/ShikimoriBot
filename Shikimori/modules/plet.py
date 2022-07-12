@@ -5,14 +5,14 @@ from io import BytesIO
 
 from PIL import Image
 from telegram import Update
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori.modules.thonkify_dict import thonkifydict
 
 
-def plet(update: Update, context: CallbackContext):
+def plet(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     if not message.reply_to_message:
         msg = message.text.split(None, 1)[1]

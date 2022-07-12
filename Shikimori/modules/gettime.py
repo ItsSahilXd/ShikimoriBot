@@ -6,7 +6,7 @@ from Shikimori import TIME_API_KEY, SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 
 def generate_time(to_find: str, findtype: List[str]) -> str:
@@ -62,7 +62,7 @@ def generate_time(to_find: str, findtype: List[str]) -> str:
     return result
 
 
-def gettime(update: Update, context: CallbackContext):
+def gettime(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
 
     try:

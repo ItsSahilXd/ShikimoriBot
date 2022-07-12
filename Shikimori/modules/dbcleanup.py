@@ -7,13 +7,13 @@ from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.error import BadRequest, Forbidden
 from telegram.ext import (
-    CallbackContext,
+    ContextTypes,
     CallbackQueryHandler,
     CommandHandler,
 )
 
 
-def get_invalid_chats(update: Update, context: CallbackContext, remove: bool = False):
+def get_invalid_chats(update: Update, context: ContextTypes.DEFAULT_TYPE, remove: bool = False):
     bot = context.bot
     chat_id = update.effective_chat.id
     chats = user_sql.get_all_chats()
@@ -61,7 +61,7 @@ def get_invalid_chats(update: Update, context: CallbackContext, remove: bool = F
     return kicked_chats
 
 
-def get_invalid_gban(update: Update, context: CallbackContext, remove: bool = False):
+def get_invalid_gban(update: Update, context: ContextTypes.DEFAULT_TYPE, remove: bool = False):
     bot = context.bot
     banned = gban_sql.get_gban_list()
     ungbanned_users = 0
@@ -87,7 +87,7 @@ def get_invalid_gban(update: Update, context: CallbackContext, remove: bool = Fa
 
 
 @dev_plus
-def dbcleanup(update: Update, context: CallbackContext):
+def dbcleanup(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = update.effective_message
 
     msg.reply_text("Getting invalid chat count ...")
@@ -107,7 +107,7 @@ def dbcleanup(update: Update, context: CallbackContext):
     )
 
 
-def callback_button(update: Update, context: CallbackContext):
+def callback_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     query = update.callback_query
     message = query.message

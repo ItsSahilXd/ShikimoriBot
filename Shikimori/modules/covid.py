@@ -1,14 +1,14 @@
 import requests
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 
 
 
-def covid(update: Update, context: CallbackContext):
+def covid(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     text = message.text.split(" ", 1)
     if len(text) == 1:

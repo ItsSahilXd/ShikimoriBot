@@ -6,10 +6,10 @@ import Shikimori.modules.animal_facts_string as animal_facts
 from Shikimori import SHIKIMORI_PTB
 from telegram import Update
 from Shikimori.modules.disable import DisableAbleCommandHandler
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 
-def animalfact(update: Update, context: CallbackContext):
+def animalfact(update: Update, context: ContextTypes.DEFAULT_TYPE):
     update.effective_message.reply_text(random.choice(animal_facts.ANIMAL_FACTS))
 
 def cats(update, context):

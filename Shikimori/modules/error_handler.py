@@ -8,7 +8,7 @@ import traceback
 import pretty_errors
 import requests
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
-from telegram.ext import CallbackContext, CommandHandler
+from telegram.ext import ContextTypes, CommandHandler
 
 from Shikimori import SHIKIMORI_PTB, DEV_USERS, ERROR_LOG_CHANNEL
 
@@ -39,7 +39,7 @@ class ErrorsDict(dict):
 errors = ErrorsDict()
 
 
-def error_callback(update: Update, context: CallbackContext):
+def error_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not update:
         return
     if context.error not in errors:
@@ -109,7 +109,7 @@ def error_callback(update: Update, context: CallbackContext):
         )
 
 
-def list_errors(update: Update, context: CallbackContext):
+def list_errors(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id not in DEV_USERS:
         return
     e = dict(sorted(errors.items(), key=lambda item: item[1], reverse=True))

@@ -6,7 +6,7 @@ from pytimeparse.timeparse import timeparse
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 from telegram.helpers import mention_html
 
 from .log_channel import loggable
@@ -42,7 +42,7 @@ def get_readable_time(time: int) -> str:
 @connection_status
 @loggable
 @user_admin(AdminPerms.CAN_CHANGE_INFO)
-def setRaid(update: Update, context: CallbackContext) -> Optional[str]:
+def setRaid(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Optional[str]:
     args = context.args
     chat = update.effective_chat
     msg = update.effective_message
@@ -105,7 +105,7 @@ def setRaid(update: Update, context: CallbackContext) -> Optional[str]:
 @connection_status
 @user_admin_no_reply
 @loggable
-def enable_raid_cb(update: Update, ctx: CallbackContext) -> Optional[str]:
+def enable_raid_cb(update: Update, ctx: ContextTypes) -> Optional[str]:
     args = update.callback_query.data.replace("enable_raid=", "").split("=")
     chat = update.effective_chat
     user = update.effective_user
@@ -142,7 +142,7 @@ def enable_raid_cb(update: Update, ctx: CallbackContext) -> Optional[str]:
 @connection_status
 @user_admin_no_reply
 @loggable
-def disable_raid_cb(update: Update, _: CallbackContext) -> Optional[str]:
+def disable_raid_cb(update: Update, _: ContextTypes) -> Optional[str]:
     args = update.callback_query.data.replace("disable_raid=", "").split("=")
     chat = update.effective_chat
     user = update.effective_user
@@ -167,7 +167,7 @@ def disable_raid_cb(update: Update, _: CallbackContext) -> Optional[str]:
 @Shikimoricallback(pattern="cancel_raid=")
 @connection_status
 @user_admin_no_reply
-def disable_raid_cb(update: Update, _: CallbackContext):
+def disable_raid_cb(update: Update, _: ContextTypes):
     args = update.callback_query.data.split("=")
     what = args[0]
     update.effective_message.edit_text(
@@ -179,7 +179,7 @@ def disable_raid_cb(update: Update, _: CallbackContext):
 @connection_status
 @loggable
 @user_admin(AdminPerms.CAN_CHANGE_INFO)
-def raidtime(update: Update, context: CallbackContext) -> Optional[str]:
+def raidtime(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Optional[str]:
     what, time, acttime = sql.getRaidStatus(update.effective_chat.id)
     args = context.args
     msg = update.effective_message
@@ -213,7 +213,7 @@ def raidtime(update: Update, context: CallbackContext) -> Optional[str]:
 @connection_status
 @user_admin(AdminPerms.CAN_CHANGE_INFO)
 @loggable
-def raidtime(update: Update, context: CallbackContext) -> Optional[str]:
+def raidtime(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Optional[str]:
     what, t, time = sql.getRaidStatus(update.effective_chat.id)
     args = context.args
     msg = update.effective_message

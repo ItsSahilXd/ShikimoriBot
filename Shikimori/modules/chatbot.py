@@ -10,7 +10,7 @@ from time import sleep
 from telegram.constants import ParseMode
 from telegram import (CallbackQuery, Chat, MessageEntity, InlineKeyboardButton,
                       InlineKeyboardMarkup, Update, Bot, User)
-from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
+from telegram.ext import (ContextTypes, CallbackQueryHandler, CommandHandler,
                          filters, MessageHandler,
                           )
 from telegram.error import BadRequest, RetryAfter, Forbidden
@@ -24,7 +24,7 @@ from Shikimori.__main__ import bot_name
 
 @user_admin_no_reply
 @gloggable
-def kukirm(update: Update, context: CallbackContext) -> str:
+def kukirm(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
     match = re.match(r"rm_chat\((.+?)\)", query.data)
@@ -50,7 +50,7 @@ def kukirm(update: Update, context: CallbackContext) -> str:
 
 @user_admin_no_reply
 @gloggable
-def kukiadd(update: Update, context: CallbackContext) -> str:
+def kukiadd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
     match = re.match(r"add_chat\((.+?)\)", query.data)
@@ -76,7 +76,7 @@ def kukiadd(update: Update, context: CallbackContext) -> str:
 
 @user_admin
 @gloggable
-def kuki(update: Update, context: CallbackContext):
+def kuki(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     message = update.effective_message
     msg = "Choose an option"
@@ -94,7 +94,7 @@ def kuki(update: Update, context: CallbackContext):
         parse_mode=ParseMode.HTML,
     )
 
-def kuki_message(context: CallbackContext, message):
+def kuki_message(context: ContextTypes.DEFAULT_TYPE, message):
     reply_message = message.reply_to_message
     if message.text.lower() == "Yuzuki":
         return True
@@ -105,7 +105,7 @@ def kuki_message(context: CallbackContext, message):
         return False
         
 
-def chatbot(update: Update, context: CallbackContext):
+def chatbot(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     chat_id = update.effective_chat.id
     bot = context.bot
@@ -124,7 +124,7 @@ def chatbot(update: Update, context: CallbackContext):
         sleep(0.3)
         message.reply_text(kuki, timeout=60)
 
-def list_all_chats(update: Update, context: CallbackContext):
+def list_all_chats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chats = sql.get_all_kuki_chats()
     text = "<b>CHATBOT-Enabled Chats</b>\n"
     for chat in chats:

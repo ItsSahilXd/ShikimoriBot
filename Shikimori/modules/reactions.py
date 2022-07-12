@@ -3,7 +3,7 @@ import random
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import Update
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 reactions = [
     "( ͡° ͜ʖ ͡°)",
@@ -211,7 +211,7 @@ reactions = [
 ]
 
 
-def react(update: Update, context: CallbackContext):
+def react(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     react = random.choice(reactions)
     if message.reply_to_message:

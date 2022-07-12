@@ -2,7 +2,7 @@ import html
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from Shikimori import SHIKIMORI_PTB, DRAGONS
 from Shikimori.modules.helper_funcs.extraction import extract_user
-from telegram.ext import CallbackContext, CallbackQueryHandler
+from telegram.ext import ContextTypes, CallbackQueryHandler
 import Shikimori.modules.sql.approve_sql as sql
 from Shikimori.modules.helper_funcs.chat_status import user_admin
 from Shikimori.modules.log_channel import loggable
@@ -131,7 +131,7 @@ def approval(update, context):
         )
 
 
-def unapproveall(update: Update, context: CallbackContext):
+def unapproveall(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     user = update.effective_user
     member = chat.get_member(user.id)
@@ -163,7 +163,7 @@ def unapproveall(update: Update, context: CallbackContext):
         )
 
 
-def unapproveall_btn(update: Update, context: CallbackContext):
+def unapproveall_btn(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     chat = update.effective_chat
     message = update.effective_message

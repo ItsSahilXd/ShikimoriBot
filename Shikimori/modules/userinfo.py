@@ -7,7 +7,7 @@ from telethon import events
 
 from telegram import Update, MessageEntity, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.constants import ParseMode, MessageLimit
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 from telegram.error import BadRequest
 from telegram.helpers import escape_markdown, mention_html
 
@@ -123,7 +123,7 @@ def make_bar(per):
     return "❤" * done + "♡" * (10 - done)
 
 
-def get_id(update: Update, context: CallbackContext):
+def get_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot, args = context.bot, context.args
     message = update.effective_message
     chat = update.effective_chat
@@ -202,7 +202,7 @@ async def group_info(event) -> None:
 
 
 
-def gifid(update: Update, context: CallbackContext):
+def gifid(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = update.effective_message
     if msg.reply_to_message and msg.reply_to_message.animation:
         update.effective_message.reply_text(
@@ -213,7 +213,7 @@ def gifid(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Please reply to a gif to get its ID.")
 
 
-def info(update: Update, context: CallbackContext):
+def info(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot, args = context.bot, context.args
     message = update.effective_message
     chat = update.effective_chat
@@ -353,7 +353,7 @@ def info(update: Update, context: CallbackContext):
 
     rep.delete()
 
-def about_me(update: Update, context: CallbackContext):
+def about_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot, args = context.bot, context.args
     message = update.effective_message
     user_id = extract_user(message, args)
@@ -377,7 +377,7 @@ def about_me(update: Update, context: CallbackContext):
 
 
 
-def set_about_me(update: Update, context: CallbackContext):
+def set_about_me(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     user_id = message.from_user.id
     if user_id in [777000, 1087968824]:
@@ -408,7 +408,7 @@ def set_about_me(update: Update, context: CallbackContext):
                 ),
             )
         
-def about_bio(update: Update, context: CallbackContext):
+def about_bio(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot, args = context.bot, context.args
     message = update.effective_message
 
@@ -433,7 +433,7 @@ def about_bio(update: Update, context: CallbackContext):
         )
 
 
-def set_about_bio(update: Update, context: CallbackContext):
+def set_about_bio(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     sender_id = update.effective_user.id
     bot = context.bot

@@ -10,7 +10,7 @@ from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup,
                       Update)
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext, CallbackQueryHandler
+from telegram.ext import ContextTypes, CallbackQueryHandler
 
 info_btn = "More Information"
 kaizoku_btn = "Kaizoku ☠️"
@@ -160,7 +160,7 @@ query ($id: Int,$search: String) {
 url = 'https://graphql.anilist.co'
 
 
-def airing(update: Update, context: CallbackContext):
+def airing(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     search_str = message.text.split(" ", 1)
     if len(search_str) == 1:
@@ -189,7 +189,7 @@ def airing(update: Update, context: CallbackContext):
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
-def anime(update: Update, context: CallbackContext):
+def anime(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
@@ -255,7 +255,7 @@ def anime(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(buttons))
 
 
-def character(update: Update, context: CallbackContext):
+def character(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
@@ -290,7 +290,7 @@ def character(update: Update, context: CallbackContext):
                 msg.replace('<b>', '</b>'), parse_mode=ParseMode.MARKDOWN)
 
 
-def manga(update: Update, context: CallbackContext):
+def manga(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1:
@@ -353,7 +353,7 @@ def manga(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(buttons))
 
 
-def user(update: Update, context: CallbackContext):
+def user(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     args = message.text.strip().split(" ", 1)
 
@@ -435,7 +435,7 @@ def user(update: Update, context: CallbackContext):
     progress_message.delete()
 
 
-def upcoming(update: Update, context: CallbackContext):
+def upcoming(update: Update, context: ContextTypes.DEFAULT_TYPE):
     jikan = jikanpy.jikan.Jikan()
     upcoming = jikan.top('anime', page=1, subtype="upcoming")
 
@@ -450,7 +450,7 @@ def upcoming(update: Update, context: CallbackContext):
     update.effective_message.reply_text(upcoming_message)
 
 
-def button(update: Update, context: CallbackContext):
+def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     query = update.callback_query
     message = query.message
@@ -486,7 +486,7 @@ def button(update: Update, context: CallbackContext):
             query.answer("You are not allowed to use this.")
 
 
-def site_search(update: Update, context: CallbackContext, site: str):
+def site_search(update: Update, context: ContextTypes.DEFAULT_TYPE, site: str):
     message = update.effective_message
     args = message.text.strip().split(" ", 1)
     more_results = True
@@ -544,11 +544,11 @@ def site_search(update: Update, context: CallbackContext, site: str):
             result, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 
-def kaizoku(update: Update, context: CallbackContext):
+def kaizoku(update: Update, context: ContextTypes.DEFAULT_TYPE):
     site_search(update, context, "kaizoku")
 
 
-def kayo(update: Update, context: CallbackContext):
+def kayo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     site_search(update, context, "kayo")
 
 

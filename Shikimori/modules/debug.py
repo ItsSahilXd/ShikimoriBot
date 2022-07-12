@@ -5,7 +5,7 @@ import time
 from telethon import events
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext, CommandHandler
+from telegram.ext import ContextTypes, CommandHandler
 from telegram.error import BadRequest
 
 from Shikimori import telethn, SHIKIMORI_PTB
@@ -14,7 +14,7 @@ from Shikimori.modules.helper_funcs.chat_status import dev_plus
 DEBUG_MODE = False
 
 @dev_plus
-def debug(update: Update, context: CallbackContext):
+def debug(update: Update, context: ContextTypes.DEFAULT_TYPE):
     global DEBUG_MODE
     args = update.effective_message.text.split(None, 1)
     message = update.effective_message
@@ -52,7 +52,7 @@ async def i_do_nothing_yes(event):
 support_chat = os.getenv("SUPPORT_CHAT")
 
 @dev_plus
-def logs(update: Update, context: CallbackContext):
+def logs(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     user = update.effective_user
     with open("shikimori_logs.txt", "rb") as f:

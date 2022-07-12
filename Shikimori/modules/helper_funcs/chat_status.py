@@ -15,7 +15,7 @@ from Shikimori import (
 
 from telegram import Chat, ChatMember, Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 # stores admemes in memory for 10 min.
 ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10, timer=perf_counter)
@@ -100,7 +100,7 @@ def is_user_in_chat(chat: Chat, user_id: int) -> bool:
 
 def dev_plus(func):
     @wraps(func)
-    def is_dev_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
+    def is_dev_plus_func(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         user = update.effective_user
 
@@ -124,7 +124,7 @@ def dev_plus(func):
 
 def sudo_plus(func):
     @wraps(func)
-    def is_sudo_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
+    def is_sudo_plus_func(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
@@ -148,7 +148,7 @@ def sudo_plus(func):
 
 def support_plus(func):
     @wraps(func)
-    def is_support_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
+    def is_support_plus_func(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
@@ -168,7 +168,7 @@ def whitelist_plus(func):
     @wraps(func)
     def is_whitelist_plus_func(
         update: Update,
-        context: CallbackContext,
+        context: ContextTypes.DEFAULT_TYPE,
         *args,
         **kwargs,
     ):
@@ -187,7 +187,7 @@ def whitelist_plus(func):
 
 def user_admin(func):
     @wraps(func)
-    def is_admin(update: Update, context: CallbackContext, *args, **kwargs):
+    def is_admin(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
@@ -213,7 +213,7 @@ def user_admin_no_reply(func):
     @wraps(func)
     def is_not_admin_no_reply(
         update: Update,
-        context: CallbackContext,
+        context: ContextTypes.DEFAULT_TYPE,
         *args,
         **kwargs,
     ):
@@ -236,7 +236,7 @@ def user_admin_no_reply(func):
 
 def user_not_admin(func):
     @wraps(func)
-    def is_not_admin(update: Update, context: CallbackContext, *args, **kwargs):
+    def is_not_admin(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         user = update.effective_user
         chat = update.effective_chat
@@ -251,7 +251,7 @@ def user_not_admin(func):
 
 def bot_admin(func):
     @wraps(func)
-    def is_admin(update: Update, context: CallbackContext, *args, **kwargs):
+    def is_admin(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         chat = update.effective_chat
         update_chat_title = chat.title
@@ -271,7 +271,7 @@ def bot_admin(func):
 
 def bot_can_delete(func):
     @wraps(func)
-    def delete_rights(update: Update, context: CallbackContext, *args, **kwargs):
+    def delete_rights(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         chat = update.effective_chat
         update_chat_title = chat.title
@@ -291,7 +291,7 @@ def bot_can_delete(func):
 
 def can_pin(func):
     @wraps(func)
-    def pin_rights(update: Update, context: CallbackContext, *args, **kwargs):
+    def pin_rights(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         chat = update.effective_chat
         update_chat_title = chat.title
@@ -313,7 +313,7 @@ def can_pin(func):
 
 def can_promote(func):
     @wraps(func)
-    def promote_rights(update: Update, context: CallbackContext, *args, **kwargs):
+    def promote_rights(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         chat = update.effective_chat
         update_chat_title = chat.title
@@ -336,7 +336,7 @@ def can_promote(func):
 
 def can_restrict(func):
     @wraps(func)
-    def restrict_rights(update: Update, context: CallbackContext, *args, **kwargs):
+    def restrict_rights(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         chat = update.effective_chat
         update_chat_title = chat.title
@@ -359,7 +359,7 @@ def can_restrict(func):
 
 def user_can_ban(func):
     @wraps(func)
-    def user_is_banhammer(update: Update, context: CallbackContext, *args, **kwargs):
+    def user_is_banhammer(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         bot = context.bot
         user = update.effective_user.id
         member = update.effective_chat.get_member(user)
@@ -379,7 +379,7 @@ def user_can_ban(func):
 
 def connection_status(func):
     @wraps(func)
-    def connected_status(update: Update, context: CallbackContext, *args, **kwargs):
+    def connected_status(update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs):
         conn = connected(
             context.bot,
             update,

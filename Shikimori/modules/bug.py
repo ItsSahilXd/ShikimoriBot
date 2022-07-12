@@ -9,9 +9,9 @@ from Shikimori import (
 import time
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext, CallbackQueryHandler, CommandHandler
+from telegram.ext import ContextTypes, CallbackQueryHandler, CommandHandler
 
-def bug(update: Update, context: CallbackContext):
+def bug(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         args = update.effective_message.text.split(None, 1)
         user_id = update.effective_message.from_user.id
@@ -98,12 +98,12 @@ Event Stamp :  {datetimes}</b>
             parse_mode=ParseMode.MARKDOWN,
         )
 
-def close_reply(update: Update, context: CallbackContext):
+def close_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     if query.data == "close_reply_":
         query.message.delete()
 
-def close_send_photo(update: Update, context: CallbackContext):
+def close_send_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     if query.data == "close_send_photo_":
         user = update.effective_user

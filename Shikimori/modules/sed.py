@@ -29,7 +29,7 @@ from Shikimori import LOGGER, SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleMessageHandler
 from Shikimori.modules.helper_funcs.regex_helper import (infinite_loop_check)
 from telegram import Update
-from telegram.ext import CallbackContext, filters
+from telegram.ext import ContextTypes, filters
 
 DELIMITERS = ("/", ":", "|", "_")
 
@@ -74,7 +74,7 @@ def separate_sed(sed_string):
         return replace, replace_with, flags.lower()
 
 
-def sed(update: Update, context: CallbackContext):
+def sed(update: Update, context: ContextTypes.DEFAULT_TYPE):
     sed_result = separate_sed(update.effective_message.text)
     if sed_result and update.effective_message.reply_to_message:
         if update.effective_message.reply_to_message.text:

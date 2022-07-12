@@ -2,12 +2,12 @@ from Shikimori import SHIKIMORI_PTB, APOD_API_KEY
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.constants import ParseMode
 from telegram.ext import (
-    CallbackContext,
+    ContextTypes,
     CommandHandler,
 )
 import requests
 
-def apod(update: Update, context: CallbackContext):
+def apod(update: Update, context: ContextTypes.DEFAULT_TYPE):
     result = requests.get('https://api.nasa.gov/planetary/apod?api_key=' + APOD_API_KEY).json()
     img = result['hdurl']
     title = result['title']

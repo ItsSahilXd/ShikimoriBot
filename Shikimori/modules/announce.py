@@ -1,7 +1,7 @@
 import html
 
 from telegram import Update
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 from telegram.helpers import mention_html
 
 from Shikimori.modules.log_channel import loggable
@@ -14,7 +14,7 @@ from Shikimori.modules.helper_funcs.anonymous import user_admin as u_admin, Admi
 @Shikimoricmd(command="announce", )
 @u_admin(AdminPerms.CAN_CHANGE_INFO)
 @loggable
-def announcestat(update: Update, context: CallbackContext) -> str:
+def announcestat(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     args = context.args
     if len(args) > 0:
         u = update.effective_user

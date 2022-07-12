@@ -4,7 +4,7 @@ from janda import Nhentai
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import Update
-from telegram.ext import CallbackContext, CallbackQueryHandler
+from telegram.ext import ContextTypes, CallbackQueryHandler
 from Shikimori import pbot, SHIKIMORI_PTB
 import Shikimori.modules.sql.nsfw_sql as sql
 
@@ -77,7 +77,7 @@ Tags ➢** `{tags}`
     except:
         return await message.reply_text("Not Found. Make sure only integers are allowed.")
 
-def close_reply(update: Update, context: CallbackContext):
+def close_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     if query.data == "close_reply_":
         query.message.delete()

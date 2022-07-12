@@ -10,7 +10,7 @@ from Shikimori import LOGGER, SHIKIMORI_PTB
 from Shikimori.modules.helper_funcs.chat_status import dev_plus
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext, CommandHandler
+from telegram.ext import ContextTypes, CommandHandler
 
 namespaces = {}
 
@@ -50,7 +50,7 @@ def send(msg, bot, update):
 
 
 @dev_plus
-def execute(update: Update, context: CallbackContext):
+def execute(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     send(do(exec, bot, update), bot, update)
 
@@ -108,7 +108,7 @@ def do(func, bot, update):
 
 
 @dev_plus
-def clear(update: Update, context: CallbackContext):
+def clear(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     log_input(update)
     global namespaces

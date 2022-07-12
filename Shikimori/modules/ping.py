@@ -25,7 +25,7 @@ from psutil import cpu_percent, virtual_memory, disk_usage, boot_time
 from spamwatch import __version__ as __sw__
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CommandHandler, filters, CallbackContext
+from telegram.ext import CommandHandler, filters, ContextTypes
 
 from Shikimori import SHIKIMORI_PTB, OWNER_ID
 from Shikimori.modules.helper_funcs.alternate import typing_action
@@ -102,7 +102,7 @@ def get_bot_ip(update, _):
 
 
 @typing_action
-def system_status(update: Update, context: CallbackContext):
+def system_status(update: Update, context: ContextTypes.DEFAULT_TYPE):
     uptime = datetime.datetime.fromtimestamp(boot_time()).strftime("%Y-%m-%d %H:%M:%S")
     status = "<b>======[ 𝚂𝚈𝚂𝚃𝙴𝙼 𝚂𝚃𝙰𝚃𝙸𝚂𝚃𝙸𝙲𝚂 ]======</b>\n\n"
     status += f"<b>📍 𝚂𝚢𝚜𝚝𝚎𝚖 𝚞𝚙𝚝𝚒𝚖𝚎 :</b> <code>{str(uptime)}" + "</code>\n\n"

@@ -37,7 +37,7 @@ from telegram import (
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
 from telegram.ext import (
-    CallbackContext,
+    ContextTypes,
     CallbackQueryHandler,
     CommandHandler,
     filters,
@@ -149,7 +149,7 @@ def warn(user: User,
 # @user_can_ban
 @bot_admin
 @loggable
-def button(update: Update, context: CallbackContext) -> str:
+def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     query: Optional[CallbackQuery] = update.callback_query
     user: Optional[User] = update.effective_user
     match = re.match(r"rm_warn\((.+?)\)", query.data)
@@ -182,7 +182,7 @@ def button(update: Update, context: CallbackContext) -> str:
 @can_restrict
 # @user_can_ban
 @loggable
-def warn_user(update: Update, context: CallbackContext) -> str:
+def warn_user(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     args = context.args
     message: Optional[Message] = update.effective_message
     chat: Optional[Chat] = update.effective_chat
@@ -214,7 +214,7 @@ def warn_user(update: Update, context: CallbackContext) -> str:
 # @user_can_ban
 @bot_admin
 @loggable
-def reset_warns(update: Update, context: CallbackContext) -> str:
+def reset_warns(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     args = context.args
     message: Optional[Message] = update.effective_message
     chat: Optional[Chat] = update.effective_chat
@@ -237,7 +237,7 @@ def reset_warns(update: Update, context: CallbackContext) -> str:
     return ""
 
 
-def warns(update: Update, context: CallbackContext):
+def warns(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
     message: Optional[Message] = update.effective_message
     chat: Optional[Chat] = update.effective_chat
@@ -269,7 +269,7 @@ def warns(update: Update, context: CallbackContext):
 # SHIKIMORI_PTB handler stop - do not async
 @user_admin
 # @user_can_ban
-def add_warn_filter(update: Update, context: CallbackContext):
+def add_warn_filter(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat: Optional[Chat] = update.effective_chat
     msg: Optional[Message] = update.effective_message
 
@@ -302,7 +302,7 @@ def add_warn_filter(update: Update, context: CallbackContext):
 
 @user_admin
 # @user_can_ban
-def remove_warn_filter(update: Update, context: CallbackContext):
+def remove_warn_filter(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat: Optional[Chat] = update.effective_chat
     msg: Optional[Message] = update.effective_message
 
@@ -336,7 +336,7 @@ def remove_warn_filter(update: Update, context: CallbackContext):
     )
 
 
-def list_warn_filters(update: Update, context: CallbackContext):
+def list_warn_filters(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat: Optional[Chat] = update.effective_chat
     all_handlers = sql.get_chat_warn_triggers(chat.id)
 
@@ -358,7 +358,7 @@ def list_warn_filters(update: Update, context: CallbackContext):
 
 
 @loggable
-def reply_filter(update: Update, context: CallbackContext) -> str:
+def reply_filter(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     chat: Optional[Chat] = update.effective_chat
     message: Optional[Message] = update.effective_message
     user: Optional[User] = update.effective_user
@@ -384,7 +384,7 @@ def reply_filter(update: Update, context: CallbackContext) -> str:
 @user_admin
 # @user_can_ban
 @loggable
-def set_warn_limit(update: Update, context: CallbackContext) -> str:
+def set_warn_limit(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     args = context.args
     chat: Optional[Chat] = update.effective_chat
     user: Optional[User] = update.effective_user
@@ -414,7 +414,7 @@ def set_warn_limit(update: Update, context: CallbackContext) -> str:
 
 @user_admin
 # @user_can_ban
-def set_warn_strength(update: Update, context: CallbackContext):
+def set_warn_strength(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
     chat: Optional[Chat] = update.effective_chat
     user: Optional[User] = update.effective_user

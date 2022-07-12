@@ -23,13 +23,13 @@ from Shikimori.modules.log_channel import gloggable
 from telegram import Update
 from telegram.error import TelegramError
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext, CommandHandler
+from telegram.ext import ContextTypes, CommandHandler
 from telegram.helpers import mention_html
 
 ELEVATED_USERS_FILE = os.path.join(os.getcwd(), "Shikimori/elevated_users.json")
 
 
-def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
+def check_user_id(user_id: int, context: ContextTypes.DEFAULT_TYPE) -> Optional[str]:
     bot = context.bot
     if not user_id:
         reply = "That...is a chat! baka ka omae?"
@@ -57,7 +57,7 @@ def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
 
 @dev_plus
 @gloggable
-def addsudo(update: Update, context: CallbackContext) -> str:
+def addsudo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     message = update.effective_message
     user = update.effective_user
     chat = update.effective_chat
@@ -118,7 +118,7 @@ def addsudo(update: Update, context: CallbackContext) -> str:
 @gloggable
 def addsupport(
     update: Update,
-    context: CallbackContext,
+    context: ContextTypes.DEFAULT_TYPE,
 ) -> str:
     message = update.effective_message
     user = update.effective_user
@@ -175,7 +175,7 @@ def addsupport(
 
 @sudo_plus
 @gloggable
-def addwhitelist(update: Update, context: CallbackContext) -> str:
+def addwhitelist(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     message = update.effective_message
     user = update.effective_user
     chat = update.effective_chat
@@ -231,7 +231,7 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
 
 @sudo_plus
 @gloggable
-def addtiger(update: Update, context: CallbackContext) -> str:
+def addtiger(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     message = update.effective_message
     user = update.effective_user
     chat = update.effective_chat
@@ -292,7 +292,7 @@ def addtiger(update: Update, context: CallbackContext) -> str:
 
 @dev_plus
 @gloggable
-def removesudo(update: Update, context: CallbackContext) -> str:
+def removesudo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     message = update.effective_message
     user = update.effective_user
     chat = update.effective_chat
@@ -335,7 +335,7 @@ def removesudo(update: Update, context: CallbackContext) -> str:
 
 @sudo_plus
 @gloggable
-def removesupport(update: Update, context: CallbackContext) -> str:
+def removesupport(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     message = update.effective_message
     user = update.effective_user
     chat = update.effective_chat
@@ -378,7 +378,7 @@ def removesupport(update: Update, context: CallbackContext) -> str:
 
 @sudo_plus
 @gloggable
-def removewhitelist(update: Update, context: CallbackContext) -> str:
+def removewhitelist(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     message = update.effective_message
     user = update.effective_user
     chat = update.effective_chat
@@ -420,7 +420,7 @@ def removewhitelist(update: Update, context: CallbackContext) -> str:
 
 @sudo_plus
 @gloggable
-def removetiger(update: Update, context: CallbackContext) -> str:
+def removetiger(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     message = update.effective_message
     user = update.effective_user
     chat = update.effective_chat
@@ -461,7 +461,7 @@ def removetiger(update: Update, context: CallbackContext) -> str:
 
 
 @whitelist_plus
-def whitelistlist(update: Update, context: CallbackContext):
+def whitelistlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply = "<b>Known Slaves:</b>\n"
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
@@ -480,7 +480,7 @@ def whitelistlist(update: Update, context: CallbackContext):
 
 
 @whitelist_plus
-def tigerlist(update: Update, context: CallbackContext):
+def tigerlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply = "<b>Known Peasants:</b>\n"
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
@@ -498,7 +498,7 @@ def tigerlist(update: Update, context: CallbackContext):
 
 
 @whitelist_plus
-def supportlist(update: Update, context: CallbackContext):
+def supportlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
@@ -516,7 +516,7 @@ def supportlist(update: Update, context: CallbackContext):
 
 
 @whitelist_plus
-def sudolist(update: Update, context: CallbackContext):
+def sudolist(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML
@@ -535,7 +535,7 @@ def sudolist(update: Update, context: CallbackContext):
 
 
 @whitelist_plus
-def devlist(update: Update, context: CallbackContext):
+def devlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     m = update.effective_message.reply_text(
         "<code>Gathering intel..</code>", parse_mode=ParseMode.HTML

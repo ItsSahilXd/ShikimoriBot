@@ -1,11 +1,11 @@
 from Shikimori.core.sections import section
 import requests
 from Shikimori import SHIKIMORI_PTB
-from telegram.ext import CommandHandler, CallbackContext
+from telegram.ext import CommandHandler, ContextTypes
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.constants import ParseMode
 
-def crypto(update: Update, context: CallbackContext):
+def crypto(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     args = context.args
     if len(args) == 0:

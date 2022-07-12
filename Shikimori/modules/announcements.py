@@ -3,7 +3,7 @@ from typing import Optional
 
 from telegram import Update, ChatMemberUpdated
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext, ChatMemberHandler
+from telegram.ext import ContextTypes, ChatMemberHandler
 
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.log_channel import loggable
@@ -30,7 +30,7 @@ def do_announce(chat): # announce to chat or only to log channel?
     return bool(chat.type != "channel" and sql.does_chat_log(chat.id))
 
 @loggable
-def chatmemberupdates(update: Update, context: CallbackContext) -> Optional[str]:
+def chatmemberupdates(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Optional[str]:
     bot = context.bot
     chat = update.effective_chat
     message = update.effective_message

@@ -6,9 +6,9 @@ from Shikimori.modules.helper_funcs.extraction import extract_user
 from Shikimori.modules.sql.users_sql import get_user_com_chats
 from telegram import Update
 from telegram.error import BadRequest, RetryAfter, Forbidden
-from telegram.ext import CallbackContext, CommandHandler, filters
+from telegram.ext import ContextTypes, CommandHandler, filters
 
-def get_user_common_chats(update: Update, context: CallbackContext):
+def get_user_common_chats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot, args = context.bot, context.args
     msg = update.effective_message
     user = extract_user(msg, args)

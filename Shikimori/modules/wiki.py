@@ -3,11 +3,11 @@ from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 from wikipedia.exceptions import DisambiguationError, PageError
 
 
-def wiki(update: Update, context: CallbackContext):
+def wiki(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = (
         update.effective_message.reply_to_message
         if update.effective_message.reply_to_message

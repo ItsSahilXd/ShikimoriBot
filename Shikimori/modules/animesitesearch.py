@@ -6,7 +6,7 @@ from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup,
                       Update)
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 from telegram.constants import ParseMode
 
 info_btn = "More Information"
@@ -18,7 +18,7 @@ sequel_btn = "Sequel ➡️"
 close_btn = "Close ❌"
 
 
-def site_search(update: Update, context: CallbackContext, site: str):
+def site_search(update: Update, context: ContextTypes.DEFAULT_TYPE, site: str):
     message = update.effective_message
     args = message.text.strip().split(" ", 1)
     more_results = True
@@ -96,13 +96,13 @@ def site_search(update: Update, context: CallbackContext, site: str):
             result, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 
-def kayo(update: Update, context: CallbackContext):
+def kayo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     site_search(update, context, "kayo")
     
-def animespot(update: Update, context: CallbackContext):
+def animespot(update: Update, context: ContextTypes.DEFAULT_TYPE):
     site_search(update, context, "animespot")
    
-def animetm(update: Update, context: CallbackContext):
+def animetm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     site_search(update, context, "animetm")
 
 

@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 from telegram import InputMediaPhoto, Update
 from telegram.error import TelegramError
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
@@ -19,7 +19,7 @@ useragent = "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebK
 opener.addheaders = [("User-agent", useragent)]
 
 
-def reverse(update: Update, context: CallbackContext):
+def reverse(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
@@ -153,7 +153,7 @@ def reverse(update: Update, context: CallbackContext):
     except Exception as exception:
         print(exception)
 
-def grs(update: Update, context: CallbackContext):
+def grs(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
@@ -287,7 +287,7 @@ def grs(update: Update, context: CallbackContext):
     except Exception as exception:
         print(exception)
 
-def gg(update: Update, context: CallbackContext):
+def gg(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 

@@ -19,7 +19,7 @@ from Shikimori.modules.log_channel import gloggable
 from telegram import Update
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, CommandHandler
+from telegram.ext import ContextTypes, CommandHandler
 from telegram.helpers import mention_html
 
 BLACKLISTWHITELIST = [OWNER_ID] + DEV_USERS + DRAGONS + WOLVES + DEMONS
@@ -28,7 +28,7 @@ BLABLEUSERS = [OWNER_ID] + DEV_USERS
 
 @dev_plus
 @gloggable
-def bl_user(update: Update, context: CallbackContext) -> str:
+def bl_user(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     message = update.effective_message
     user = update.effective_user
     bot, args = context.bot, context.args
@@ -69,7 +69,7 @@ def bl_user(update: Update, context: CallbackContext) -> str:
 
 @dev_plus
 @gloggable
-def unbl_user(update: Update, context: CallbackContext) -> str:
+def unbl_user(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     message = update.effective_message
     user = update.effective_user
     bot, args = context.bot, context.args
@@ -107,7 +107,7 @@ def unbl_user(update: Update, context: CallbackContext) -> str:
 
 
 @dev_plus
-def bl_users(update: Update, context: CallbackContext):
+def bl_users(update: Update, context: ContextTypes.DEFAULT_TYPE):
     users = []
     bot = context.bot
     for each_user in sql.BLACKLIST_USERS:

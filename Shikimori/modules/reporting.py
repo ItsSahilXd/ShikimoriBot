@@ -8,7 +8,7 @@ from telegram import Chat, InlineKeyboardButton, InlineKeyboardMarkup, Update, c
 from telegram.constants import ParseMode
 from telegram.error import BadRequest, Forbidden
 from telegram.ext import (
-    CallbackContext,
+    ContextTypes,
     CallbackQueryHandler,
     CommandHandler,
     filters,
@@ -21,7 +21,7 @@ REPORT_IMMUNE_USERS = DRAGONS + TIGERS + WOLVES
 
 
 @user_admin
-def report_setting(update: Update, context: CallbackContext):
+def report_setting(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot, args = context.bot, context.args
     chat = update.effective_chat
     msg = update.effective_message
@@ -66,7 +66,7 @@ def report_setting(update: Update, context: CallbackContext):
 
 @user_not_admin
 @loggable
-def report(update: Update, context: CallbackContext) -> str:
+def report(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
     bot = context.bot
     args = context.args
     message = update.effective_message
@@ -222,7 +222,7 @@ def __user_settings__(user_id):
     return text
 
 
-def buttons(update: Update, context: CallbackContext):
+def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     query = update.callback_query
     splitter = query.data.replace("report_", "").split("=")

@@ -7,7 +7,7 @@ from telegram import Update, constants
 from telegram.constants import ParseMode
 from telegram.error import BadRequest, TelegramError, Forbidden
 from telegram.ext import (
-    CallbackContext,
+    ContextTypes,
     CommandHandler,
     filters,
     MessageHandler,
@@ -72,7 +72,7 @@ UNGBAN_ERRORS = {
 
 
 @support_plus
-def gban(update: Update, context: CallbackContext):
+def gban(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot, args = context.bot, context.args
     message = update.effective_message
     user = update.effective_user
@@ -276,7 +276,7 @@ def gban(update: Update, context: CallbackContext):
 
 
 @support_plus
-def ungban(update: Update, context: CallbackContext):
+def ungban(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot, args = context.bot, context.args
     message = update.effective_message
     user = update.effective_user
@@ -389,7 +389,7 @@ def ungban(update: Update, context: CallbackContext):
 
 
 @support_plus
-def gbanlist(update: Update, context: CallbackContext):
+def gbanlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
     banned_users = sql.get_gban_list()
 
     if not banned_users:
@@ -430,7 +430,7 @@ def check_and_ban(update, user_id, should_message=True):
             update.effective_message.reply_text(text, parse_mode=ParseMode.HTML)
 
 
-def enforce_gban(update: Update, context: CallbackContext):
+def enforce_gban(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Not using @restrict handler to avoid spamming - just ignore if cant gban.
     bot = context.bot
     try:
@@ -460,7 +460,7 @@ def enforce_gban(update: Update, context: CallbackContext):
 
 
 @user_admin
-def gbanstat(update: Update, context: CallbackContext):
+def gbanstat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
     if len(args) > 0:
         if args[0].lower() in ["on", "yes"]:

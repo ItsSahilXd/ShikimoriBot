@@ -1,7 +1,7 @@
 from telegram.ext.filters import filters
 from Shikimori.modules.helper_funcs.decorators import Shikimoricmd, Shikimorimsg
 from telegram import Update, constants
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 from Shikimori.modules.helper_funcs.anonymous import user_admin, AdminPerms
 import html
 from Shikimori.modules.sql.antichannel_sql import antichannel_status, disable_antichannel, enable_antichannel
@@ -9,7 +9,7 @@ from Shikimori.modules.sql.antichannel_sql import antichannel_status, disable_an
 
 @Shikimoricmd(command="antichannel", group=100)
 @user_admin(AdminPerms.CAN_RESTRICT_MEMBERS)
-def set_antichannel(update: Update, context: CallbackContext):
+def set_antichannel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     chat = update.effective_chat
     args = context.args
@@ -29,7 +29,7 @@ def set_antichannel(update: Update, context: CallbackContext):
 
 
 @Shikimorimsg(filters.ChatType.GROUPS, group=110)
-def eliminate_channel(update: Update, context: CallbackContext):
+def eliminate_channel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     chat = update.effective_chat
     bot = context.bot

@@ -16,11 +16,11 @@ from Shikimori.__main__ import (
 from Shikimori.modules.helper_funcs.chat_status import dev_plus, sudo_plus
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CallbackContext, CommandHandler
+from telegram.ext import ContextTypes, CommandHandler
 
 
 @dev_plus
-def load(update: Update, context: CallbackContext):
+def load(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     text = message.text.split(" ", 1)[1]
     load_messasge = message.reply_text(
@@ -91,7 +91,7 @@ def load(update: Update, context: CallbackContext):
 
 
 @dev_plus
-def unload(update: Update, context: CallbackContext):
+def unload(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     text = message.text.split(" ", 1)[1]
     unload_messasge = message.reply_text(
@@ -163,7 +163,7 @@ def unload(update: Update, context: CallbackContext):
 
 
 @sudo_plus
-def listmodules(update: Update, context: CallbackContext):
+def listmodules(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     module_list = []
 

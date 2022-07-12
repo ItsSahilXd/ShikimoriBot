@@ -4,7 +4,7 @@ from time import sleep
 from telegram import Update, constants
 from telegram.error import BadRequest, Forbidden, TelegramError
 from telegram.ext import (
-    CallbackContext,
+    ContextTypes,
     CommandHandler,
     filters,
     MessageHandler,
@@ -54,7 +54,7 @@ def get_user_id(username):
 
 
 @dev_plus
-def broadcast(update: Update, context: CallbackContext):
+def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
     to_send = update.effective_message.text.split(None, 1)
 
     if len(to_send) >= 2:
@@ -100,7 +100,7 @@ def broadcast(update: Update, context: CallbackContext):
 
 
 
-def log_user(update: Update, context: CallbackContext):
+def log_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     msg = update.effective_message
 
@@ -120,7 +120,7 @@ def log_user(update: Update, context: CallbackContext):
 
 
 @sudo_plus
-def chats(update: Update, context: CallbackContext):
+def chats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     all_chats = sql.get_all_chats() or []
     chatfile = "List of chats.\n0. Chat name | Chat ID | Members count\n"
     P = 1
@@ -146,7 +146,7 @@ def chats(update: Update, context: CallbackContext):
 
 
 
-def chat_checker(update: Update, context: CallbackContext):
+def chat_checker(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     try:
         if update.effective_message.chat.get_member(bot.id).can_send_messages is False:

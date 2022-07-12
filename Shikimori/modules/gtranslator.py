@@ -1,5 +1,5 @@
 from gpytranslate import Translator
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 from telegram import (
     Message,
     Update,
@@ -68,7 +68,7 @@ async def translate(_, message: Message) -> None:
     await message.reply_text(reply, parse_mode= enums.ParseMode.HTML)
 
 
-def languages(update: Update, context: CallbackContext) -> None:
+def languages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     update.effective_message.reply_text(
         "Click on the button below to see the list of supported language codes.",
         reply_markup=InlineKeyboardMarkup(

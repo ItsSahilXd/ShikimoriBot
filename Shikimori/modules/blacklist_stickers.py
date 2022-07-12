@@ -15,11 +15,11 @@ from Shikimori.modules.warns import warn
 from telegram import Chat, Message, Update, User, ChatPermissions, constants, Sticker
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, CommandHandler, filters, MessageHandler
+from telegram.ext import ContextTypes, CommandHandler, filters, MessageHandler
 from telegram.helpers import mention_html, mention_markdown
 
 
-def blackliststicker(update: Update, context: CallbackContext):
+def blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = update.effective_message  # type: Optional[Message]
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
@@ -67,7 +67,7 @@ def blackliststicker(update: Update, context: CallbackContext):
 
 
 @user_admin
-def add_blackliststicker(update: Update, context: CallbackContext):
+def add_blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     msg = update.effective_message  # type: Optional[Message]
     chat = update.effective_chat  # type: Optional[Chat]
@@ -160,7 +160,7 @@ def add_blackliststicker(update: Update, context: CallbackContext):
 
 
 @user_admin
-def unblackliststicker(update: Update, context: CallbackContext):
+def unblackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     msg = update.effective_message  # type: Optional[Message]
     chat = update.effective_chat  # type: Optional[Chat]
@@ -261,7 +261,7 @@ def unblackliststicker(update: Update, context: CallbackContext):
 
 @loggable
 @user_admin
-def blacklist_mode(update: Update, context: CallbackContext):
+def blacklist_mode(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
     msg = update.effective_message  # type: Optional[Message]
@@ -373,7 +373,7 @@ def blacklist_mode(update: Update, context: CallbackContext):
 
 
 @user_not_admin
-def del_blackliststicker(update: Update, context: CallbackContext):
+def del_blackliststicker(update: Update, context: ContextTypes.DEFAULT_TYPE):
     bot = context.bot
     chat = update.effective_chat  # type: Optional[Chat]
     message = update.effective_message  # type: Optional[Message]

@@ -16,7 +16,7 @@ from telegram import (
 )
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, filters, CommandHandler
+from telegram.ext import ContextTypes, filters, CommandHandler
 from Shikimori.modules.helper_funcs.alternate import send_action
 
 MARKDOWN_HELP = f"""
@@ -45,7 +45,7 @@ Keep in mind that your message <b>MUST</b> contain some text other than just a b
 
 
 @user_admin
-def echo(update: Update, context: CallbackContext):
+def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = update.effective_message.text.split(None, 1)
     message = update.effective_message
 
@@ -72,7 +72,7 @@ def markdown_help_sender(update: Update):
     )
 
 
-def markdown_help(update: Update, context: CallbackContext):
+def markdown_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_chat.type != "private":
         update.effective_message.reply_text(
             "Contact me in pm",
@@ -91,7 +91,7 @@ def markdown_help(update: Update, context: CallbackContext):
     markdown_help_sender(update)
 
 
-def wiki(update: Update, context: CallbackContext):
+def wiki(update: Update, context: ContextTypes.DEFAULT_TYPE):
     kueri = re.split(pattern="wiki", string=update.effective_message.text)
     wikipedia.set_lang("en")
     if len(str(kueri[1])) == 0:
@@ -126,7 +126,7 @@ def wiki(update: Update, context: CallbackContext):
 
 
 @send_action(constants.ChatAction.UPLOAD_PHOTO)
-def wall(update: Update, context: CallbackContext):
+def wall(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
     msg = update.effective_message
     msg_id = update.effective_message.message_id

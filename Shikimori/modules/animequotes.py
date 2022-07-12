@@ -4,7 +4,7 @@ import random
 
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
-from telegram.ext import CallbackContext, CallbackQueryHandler
+from telegram.ext import ContextTypes, CallbackQueryHandler
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.constants import ParseMode
 
@@ -22,7 +22,7 @@ def anime_quote():
     return quote, character, anime
 
 
-def quotes(update: Update, context: CallbackContext):
+def quotes(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     quote, character, anime = anime_quote()
     msg = f"<i>❝{quote}❞</i>\n\n<b>{character} from {anime}</b>"
@@ -36,7 +36,7 @@ def quotes(update: Update, context: CallbackContext):
         parse_mode=ParseMode.HTML,
     )
 
-def change_quote(update: Update, context: CallbackContext):
+def change_quote(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     quote, character, anime = anime_quote()
     msg = f"<i>❝{quote}❞</i>\n\n<b>{character} from {anime}</b>"
@@ -48,12 +48,12 @@ def change_quote(update: Update, context: CallbackContext):
                       parse_mode=ParseMode.HTML)
  
  
-def animequotes(update: Update, context: CallbackContext):
+def animequotes(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     keyboard = [[InlineKeyboardButton(text="Change", callback_data="changek_quote")]]
     message.reply_photo(random.choice(QUOTES_IMG),reply_markup=InlineKeyboardMarkup(keyboard))
 
-def changek_quote(update: Update, context: CallbackContext):
+def changek_quote(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.effective_message
     keyboard = [[InlineKeyboardButton(text="Change", callback_data="quotek_change")]]
     message.reply_photo(random.choice(QUOTES_IMG),reply_markup=InlineKeyboardMarkup(keyboard))
