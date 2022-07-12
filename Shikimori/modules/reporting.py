@@ -279,7 +279,7 @@ __help__ = """
 
 SETTING_HANDLER = CommandHandler("reports", report_setting, block=False)
 REPORT_HANDLER = CommandHandler(
-    "report", report, filters=constants.ChatType.GROUPS, block=False
+    "report", report, filters=filters.ChatType.GROUPS, block=False
 )
 ADMIN_REPORT_HANDLER = MessageHandler(
     filters.Regex(r"(?i)@admin(s)?"), report, block=False

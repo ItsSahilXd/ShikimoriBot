@@ -498,25 +498,25 @@ __help__ = """
 
 __mod_name__ = "Warning"
 
-WARN_HANDLER = CommandHandler(["warn", "dwarn"], warn_user, filters=constants.ChatType.GROUPS, block=False)
+WARN_HANDLER = CommandHandler(["warn", "dwarn"], warn_user, filters=filters.ChatType.GROUPS, block=False)
 RESET_WARN_HANDLER = CommandHandler(
-    ["resetwarn", "resetwarns"], reset_warns, filters=constants.ChatType.GROUPS, block=False
+    ["resetwarn", "resetwarns"], reset_warns, filters=filters.ChatType.GROUPS, block=False
 )
 CALLBACK_QUERY_HANDLER = CallbackQueryHandler(button, pattern=r"rm_warn", block=False)
-MYWARNS_HANDLER = DisableAbleCommandHandler("warns", warns, filters=constants.ChatType.GROUPS, block=False)
-ADD_WARN_HANDLER = CommandHandler("addwarn", add_warn_filter, filters=constants.ChatType.GROUPS, block=False)
+MYWARNS_HANDLER = DisableAbleCommandHandler("warns", warns, filters=filters.ChatType.GROUPS, block=False)
+ADD_WARN_HANDLER = CommandHandler("addwarn", add_warn_filter, filters=filters.ChatType.GROUPS, block=False)
 RM_WARN_HANDLER = CommandHandler(
-    ["nowarn", "stopwarn"], remove_warn_filter, filters=constants.ChatType.GROUPS, block=False
+    ["nowarn", "stopwarn"], remove_warn_filter, filters=filters.ChatType.GROUPS, block=False
 )
 LIST_WARN_HANDLER = DisableAbleCommandHandler(
-    ["warnlist", "warnfilters"], list_warn_filters, filters=constants.ChatType.GROUPS, admin_ok=True, block=False
+    ["warnlist", "warnfilters"], list_warn_filters, filters=filters.ChatType.GROUPS, admin_ok=True, block=False
 )
 WARN_FILTER_HANDLER = MessageHandler(
-    CustomFilters.has_text & constants.ChatType.GROUPS, reply_filter, block=False
+    CustomFilters.has_text & filters.ChatType.GROUPS, reply_filter, block=False
 )
-WARN_LIMIT_HANDLER = CommandHandler("warnlimit", set_warn_limit, filters=constants.ChatType.GROUPS, block=False)
+WARN_LIMIT_HANDLER = CommandHandler("warnlimit", set_warn_limit, filters=filters.ChatType.GROUPS, block=False)
 WARN_STRENGTH_HANDLER = CommandHandler(
-    "strongwarn", set_warn_strength, filters=constants.ChatType.GROUPS, block=False
+    "strongwarn", set_warn_strength, filters=filters.ChatType.GROUPS, block=False
 )
 
 SHIKIMORI_PTB.add_handler(WARN_HANDLER)

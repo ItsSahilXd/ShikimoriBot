@@ -190,7 +190,7 @@ __help__ = """
 """
 
 ECHO_HANDLER = DisableAbleCommandHandler(
-    "echo", echo, filters=constants.ChatType.GROUPS, block=False)
+    "echo", echo, filters=filters.ChatType.GROUPS, block=False)
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, block=False)
 WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki)
 WALLPAPER_HANDLER = DisableAbleCommandHandler("wall", wall, block=False)

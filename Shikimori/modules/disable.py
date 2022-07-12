@@ -306,13 +306,13 @@ if is_module_loaded(FILENAME):
     """
 
     SHIKIMORI_PTB.add_handler(CommandHandler(
-        "disable", disable))  # , filters=constants.ChatType.GROUPS)
+        "disable", disable))  # , filters=filters.ChatType.GROUPS)
     SHIKIMORI_PTB.add_handler(CommandHandler(
-        "enable", enable))  # , filters=constants.ChatType.GROUPS)
+        "enable", enable))  # , filters=filters.ChatType.GROUPS)
     SHIKIMORI_PTB.add_handler(CommandHandler(
-        ["cmds", "disabled"], commands))  # , filters=constants.ChatType.GROUPS)
+        ["cmds", "disabled"], commands))  # , filters=filters.ChatType.GROUPS)
     SHIKIMORI_PTB.add_handler(CommandHandler(
-        "listcmds", list_cmds))  # , filters=constants.ChatType.GROUPS)
+        "listcmds", list_cmds))  # , filters=filters.ChatType.GROUPS)
 
 else:
     DisableAbleCommandHandler = CommandHandler
