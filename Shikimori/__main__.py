@@ -872,16 +872,14 @@ def main():
 
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
-        SHIKIMORI_PTB.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
-
-        if CERT_PATH:
-            SHIKIMORI_PTB.bot.set_webhook(url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
-        else:
-            SHIKIMORI_PTB.bot.set_webhook(url=URL + TOKEN)
+        SHIKIMORI_PTB.run_webhook(listen="127.0.0.1", port=PORT, url_path=TOKEN)
 
     else:
-        LOGGER.info("Using long polling.")
-        SHIKIMORI_PTB.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
+        SHIKIMORI_PTB.run_polling(drop_pending_updates=True, stop_signals=None)
+        LOGGER.info(
+            f"Cutiepii Robot started, Using long polling. | BOT: [@{BOT_USERNAME}]"
+        )
+
 
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
