@@ -1,6 +1,6 @@
 import threading
 
-from Shikimori import Application
+from Shikimori import app_build
 from Shikimori.modules.sql import BASE, SESSION
 from sqlalchemy import (
     Column,
@@ -78,7 +78,7 @@ INSERTION_LOCK = threading.RLock()
 
 def ensure_bot_in_db():
     with INSERTION_LOCK:
-        bot = Users(Application.bot.id, Application.bot.username)
+        bot = Users(app_build.bot.id, app_build.bot.username)
         SESSION.merge(bot)
         SESSION.commit()
 
