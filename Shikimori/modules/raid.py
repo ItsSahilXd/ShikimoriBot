@@ -37,7 +37,7 @@ def get_readable_time(time: int) -> str:
     return "{} hour(s)".format(t[0]) if time >= 3600 else "{} minutes".format(t[1])
 
 
-@Shikimoricmd(command="raid", pass_args=True)
+@Shikimoricmd(command="raid", )
 @bot_admin
 @connection_status
 @loggable
@@ -209,7 +209,7 @@ def raidtime(update: Update, context: CallbackContext) -> Optional[str]:
         msg.reply_text("Unknown time given, give me something like 5m or 1h", parse_mode=ParseMode.HTML)
 
 
-@Shikimoricmd(command="raidactiontime", pass_args=True)
+@Shikimoricmd(command="raidactiontime", )
 @connection_status
 @user_admin(AdminPerms.CAN_CHANGE_INFO)
 @loggable

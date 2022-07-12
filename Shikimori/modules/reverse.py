@@ -474,13 +474,13 @@ def scam(imgspage, lim):
 
 
 REVERSE_HANDLER = DisableAbleCommandHandler(
-    ["reverse", "pp","PP", "Pp"], reverse, pass_args=True, admin_ok=True, block=False
+    ["reverse", "pp","PP", "Pp"], reverse,  admin_ok=True, block=False
 )
 GRS_HANDLER = DisableAbleCommandHandler(
-    "grs", grs, pass_args=True, admin_ok=True, block=False
+    "grs", grs,  admin_ok=True, block=False
 )
 GG_HANDLER = DisableAbleCommandHandler(
-    "gg", gg, pass_args=True, admin_ok=True, block=False
+    "gg", gg,  admin_ok=True, block=False
 )
 
 SHIKIMORI_PTB.add_handler(REVERSE_HANDLER)

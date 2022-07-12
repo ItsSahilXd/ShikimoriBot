@@ -22,7 +22,6 @@ class ShikimoriHandler:
         command: str,
         filters: Optional[BaseFilter] = None,
         admin_ok: bool = False,
-        pass_args: bool = False,
         pass_chat_data: bool = False,
         run_async: bool = True,
         can_disable: bool = True,
@@ -37,7 +36,6 @@ class ShikimoriHandler:
                             func,
                             filters=filters,
                             run_async=run_async,
-                            pass_args=pass_args,
                             admin_ok=admin_ok,
                         ),
                         group,
@@ -49,7 +47,7 @@ class ShikimoriHandler:
                             func,
                             filters=filters,
                             run_async=run_async,
-                            pass_args=pass_args,
+                            
                         ),
                         group,
                     )
@@ -64,7 +62,7 @@ class ShikimoriHandler:
                             func,
                             filters=filters,
                             run_async=run_async,
-                            pass_args=pass_args,
+                            
                             admin_ok=admin_ok,
                             pass_chat_data=pass_chat_data,
                         )
@@ -76,7 +74,7 @@ class ShikimoriHandler:
                             func,
                             filters=filters,
                             run_async=run_async,
-                            pass_args=pass_args,
+                            
                             pass_chat_data=pass_chat_data,
                         )
                     )

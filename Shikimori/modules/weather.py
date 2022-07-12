@@ -144,6 +144,6 @@ Weather module:
 
 __mod_name__ = "Weather 🌩️"
 
-WEATHER_HANDLER = DisableAbleCommandHandler("weather", weather, pass_args=True)
+WEATHER_HANDLER = DisableAbleCommandHandler("weather", weather)
 
 SHIKIMORI_PTB.add_handler(WEATHER_HANDLER)

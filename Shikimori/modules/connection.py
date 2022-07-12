@@ -400,14 +400,14 @@ def connect_button(update, context):
 
 
 CONNECT_CHAT_HANDLER = CommandHandler(
-    "connect", connect_chat, pass_args=True, block=False
+    "connect", connect_chat, block=False
 )
 CONNECTION_CHAT_HANDLER = CommandHandler("connection", connection_chat, block=False)
 DISCONNECT_CHAT_HANDLER = CommandHandler("disconnect", disconnect_chat, block=False)
 ALLOW_CONNECTIONS_HANDLER = CommandHandler(
     "allowconnect",
     allow_connections,
-    pass_args=True,
+    
     block=False,
 )
 HELP_CONNECT_CHAT_HANDLER = CommandHandler(

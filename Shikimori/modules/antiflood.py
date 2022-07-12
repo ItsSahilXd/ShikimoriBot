@@ -410,7 +410,7 @@ SET_FLOOD_HANDLER = CommandHandler(
 SET_FLOOD_MODE_HANDLER = CommandHandler(
     "setfloodmode",
     set_flood_mode,
-    pass_args=True,
+    
     block=False,
 )  # , filters=Filters.chat_type.group)
 FLOOD_QUERY_HANDLER = CallbackQueryHandler(

@@ -454,14 +454,14 @@ def __stats__():
 BLACKLIST_HANDLER = DisableAbleCommandHandler(
     "blacklist",
     blacklist,
-    pass_args=True,
+    
     admin_ok=True,
     block=False,
 )
 ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist, block=False)
 UNBLACKLIST_HANDLER = CommandHandler("unblacklist", unblacklist, block=False)
 BLACKLISTMODE_HANDLER = CommandHandler(
-    "blacklistmode", blacklist_mode, pass_args=True, block=False
+    "blacklistmode", blacklist_mode,  block=False
 )
 BLACKLIST_DEL_HANDLER = MessageHandler(
     (Filters.text | Filters.command | Filters.sticker | Filters.photo)

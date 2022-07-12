@@ -11,7 +11,7 @@ import Shikimori.modules.sql.logger_sql as sql
 from Shikimori.modules.helper_funcs.anonymous import user_admin as u_admin, AdminPerms
 
 
-@Shikimoricmd(command="announce", pass_args=True)
+@Shikimoricmd(command="announce", )
 @u_admin(AdminPerms.CAN_CHANGE_INFO)
 @loggable
 def announcestat(update: Update, context: CallbackContext) -> str:
