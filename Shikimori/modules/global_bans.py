@@ -9,7 +9,7 @@ from telegram.error import BadRequest, TelegramError, Forbidden
 from telegram.ext import (
     CallbackContext,
     CommandHandler,
-    Filters,
+    filters,
     MessageHandler,
 )
 from telegram.utils.helpers import mention_html
@@ -521,10 +521,10 @@ GBAN_HANDLER = CommandHandler("gban", gban, block=False)
 UNGBAN_HANDLER = CommandHandler("ungban", ungban, block=False)
 GBAN_LIST = CommandHandler("gbanlist", gbanlist, block=False)
 GBAN_STATUS = CommandHandler(
-    "antispam", gbanstat, filters=Filters.chat_type.groups, block=False
+    "antispam", gbanstat, filters=filters.chat_type.groups, block=False
 )
 GBAN_ENFORCER = MessageHandler(
-    Filters.all & Filters.chat_type.groups, enforce_gban, block=False
+    filters.all & filters.chat_type.groups, enforce_gban, block=False
 )
 
 SHIKIMORI_PTB.add_handler(GBAN_HANDLER)

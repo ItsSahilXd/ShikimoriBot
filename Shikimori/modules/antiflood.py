@@ -18,7 +18,7 @@ from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
     CommandHandler,
-    Filters,
+    filters,
     MessageHandler,
 )
 from telegram.utils.helpers import mention_html
@@ -400,24 +400,24 @@ def __chat_settings__(chat_id, user_id):
 __mod_name__ = "Anti-Flood"
 
 FLOOD_BAN_HANDLER = MessageHandler(
-    Filters.all & ~Filters.status_update & Filters.chat_type.groups,
+    filters.all & ~filters.status_update & filters.chat_type.groups,
     check_flood,
     block=False,
 )
 SET_FLOOD_HANDLER = CommandHandler(
-    "setflood", set_flood, filters=Filters.chat_type.group, block=False
+    "setflood", set_flood, filters=filters.chat_type.group, block=False
 )
 SET_FLOOD_MODE_HANDLER = CommandHandler(
     "setfloodmode",
     set_flood_mode,
     
     block=False,
-)  # , filters=Filters.chat_type.group)
+)  # , filters=filters.chat_type.group)
 FLOOD_QUERY_HANDLER = CallbackQueryHandler(
     flood_button, pattern=r"unmute_flooder", block=False
 )
 FLOOD_HANDLER = CommandHandler(
-    "flood", flood, filters=Filters.chat_type.groups, block=False
+    "flood", flood, filters=filters.chat_type.groups, block=False
 )
 
 SHIKIMORI_PTB.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)

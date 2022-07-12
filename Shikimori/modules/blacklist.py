@@ -4,7 +4,7 @@ import re
 from telegram import ChatPermissions
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
-from telegram.ext import CommandHandler, MessageHandler, Filters
+from telegram.ext import CommandHandler, MessageHandler, filters
 from telegram.utils.helpers import mention_html
 
 import Shikimori.modules.sql.blacklist_sql as sql
@@ -464,8 +464,8 @@ BLACKLISTMODE_HANDLER = CommandHandler(
     "blacklistmode", blacklist_mode,  block=False
 )
 BLACKLIST_DEL_HANDLER = MessageHandler(
-    (Filters.text | Filters.command | Filters.sticker | Filters.photo)
-    & Filters.chat_type.groups,
+    (filters.text | filters.command | filters.sticker | filters.photo)
+    & filters.chat_type.groups,
     del_blacklist,
     allow_edit=True,
     block=False,

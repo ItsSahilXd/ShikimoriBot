@@ -15,7 +15,7 @@ from Shikimori.modules.warns import warn
 from telegram import Chat, Message, Update, User, ChatPermissions
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, CommandHandler, Filters, MessageHandler
+from telegram.ext import CallbackContext, CommandHandler, filters, MessageHandler
 from telegram.utils.helpers import mention_html, mention_markdown
 
 
@@ -528,7 +528,7 @@ UNBLACKLIST_STICKER_HANDLER = CommandHandler(
 )
 BLACKLISTMODE_HANDLER = CommandHandler("blstickermode", blacklist_mode)
 BLACKLIST_STICKER_DEL_HANDLER = MessageHandler(
-    Filters.sticker & Filters.chat_type.groups,
+    filters.sticker & filters.chat_type.groups,
     del_blackliststicker,
     block=False,
 )

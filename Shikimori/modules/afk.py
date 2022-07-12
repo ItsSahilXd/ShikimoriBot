@@ -3,7 +3,7 @@ import time
 from telegram import MessageEntity
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
-from telegram.ext import Filters, MessageHandler
+from telegram.ext import filters, MessageHandler
 
 from Shikimori import SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleCommandHandler
@@ -154,9 +154,9 @@ def __gdpr__(user_id):
 
 
 AFK_HANDLER = DisableAbleCommandHandler("afk", afk, block=False)
-AFK_REGEX_HANDLER = MessageHandler(Filters.regex("(?i)brb"), afk, friendly="afk", block=False)
-NO_AFK_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, no_longer_afk, block=False)
-AFK_REPLY_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, reply_afk, block=False)
+AFK_REGEX_HANDLER = MessageHandler(filters.regex("(?i)brb"), afk, friendly="afk", block=False)
+NO_AFK_HANDLER = MessageHandler(filters.all & filters.chat_type.groups, no_longer_afk, block=False)
+AFK_REPLY_HANDLER = MessageHandler(filters.all & filters.chat_type.groups, reply_afk, block=False)
 
 SHIKIMORI_PTB.add_handler(AFK_HANDLER, AFK_GROUP)
 SHIKIMORI_PTB.add_handler(AFK_REGEX_HANDLER, AFK_GROUP)

@@ -16,7 +16,7 @@ from telegram import (
 )
 from telegram.constants import ParseMode
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, Filters, CommandHandler
+from telegram.ext import CallbackContext, filters, CommandHandler
 from Shikimori.modules.helper_funcs.alternate import send_action
 
 MARKDOWN_HELP = f"""
@@ -189,7 +189,7 @@ __help__ = """
 """
 
 ECHO_HANDLER = DisableAbleCommandHandler(
-    "echo", echo, filters=Filters.chat_type.groups, block=False)
+    "echo", echo, filters=filters.chat_type.groups, block=False)
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, block=False)
 WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki)
 WALLPAPER_HANDLER = DisableAbleCommandHandler("wall", wall, block=False)

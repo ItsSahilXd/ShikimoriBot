@@ -25,7 +25,7 @@ from psutil import cpu_percent, virtual_memory, disk_usage, boot_time
 from spamwatch import __version__ as __sw__
 from telegram import Update
 from telegram.constants import ParseMode
-from telegram.ext import CommandHandler, Filters, CallbackContext
+from telegram.ext import CommandHandler, filters, CallbackContext
 
 from Shikimori import SHIKIMORI_PTB, OWNER_ID
 from Shikimori.modules.helper_funcs.alternate import typing_action
@@ -136,7 +136,7 @@ def system_status(update: Update, context: CallbackContext):
 
 
 IP_HANDLER = CommandHandler(
-    "ip", get_bot_ip, filters=Filters.chat(OWNER_ID), block=False
+    "ip", get_bot_ip, filters=filters.chat(OWNER_ID), block=False
 )
 PING_HANDLER = CommandHandler(
     "ping", ping, block=False

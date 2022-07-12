@@ -6,7 +6,7 @@ from telegram.error import BadRequest, Forbidden
 from telegram.ext import (
     CallbackContext,
     CommandHandler,
-    Filters,
+    filters,
     MessageHandler,
 )
 
@@ -177,8 +177,8 @@ __help__ = ""  # no help string
 BROADCAST_HANDLER = CommandHandler(
     ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast
 , block=False)
-USER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, log_user, block=False)
-CHAT_CHECKER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, chat_checker, block=False)
+USER_HANDLER = MessageHandler(filters.all & filters.chat_type.groups, log_user, block=False)
+CHAT_CHECKER_HANDLER = MessageHandler(filters.all & filters.chat_type.groups, chat_checker, block=False)
 CHATLIST_HANDLER = CommandHandler("groups", chats, block=False)
 
 SHIKIMORI_PTB.add_handler(USER_HANDLER, USERS_GROUP)

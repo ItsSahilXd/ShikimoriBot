@@ -40,7 +40,7 @@ from telegram.ext import (
     CallbackQueryHandler,
     CommandHandler,
     SHIKIMORI_PTBHandlerStop,
-    Filters,
+    filters,
     MessageHandler,
     run_async,
 )
@@ -501,25 +501,25 @@ __help__ = """
 
 __mod_name__ = "Warning"
 
-WARN_HANDLER = CommandHandler(["warn", "dwarn"], warn_user, filters=Filters.chat_type.groups, block=False)
+WARN_HANDLER = CommandHandler(["warn", "dwarn"], warn_user, filters=filters.chat_type.groups, block=False)
 RESET_WARN_HANDLER = CommandHandler(
-    ["resetwarn", "resetwarns"], reset_warns, filters=Filters.chat_type.groups, block=False
+    ["resetwarn", "resetwarns"], reset_warns, filters=filters.chat_type.groups, block=False
 )
 CALLBACK_QUERY_HANDLER = CallbackQueryHandler(button, pattern=r"rm_warn", block=False)
-MYWARNS_HANDLER = DisableAbleCommandHandler("warns", warns, filters=Filters.chat_type.groups, block=False)
-ADD_WARN_HANDLER = CommandHandler("addwarn", add_warn_filter, filters=Filters.chat_type.groups, block=False)
+MYWARNS_HANDLER = DisableAbleCommandHandler("warns", warns, filters=filters.chat_type.groups, block=False)
+ADD_WARN_HANDLER = CommandHandler("addwarn", add_warn_filter, filters=filters.chat_type.groups, block=False)
 RM_WARN_HANDLER = CommandHandler(
-    ["nowarn", "stopwarn"], remove_warn_filter, filters=Filters.chat_type.groups, block=False
+    ["nowarn", "stopwarn"], remove_warn_filter, filters=filters.chat_type.groups, block=False
 )
 LIST_WARN_HANDLER = DisableAbleCommandHandler(
-    ["warnlist", "warnfilters"], list_warn_filters, filters=Filters.chat_type.groups, admin_ok=True, block=False
+    ["warnlist", "warnfilters"], list_warn_filters, filters=filters.chat_type.groups, admin_ok=True, block=False
 )
 WARN_FILTER_HANDLER = MessageHandler(
-    CustomFilters.has_text & Filters.chat_type.groups, reply_filter, block=False
+    CustomFilters.has_text & filters.chat_type.groups, reply_filter, block=False
 )
-WARN_LIMIT_HANDLER = CommandHandler("warnlimit", set_warn_limit, filters=Filters.chat_type.groups, block=False)
+WARN_LIMIT_HANDLER = CommandHandler("warnlimit", set_warn_limit, filters=filters.chat_type.groups, block=False)
 WARN_STRENGTH_HANDLER = CommandHandler(
-    "strongwarn", set_warn_strength, filters=Filters.chat_type.groups, block=False
+    "strongwarn", set_warn_strength, filters=filters.chat_type.groups, block=False
 )
 
 SHIKIMORI_PTB.add_handler(WARN_HANDLER)

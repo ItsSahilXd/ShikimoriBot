@@ -11,7 +11,7 @@ from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
     CommandHandler,
-    Filters,
+    filters,
     MessageHandler,
 )
 from telegram.utils.helpers import mention_html
@@ -278,10 +278,10 @@ __help__ = """
 
 SETTING_HANDLER = CommandHandler("reports", report_setting, block=False)
 REPORT_HANDLER = CommandHandler(
-    "report", report, filters=Filters.chat_type.groups, block=False
+    "report", report, filters=filters.chat_type.groups, block=False
 )
 ADMIN_REPORT_HANDLER = MessageHandler(
-    Filters.regex(r"(?i)@admin(s)?"), report, block=False
+    filters.regex(r"(?i)@admin(s)?"), report, block=False
 )
 REPORT_BUTTON_USER_HANDLER = CallbackQueryHandler(
     buttons, pattern=r"report_", block=False

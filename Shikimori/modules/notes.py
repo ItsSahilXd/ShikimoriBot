@@ -26,7 +26,7 @@ from telegram.ext import (
     CallbackContext,
     CommandHandler,
     CallbackQueryHandler,
-    Filters,
+    filters,
     MessageHandler,
 )
 
@@ -578,8 +578,8 @@ A button can be added to a note by using standard markdown link syntax - the lin
 __mod_name__ = "Notes 📚"
 
 GET_HANDLER = CommandHandler("get", cmd_get, block=False)
-HASH_GET_HANDLER = MessageHandler(Filters.regex(r"^#[^\s]+"), hash_get, block=False)
-SLASH_GET_HANDLER = MessageHandler(Filters.regex(r"^/\d+$"), slash_get, block=False)
+HASH_GET_HANDLER = MessageHandler(filters.regex(r"^#[^\s]+"), hash_get, block=False)
+SLASH_GET_HANDLER = MessageHandler(filters.regex(r"^/\d+$"), slash_get, block=False)
 SAVE_HANDLER = CommandHandler("save", save, block=False)
 DELETE_HANDLER = CommandHandler("clear", clear, block=False)
 LIST_HANDLER = DisableAbleCommandHandler(

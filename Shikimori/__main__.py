@@ -51,7 +51,7 @@ from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
     CommandHandler,
-    Filters,
+    filters,
     MessageHandler,
 )
 from telegram.utils.helpers import escape_markdown
@@ -849,7 +849,7 @@ def main():
 
     donate_handler = CommandHandler("donate", donate, block=False)
     migrate_handler = MessageHandler(
-        Filters.status_update.migrate, migrate_chats, block=False
+        filters.status_update.migrate, migrate_chats, block=False
     )
 
 

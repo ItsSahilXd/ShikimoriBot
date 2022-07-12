@@ -14,7 +14,7 @@ from telegram.constants import ParseMode
 from telegram.ext import (
     CallbackContext,
     CommandHandler,
-    Filters,
+    filters,
     MessageHandler,
 )
 
@@ -238,7 +238,7 @@ LIST_CLEAN_BLUE_TEXT_HANDLER = CommandHandler(
     "listblue", bluetext_ignore_list, block=False
 )
 CLEAN_BLUE_TEXT_HANDLER = MessageHandler(
-    Filters.command & Filters.chat_type.groups,
+    filters.command & filters.chat_type.groups,
     clean_blue_text_must_click,
     block=False,
 )

@@ -6,7 +6,7 @@ from telegram import Message, Chat, MessageEntity
 from telegram.constants import ParseMode
 from telegram import TelegramError, ChatPermissions
 from telegram.error import BadRequest
-from telegram.ext import CommandHandler, MessageHandler, Filters
+from telegram.ext import CommandHandler, MessageHandler, filters
 from telegram.utils.helpers import mention_html
 from alphabet_detector import AlphabetDetector
 from Shikimori import SHIKIMORI_PTB, LOGGER
@@ -26,19 +26,19 @@ from Shikimori.modules.helper_funcs.alternate import send_message, typing_action
 ad = AlphabetDetector()
 
 LOCK_TYPES = {
-    "audio": Filters.audio,
-    "voice": Filters.voice,
-    "document": Filters.document,
-    "video": Filters.video,
-    "contact": Filters.contact,
-    "photo": Filters.photo,
-    "url": Filters.entity(MessageEntity.URL)
-    | Filters.caption_entity(MessageEntity.URL),
-    "bots": Filters.status_update.new_chat_members,
-    "forward": Filters.forwarded,
-    "game": Filters.game,
-    "location": Filters.location,
-    "egame": Filters.dice,
+    "audio": filters.audio,
+    "voice": filters.voice,
+    "document": filters.document,
+    "video": filters.video,
+    "contact": filters.contact,
+    "photo": filters.photo,
+    "url": filters.entity(MessageEntity.URL)
+    | filters.caption_entity(MessageEntity.URL),
+    "bots": filters.status_update.new_chat_members,
+    "forward": filters.forwarded,
+    "game": filters.game,
+    "location": filters.location,
+    "egame": filters.dice,
     "rtl": "rtl",
     "button": "button",
     "inline": "inline",
@@ -564,13 +564,13 @@ __mod_name__ = "Locks 🔒"
 LOCKTYPES_HANDLER = DisableAbleCommandHandler("locktypes", locktypes, block=False)
 LOCK_HANDLER = CommandHandler(
     "lock", lock,  block=False
-)  # , filters=Filters.chat_type.groups)
+)  # , filters=filters.chat_type.groups)
 UNLOCK_HANDLER = CommandHandler(
     "unlock", unlock,  block=False
-)  # , filters=Filters.chat_type.groups)
+)  # , filters=filters.chat_type.groups)
 LOCKED_HANDLER = CommandHandler(
     "locks", list_locks, block=False
-)  # , filters=Filters.chat_type.groups)
+)  # , filters=filters.chat_type.groups)
 
 SHIKIMORI_PTB.add_handler(LOCK_HANDLER)
 SHIKIMORI_PTB.add_handler(UNLOCK_HANDLER)
@@ -579,7 +579,7 @@ SHIKIMORI_PTB.add_handler(LOCKED_HANDLER)
 
 SHIKIMORI_PTB.add_handler(
     MessageHandler(
-        Filters.all & Filters.chat_type.groups, del_lockables, block=False
+        filters.all & filters.chat_type.groups, del_lockables, block=False
     ),
     PERM_GROUP,
 )

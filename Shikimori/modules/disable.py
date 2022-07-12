@@ -10,7 +10,7 @@ from telegram.constants import ParseMode
 from telegram.ext import (
     CallbackContext,
     CommandHandler,
-    Filters,
+    filters,
     MessageHandler,
     RegexHandler,
 )
@@ -95,9 +95,9 @@ if is_module_loaded(FILENAME):
             DISABLE_OTHER.append(friendly)
             self.friendly = friendly
             if filters:
-                self.filters = Filters.update.messages & filters
+                self.filters = filters.update.messages & filters
             else:
-                self.filters = Filters.update.messages
+                self.filters = filters.update.messages
 
         def check_update(self, update):
 

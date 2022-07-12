@@ -6,7 +6,7 @@ from Shikimori.modules.helper_funcs.extraction import extract_user
 from Shikimori.modules.sql.users_sql import get_user_com_chats
 from telegram import Update
 from telegram.error import BadRequest, RetryAfter, Forbidden
-from telegram.ext import CallbackContext, CommandHandler, Filters
+from telegram.ext import CallbackContext, CommandHandler, filters
 
 def get_user_common_chats(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
@@ -45,7 +45,7 @@ def get_user_common_chats(update: Update, context: CallbackContext):
 
 
 COMMON_CHATS_HANDLER = CommandHandler(
-    "getchats", get_user_common_chats, filters=Filters.user(DEV_USERS), block=False
+    "getchats", get_user_common_chats, filters=filters.user(DEV_USERS), block=False
 )
 
 SHIKIMORI_PTB.add_handler(COMMON_CHATS_HANDLER)

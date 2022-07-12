@@ -10,7 +10,7 @@ from telegram.ext import (
     MessageHandler,
     SHIKIMORI_PTBHandlerStop,
     CallbackQueryHandler,
-    Filters,
+    filters,
 )
 from telegram.utils.helpers import mention_html, escape_markdown
 from Shikimori import SHIKIMORI_PTB, LOGGER, DRAGONS
@@ -636,7 +636,7 @@ __mod_name__ = "Filters"
 FILTER_HANDLER = CommandHandler("filter", filters)
 STOP_HANDLER = CommandHandler("stop", stop_filter)
 RMALLFILTER_HANDLER = CommandHandler(
-    "removeallfilters", rmall_filters, filters=Filters.chat_type.groups, block=False
+    "removeallfilters", rmall_filters, filters=filters.chat_type.groups, block=False
 )
 RMALLFILTER_CALLBACK = CallbackQueryHandler(
     rmall_callback, pattern=r"filters_.*", block=False
@@ -645,7 +645,7 @@ LIST_HANDLER = DisableAbleCommandHandler(
     "filters", list_handlers, admin_ok=True, block=False
 )
 CUST_FILTER_HANDLER = MessageHandler(
-    CustomFilters.has_text & ~Filters.update.edited_message,
+    CustomFilters.has_text & ~filters.update.edited_message,
     reply_filter,
     block=False,
 )

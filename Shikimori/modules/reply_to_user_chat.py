@@ -3,7 +3,7 @@
 
 from Shikimori import SHIKIMORI_PTB, MEDIA_BYE, MEDIA_GM, MEDIA_GN, MEDIA_HELLO
 from telegram.constants import ParseMode
-from telegram.ext import Filters, MessageHandler
+from telegram.ext import filters, MessageHandler
 import time
 
 IMG_GM = MEDIA_GM.split(".")
@@ -135,16 +135,16 @@ def bye(update, context):
 
 
 GDMORNING_HANDLER = MessageHandler(
-    Filters.regex("(?i)(good morning|goodmorning)"), goodmorning, friendly="goodmorning", block=False
+    filters.regex("(?i)(good morning|goodmorning)"), goodmorning, friendly="goodmorning", block=False
 )
 GDNIGHT_HANDLER = MessageHandler(
-    Filters.regex("(?i)(good night|goodnight)"), goodnight, friendly="goodnight", block=False
+    filters.regex("(?i)(good night|goodnight)"), goodnight, friendly="goodnight", block=False
 )
 BYE_HANDLER = MessageHandler(
-    Filters.regex("(?i)(bye|brb|afk)"), bye, friendly="bye", block=False
+    filters.regex("(?i)(bye|brb|afk)"), bye, friendly="bye", block=False
 )
 HELLO_HANDLER = MessageHandler(
-    Filters.regex("(?i)(hello)"), hello, friendly="hello", block=False
+    filters.regex("(?i)(hello)"), hello, friendly="hello", block=False
 )
 
 SHIKIMORI_PTB.add_handler(GDMORNING_HANDLER)

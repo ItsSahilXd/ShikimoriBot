@@ -11,7 +11,7 @@ from telegram.constants import ParseMode
 from telegram import (CallbackQuery, Chat, MessageEntity, InlineKeyboardButton,
                       InlineKeyboardMarkup, Update, Bot, User)
 from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
-                          SHIKIMORI_PTBHandlerStop, Filters, MessageHandler,
+                          SHIKIMORI_PTBHandlerStop, filters, MessageHandler,
                           run_async)
 from telegram.error import BadRequest, RetryAfter, Forbidden
 from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
@@ -144,8 +144,8 @@ CHATBOTK_HANDLER = CommandHandler("chatbot", kuki, block=False)
 ADD_CHAT_HANDLER = CallbackQueryHandler(kukiadd, pattern=r"add_chat", block=False)
 RM_CHAT_HANDLER = CallbackQueryHandler(kukirm, pattern=r"rm_chat", block=False)
 CHATBOT_HANDLER = MessageHandler(
-    Filters.text & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!")
-                    & ~Filters.regex(r"^\/")), chatbot, block=False)
+    filters.text & (~filters.regex(r"^#[^\s]+") & ~filters.regex(r"^!")
+                    & ~filters.regex(r"^\/")), chatbot, block=False)
 LIST_ALL_CHATS_HANDLER = CommandHandler(
     "allchats", list_all_chats, filters=CustomFilters.dev_filter, block=False)
 

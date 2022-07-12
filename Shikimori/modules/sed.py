@@ -29,7 +29,7 @@ from Shikimori import LOGGER, SHIKIMORI_PTB
 from Shikimori.modules.disable import DisableAbleMessageHandler
 from Shikimori.modules.helper_funcs.regex_helper import (infinite_loop_check)
 from telegram import Update
-from telegram.ext import CallbackContext, Filters, run_async
+from telegram.ext import CallbackContext, filters, run_async
 
 DELIMITERS = ("/", ":", "|", "_")
 
@@ -151,7 +151,7 @@ If you want to use these characters, make sure you escape them!
 __mod_name__ = "Sed/Regex"
 
 SED_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r's([{}]).*?\1.*'.format("".join(DELIMITERS))),
+    filters.regex(r's([{}]).*?\1.*'.format("".join(DELIMITERS))),
     sed,
     friendly="sed", block=False)
 
