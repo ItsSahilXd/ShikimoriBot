@@ -26,8 +26,7 @@ from Shikimori.modules.sql import cust_filters_sql as sql
 from Shikimori.modules.connection import connected
 from Shikimori.modules.helper_funcs.alternate import send_message
 from Shikimori.modules.helper_funcs.extraction import extract_text
-from Shikimori.modules.helper_funcs.chat_status import is_user_admin
-from Shikimori.modules.helper_funcs.anonymous import AdminPerms
+from Shikimori.modules.helper_funcs.anonymous import AdminPerms, user_admin
 
 HANDLER_GROUP = 10
 
@@ -90,7 +89,7 @@ async def list_handlers(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 # NOT ASYNC BECAUSE SHIKIMORI_PTB HANDLER RAISED
 @Shikimoricmd(command='filter', group=55)
 
-@is_user_admin(AdminPerms.CAN_CHANGE_INFO)
+@user_admin(AdminPerms.CAN_CHANGE_INFO)
 @loggable
 async def filters(update, context) -> None:  # sourcery no-metrics
     chat = update.effective_chat
@@ -218,7 +217,7 @@ async def filters(update, context) -> None:  # sourcery no-metrics
 # NOT ASYNC BECAUSE SHIKIMORI_PTB HANDLER RAISE
 @Shikimoricmd(command="stop")
 
-@is_user_admin(AdminPerms.CAN_CHANGE_INFO)
+@user_admin(AdminPerms.CAN_CHANGE_INFO)
 @loggable
 async def stop_filter(update, context) -> str:
     chat = update.effective_chat
