@@ -41,7 +41,7 @@ async def awake(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     else:
         TEXT = TEXT + "\n<b>Thanks For Adding Me Here ❤️</b>"
 
-    await bot.send_photo(
+    bot.send_photo(
         chat_id,
         photo=PHOTO,
         caption=TEXT,
