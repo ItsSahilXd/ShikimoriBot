@@ -524,7 +524,7 @@ GBAN_STATUS = CommandHandler(
     "antispam", gbanstat, filters=filters.chat_type.groups, block=False
 )
 GBAN_ENFORCER = MessageHandler(
-    filters.all & filters.chat_type.groups, enforce_gban, block=False
+    filters.ALL & filters.chat_type.groups, enforce_gban, block=False
 )
 
 SHIKIMORI_PTB.add_handler(GBAN_HANDLER)

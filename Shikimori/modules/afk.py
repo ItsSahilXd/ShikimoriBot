@@ -155,8 +155,8 @@ def __gdpr__(user_id):
 
 AFK_HANDLER = DisableAbleCommandHandler("afk", afk, block=False)
 AFK_REGEX_HANDLER = MessageHandler(filters.regex("(?i)brb"), afk, friendly="afk", block=False)
-NO_AFK_HANDLER = MessageHandler(filters.all & filters.chat_type.groups, no_longer_afk, block=False)
-AFK_REPLY_HANDLER = MessageHandler(filters.all & filters.chat_type.groups, reply_afk, block=False)
+NO_AFK_HANDLER = MessageHandler(filters.ALL & filters.chat_type.groups, no_longer_afk, block=False)
+AFK_REPLY_HANDLER = MessageHandler(filters.ALL & filters.chat_type.groups, reply_afk, block=False)
 
 SHIKIMORI_PTB.add_handler(AFK_HANDLER, AFK_GROUP)
 SHIKIMORI_PTB.add_handler(AFK_REGEX_HANDLER, AFK_GROUP)

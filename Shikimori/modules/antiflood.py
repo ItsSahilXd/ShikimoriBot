@@ -400,7 +400,7 @@ def __chat_settings__(chat_id, user_id):
 __mod_name__ = "Anti-Flood"
 
 FLOOD_BAN_HANDLER = MessageHandler(
-    filters.all & ~filters.status_update & filters.chat_type.groups,
+    filters.ALL & ~filters.status_update & filters.chat_type.groups,
     check_flood,
     block=False,
 )

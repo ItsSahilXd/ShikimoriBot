@@ -579,7 +579,7 @@ SHIKIMORI_PTB.add_handler(LOCKED_HANDLER)
 
 SHIKIMORI_PTB.add_handler(
     MessageHandler(
-        filters.all & filters.chat_type.groups, del_lockables, block=False
+        filters.ALL & filters.chat_type.groups, del_lockables, block=False
     ),
     PERM_GROUP,
 )
