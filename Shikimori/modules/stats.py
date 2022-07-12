@@ -125,7 +125,7 @@ def stats(update, context):
             ),
         )
 
-STATS_HANDLER = CommandHandler(["stats", "statistics"], stats, run_async=True)
+STATS_HANDLER = CommandHandler(["stats", "statistics"], stats, block=False)
 dispatcher.add_handler(STATS_HANDLER)
 
 __handlers__ = [

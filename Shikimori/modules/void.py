@@ -30,7 +30,7 @@ def void(update: Update, context: CallbackContext):
     )
 
 
-void_handler = CommandHandler("void", void, run_async = True)
+void_handler = CommandHandler("void", void, block=False)
 dispatcher.add_handler(void_handler)
 
 __help__ = """

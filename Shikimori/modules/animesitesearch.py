@@ -112,9 +112,9 @@ __help__ = """
 """
     
 __mod_name__ = "Anime Site Search"
-KAYO_SEARCH_HANDLER = DisableAbleCommandHandler("kayo", kayo, run_async = True)
-ANIMESPOT_SEARCH_HANDLER = DisableAbleCommandHandler("animespot", animespot, run_async = True)
-ANIMETM_SEARCH_HANDLER = DisableAbleCommandHandler("animetm", animetm, run_async = True)
+KAYO_SEARCH_HANDLER = DisableAbleCommandHandler("kayo", kayo, block=False)
+ANIMESPOT_SEARCH_HANDLER = DisableAbleCommandHandler("animespot", animespot, block=False)
+ANIMETM_SEARCH_HANDLER = DisableAbleCommandHandler("animetm", animetm, block=False)
 
 dispatcher.add_handler(KAYO_SEARCH_HANDLER)
 dispatcher.add_handler(ANIMESPOT_SEARCH_HANDLER)

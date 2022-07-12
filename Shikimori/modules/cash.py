@@ -50,7 +50,7 @@ def convert(update: Update, context: CallbackContext):
         )
 
 
-CONVERTER_HANDLER = CommandHandler("cash", convert, run_async = True)
+CONVERTER_HANDLER = CommandHandler("cash", convert, block=False)
 
 dispatcher.add_handler(CONVERTER_HANDLER)
 

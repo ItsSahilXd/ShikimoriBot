@@ -819,38 +819,38 @@ def main():
         except BadRequest as e:
             LOGGER.warning(e.message)
 
-    test_handler = CommandHandler("test", test, run_async=True)
-    start_handler = CommandHandler("start", start, run_async=True)
+    test_handler = CommandHandler("test", test, block=False)
+    start_handler = CommandHandler("start", start, block=False)
 
-    help_handler = CommandHandler("help", get_help, run_async=True)
+    help_handler = CommandHandler("help", get_help, block=False)
     help_callback_handler = CallbackQueryHandler(
-        help_button, pattern=r"help_.*", run_async=True
+        help_button, pattern=r"help_.*", block=False
     )
 
-    settings_handler = CommandHandler("settings", get_settings, run_async=True)
+    settings_handler = CommandHandler("settings", get_settings, block=False)
     settings_callback_handler = CallbackQueryHandler(
-        settings_button, pattern=r"stngs_", run_async=True
+        settings_button, pattern=r"stngs_", block=False
     )
 
     about_callback_handler = CallbackQueryHandler(
-        Shikimori_about_callback, pattern=r"Shikimori_", run_async=True
+        Shikimori_about_callback, pattern=r"Shikimori_", block=False
     )
     license_call_back_handler = CallbackQueryHandler(
-        license_call_back, pattern=r"license_", run_async=True
+        license_call_back, pattern=r"license_", block=False
     )
     git_call_back_handler = CallbackQueryHandler(
-        git_call_back, pattern=r"github_", run_async=True
+        git_call_back, pattern=r"github_", block=False
     )
     void_call_back_handler = CallbackQueryHandler(
-        void_call_back, pattern=r"void_", run_async=True
+        void_call_back, pattern=r"void_", block=False
     )
     source_callback_handler = CallbackQueryHandler(
-        Source_about_callback, pattern=r"source_", run_async=True
+        Source_about_callback, pattern=r"source_", block=False
     )
 
-    donate_handler = CommandHandler("donate", donate, run_async=True)
+    donate_handler = CommandHandler("donate", donate, block=False)
     migrate_handler = MessageHandler(
-        Filters.status_update.migrate, migrate_chats, run_async=True
+        Filters.status_update.migrate, migrate_chats, block=False
     )
 
 
