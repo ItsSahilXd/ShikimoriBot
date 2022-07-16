@@ -1,63 +1,142 @@
-"""
-MIT License
-Copyright (c) 2021 TheHamkerCat
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"""
-from pyrogram import filters
+import datetime
+import codecs
+import html
+import os
+import random
+import re
+import subprocess
+import requests as r
+from Shikimori import dispatcher 
 
-from Shikimori import pbot as app, arq
-from Shikimori.utils.errors import capture_err
-
-__mod_name__ = "Reddit"
+from telegram.error import BadRequest
+from telegram.ext import CommandHandler, Filters, run_async, MessageHandler 
+from telegram.utils.helpers import escape_markdown, mention_html
+from telegram import (
+    Chat,
+    ChatAction,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+    MessageEntity,
+    ParseMode,
+    TelegramError,
+)
 
 
 
-@app.on_message(filters.command("reddit"))
 
-@capture_err
-async def reddit(_, message):
-    if len(message.command) != 2:
-        return await message.reply_text("/reddit needs an argument")
-    subreddit = message.text.split(None, 1)[1]
-    m = await message.reply_text("Searching")
-    reddit = await arq.reddit(subreddit)
-    if not reddit.ok:
-        return await m.edit_text(reddit.result)
-    reddit = reddit.result
-    nsfw = reddit.nsfw
-    sreddit = reddit.subreddit
-    title = reddit.title
-    image = reddit.url
-    link = reddit.postLink
-    if nsfw:
-        return await m.edit_text("NSFW RESULTS COULD NOT BE SHOWN.")
+@run_async
+def rmemes(update, context):
+    msg = update.effective_message
+    chat = update.effective_chat
+    context.bot.send_chat_action(chat.id, action="upload_photo")
 
-    caption = f"""
-**Title:** `{title}`
-**Subreddit:** {sreddit}
-**PostLink:** {link}"""
+    SUBREDS = [
+        "Animemes"
+        "hentaimemes"
+        "meirl",
+        "dankmemes",
+        "AdviceAnimals",
+        "memes",
+        "meme",
+        "memes_of_the_dank",
+        "PornhubComments",
+        "teenagers",
+        "memesIRL",
+        "insanepeoplefacebook",
+        "terriblefacebookmemes",
+    ]
+
+    subreddit = random.choice(SUBREDS)
+    res = r.get(f"https://meme-api.herokuapp.com/gimme/{subreddit}")
+
+    if res.status_code != 200:  # Like if api is down?
+        msg.reply_text("Sorry some error occurred :(, possibly api is down")
+        return
+    else:
+        res = res.json()
+
+    rpage = res.get(str("subreddit"))  # Subreddit
+    title = res.get(str("title"))  # Post title
+    memeu = res.get(str("url"))  # meme pic url
+    plink = res.get(str("postLink"))
+
+    caps = f"× <b>Title</b>: {title}\n"
+    caps += f"× <b>Subreddit:</b> <pre>r/{rpage}</pre>"
+
+    keyb = [[InlineKeyboardButton(text="Postlink 🔗", url=plink)]]
     try:
-        await message.reply_photo(photo=image, caption=caption)
-        await m.delete()
-    except Exception as e:
-        await m.edit_text(e.MESSAGE)
+        context.bot.send_photo(
+            chat.id,
+            photo=memeu,
+            caption=(caps),
+            reply_markup=InlineKeyboardMarkup(keyb),
+            timeout=60,
+            parse_mode=ParseMode.HTML,
+        )
 
-__mod_name__ = "Reddit"
+    except BadRequest as excp:
+        return msg.reply_text(f"Error! {excp.message}")
+
+@run_async
+def anyy(update, context):
+    msg = update.effective_message
+    chat = update.effective_chat
+    
+    context.bot.send_chat_action(chat.id, action="upload_photo")
+    try:
+      sub = msg.text.split(" ", 1)[1]
+    except IndexError:
+      sub = msg.text[3:]
+    if sub == " ": 
+      return msg.reply_text("What to scrape for?") 
+    print(sub)
+    res = r.get(f"https://meme-api.herokuapp.com/gimme/{sub}")
+    j = res.json()
+
+    if res.status_code != 200:  # Like if api is down?
+        if j.get(str('code')) == str(404):
+          return msg.reply_text("Ahh f, this sub doesn't exist!!")
+        msg.reply_text("Sorry some error occurred :(, possibly api is down")
+        return
+    else:
+        res = res.json()
+
+    rpage = res.get(str("subreddit"))  # Subreddit
+    title = res.get(str("title"))  # Post title
+    memeu = res.get(str("url"))  # meme pic url
+    plink = res.get(str("postLink"))
+
+    caps = f"× <b>Title</b>: {title}\n"
+    caps += f"× <b>Subreddit:</b> <pre>r/{rpage}</pre>"
+
+    keyb = [[InlineKeyboardButton(text="Postlink 🔗", url=plink)]]
+    try:
+        context.bot.send_photo(
+            chat.id,
+            photo=memeu,
+            caption=(caps),
+            reply_markup=InlineKeyboardMarkup(keyb),
+            timeout=60,
+            parse_mode=ParseMode.HTML,
+        )
+
+    except BadRequest as excp:
+        return msg.reply_text(f"Error! {excp.message}")
+       
+
 __help__ = """
-*Reddit*
- ❍ `/reddit` : Searches reddit
-"""
+***Rmeme Module**
+
+`/meme`: Try it urself baka! 
+`/rnsfw`: Dangerous!! 
+
+""" 
+R_HANDLER = CommandHandler("rmeme", rmemes)
+DIS_HANDLER = CommandHandler("r", anyy)
+COS_HANDLER = MessageHandler(Filters.regex(r'^/r\/(.*)'), anyy)
+dispatcher.add_handler(R_HANDLER)
+dispatcher.add_handler(COS_HANDLER)
+dispatcher.add_handler(DIS_HANDLER)
+
+__mod_name__ = "Meme"
