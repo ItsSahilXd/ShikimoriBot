@@ -1,59 +1,16 @@
-"""
-STATUS: Code is working. ✅
-"""
-
-"""
-BSD 2-Clause License
-
-Copyright (C) 2022, SOME-1HING [https://github.com/SOME-1HING]
-
-Credits:-
-    I don't know who originally wrote this code. If you originally wrote this code, please reach out to me. 
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-"""
-
 from io import BytesIO
 from time import sleep
 
-from telegram import TelegramError, Update
-from telegram.error import BadRequest, Unauthorized
-from telegram.ext import (
-    CallbackContext,
-    CommandHandler,
-    Filters,
-    MessageHandler,
-)
+from telegram import TelegramError
+from telegram.error import BadRequest
+from telegram.ext import MessageHandler, Filters, CommandHandler
 
 import Shikimori.modules.sql.users_sql as sql
-from Shikimori import DEV_USERS, LOGGER, OWNER_ID, dispatcher
-from Shikimori.modules.helper_funcs.chat_status import dev_plus, sudo_plus
-from Shikimori.modules.sql.users_sql import get_all_users
+from Shikimori import dispatcher, LOGGER, CARDINALS
+from Shikimori.modules.helper_funcs.filters import CustomFilters
 
 USERS_GROUP = 4
-CHAT_GROUP = 5
-DEV_AND_MORE = DEV_USERS.append(int(OWNER_ID))
+CHAT_GROUP = 10
 
 
 def get_user_id(username):
@@ -69,74 +26,51 @@ def get_user_id(username):
     if not users:
         return None
 
-    elif len(users) == 1:
+    if len(users) == 1:
         return users[0].user_id
+    for user_obj in users:
+        try:
+            userdat = dispatcher.bot.get_chat(user_obj.user_id)
+            if userdat.username == username:
+                return userdat.id
 
-    else:
-        for user_obj in users:
-            try:
-                userdat = dispatcher.bot.get_chat(user_obj.user_id)
-                if userdat.username == username:
-                    return userdat.id
-
-            except BadRequest as excp:
-                if excp.message == "Chat not found":
-                    pass
-                else:
-                    LOGGER.exception("Error extracting user ID")
+        except BadRequest as excp:
+            if excp.message != "Chat not found":
+                LOGGER.exception("Error extracting user ID")
 
     return None
 
 
-
-@dev_plus
-def broadcast(update: Update, context: CallbackContext):
-    to_send = update.effective_message.text.split(None, 1)
-
-    if len(to_send) >= 2:
-        to_group = False
-        to_user = False
-        if to_send[0] == "/broadcastgroups":
-            to_group = True
-        if to_send[0] == "/broadcastusers":
-            to_user = True
-        else:
-            to_group = to_user = True
-        chats = sql.get_all_chats() or []
-        users = get_all_users()
-        failed = 0
-        failed_user = 0
-        if to_group:
-            for chat in chats:
-                try:
-                    context.bot.sendMessage(
-                        int(chat.chat_id),
-                        to_send[1],
-                        parse_mode="MARKDOWN",
-                        disable_web_page_preview=True,
-                    )
-                    sleep(0.1)
-                except TelegramError:
-                    failed += 1
-        if to_user:
-            for user in users:
-                try:
-                    context.bot.sendMessage(
-                        int(user.user_id),
-                        to_send[1],
-                        parse_mode="MARKDOWN",
-                        disable_web_page_preview=True,
-                    )
-                    sleep(0.1)
-                except TelegramError:
-                    failed_user += 1
-        update.effective_message.reply_text(
-            f"Broadcast complete.\nGroups failed: {failed}.\nUsers failed: {failed_user}."
-        )
+def broadcast(update, context):
+    if update.effective_message.reply_to_message:
+      to_send=update.effective_message.reply_to_message.message_id
+    if not update.effective_message.reply_to_message:
+      return update.effective_message.reply_text("Reply To Some Shit To Broadcast")
+    chats = sql.get_all_chats() or []
+    users = sql.get_all_users() or []
+    failed = 0
+    for chat in chats:
+      try:
+        context.bot.forwardMessage(chat_id=int(chat.chat_id), from_chat_id=update.effective_chat.id, message_id=to_send)
+        sleep(0.1)
+      except TelegramError:
+        failed += 1
+        LOGGER.warning("Couldn't send broadcast to %s, group name %s", str(chat.chat_id), str(chat.chat_name),)
+    
+    failed_user = 0
+    for user in users:
+      try:
+        context.bot.forwardMessage(chat_id=int(user.user_id), from_chat_id=update.effective_chat.id, message_id=to_send)
+        sleep(0.1)
+      except TelegramError:
+        failed_user += 1
+        LOGGER.warning("Couldn't send broadcast to %s, group name %s", str(user.user_id), str(user.username),)
 
 
+    update.effective_message.reply_text("Broadcast complete. {} groups failed to receive the message, probably due to being kicked. {} users failed to receive the message, probably due to being banned.".format(failed, failed_user))
 
-def log_user(update: Update, context: CallbackContext):
+
+def log_user(update, _):
     chat = update.effective_chat
     msg = update.effective_message
 
@@ -154,54 +88,38 @@ def log_user(update: Update, context: CallbackContext):
         sql.update_user(msg.forward_from.id, msg.forward_from.username)
 
 
-
-@sudo_plus
-def chats(update: Update, context: CallbackContext):
+def chats(update, _):
     all_chats = sql.get_all_chats() or []
-    chatfile = "List of chats.\n0. Chat name | Chat ID | Members count\n"
-    P = 1
+    chatfile = "List of chats.\n"
     for chat in all_chats:
-        try:
-            curr_chat = context.bot.getChat(chat.chat_id)
-            bot_member = curr_chat.get_member(context.bot.id)
-            chat_members = curr_chat.get_member_count(context.bot.id)
-            chatfile += "{}. {} | {} | {}\n".format(
-                P, chat.chat_name, chat.chat_id, chat_members
-            )
-            P = P + 1
-        except:
-            pass
+        chatfile += "{} - ({})\n".format(chat.chat_name, chat.chat_id)
 
     with BytesIO(str.encode(chatfile)) as output:
-        output.name = "groups_list.txt"
+        output.name = "chatlist.txt"
         update.effective_message.reply_document(
             document=output,
-            filename="groups_list.txt",
-            caption="Here be the list of groups in my database.",
+            filename="chatlist.txt",
+            caption="Here is the list of chats in my database.",
         )
 
 
-
-def chat_checker(update: Update, context: CallbackContext):
-    bot = context.bot
-    try:
-        if update.effective_message.chat.get_member(bot.id).can_send_messages is False:
-            bot.leaveChat(update.effective_message.chat.id)
-    except Unauthorized:
-        pass
+def chat_checker(update, context):
+    if (
+        update.effective_message.chat.get_member(context.bot.id).can_send_messages
+        is False
+    ):
+        context.bot.leaveChat(update.effective_message.chat.id)
 
 
 def __user_info__(user_id):
-    if user_id in [777000, 1087968824]:
-        return """╘══「 Groups count: <code>???</code> 」"""
     if user_id == dispatcher.bot.id:
-        return """╘══「 Groups count: <code>???</code> 」"""
+        return """I've seen them in... Wow. Are they stalking me? They're in all the same places I am... oh. It's me."""
     num_chats = sql.get_user_num_chats(user_id)
-    return f"""╘══「 Groups count: <code>{num_chats}</code> 」"""
+    return """I've seen them in <code>{}</code> chats in total.""".format(num_chats)
 
 
 def __stats__():
-    return f"• {sql.num_users()} users, across {sql.num_chats()} chats"
+    return "× {} users, across {} chats".format(sql.num_users(), sql.num_chats())
 
 
 def __migrate__(old_chat_id, new_chat_id):
@@ -210,17 +128,20 @@ def __migrate__(old_chat_id, new_chat_id):
 
 __help__ = ""  # no help string
 
+__mod_name__ = "Users"
+
 BROADCAST_HANDLER = CommandHandler(
-    ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast
-, run_async = True)
-USER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, log_user, run_async = True)
-CHAT_CHECKER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, chat_checker, run_async = True)
-CHATLIST_HANDLER = CommandHandler("groups", chats, run_async = True)
+    "broadcast", broadcast, filters=Filters.user(CARDINALS), run_async=True
+)
+USER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, log_user)
+CHATLIST_HANDLER = CommandHandler(
+    "chatlist", chats, filters=CustomFilters.dev_filter, run_async=True
+)
+CHAT_CHECKER_HANDLER = MessageHandler(
+    Filters.all & Filters.chat_type.groups, chat_checker
+)
 
 dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
 dispatcher.add_handler(BROADCAST_HANDLER)
 dispatcher.add_handler(CHATLIST_HANDLER)
 dispatcher.add_handler(CHAT_CHECKER_HANDLER, CHAT_GROUP)
-
-__mod_name__ = "ᴜsᴇʀs"
-__handlers__ = [(USER_HANDLER, USERS_GROUP), BROADCAST_HANDLER, CHATLIST_HANDLER]
