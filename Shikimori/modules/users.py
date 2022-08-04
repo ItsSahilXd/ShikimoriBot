@@ -6,7 +6,7 @@ from telegram.error import BadRequest
 from telegram.ext import MessageHandler, Filters, CommandHandler
 
 import Shikimori.modules.sql.users_sql as sql
-from Shikimori import dispatcher, LOGGER, CARDINALS
+from Shikimori import dispatcher, LOGGER, DEV_USERS
 from Shikimori.modules.helper_funcs.filters import CustomFilters
 
 USERS_GROUP = 4
@@ -131,7 +131,7 @@ __help__ = ""  # no help string
 __mod_name__ = "Users"
 
 BROADCAST_HANDLER = CommandHandler(
-    "broadcast", broadcast, filters=Filters.user(CARDINALS), run_async=True
+    "broadcast", broadcast, filters=Filters.user(DEV_USERS), run_async=True
 )
 USER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, log_user)
 CHATLIST_HANDLER = CommandHandler(
