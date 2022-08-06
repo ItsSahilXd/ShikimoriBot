@@ -35,8 +35,8 @@ from pyrogram import filters
 from pyrogram.types import (InlineKeyboardMarkup,
                             InlineKeyboardButton
                             )
-
-from Shikimori import pbot, telegraph
+from telegraph import Telegraph
+from Shikimori import pbot 
 from Shikimori.utils.errors import capture_err
 
 
