@@ -36,7 +36,7 @@ from pyrogram.types import (InlineKeyboardMarkup,
                             InlineKeyboardButton
                             )
 
-from Shikimori import pgram, telegraph
+from Shikimori import pbot, telegraph
 from Shikimori.utils.errors import capture_err
 
 
